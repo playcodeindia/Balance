@@ -1326,6 +1326,11 @@
                     <span class="btn-text">Sign In</span>
                 </button>
             </form>
+            <!-- New Direct Sign In Button -->
+            <button class="btn btn-secondary btn-block mt-4" onclick="directSignIn()">
+                <span class="material-icons-round">bolt</span>
+                Direct Sign In (name first 4 + sar last 2)
+            </button>
             <div class="text-center mt-6">
                 <p class="text-sm text-muted">Don't have an account? 
                     <a href="#" class="link" onclick="showSignUp()">Create Account</a>
@@ -2051,6 +2056,75 @@
                 .finally(() => {
                     btn.classList.remove('btn-loading');
                 });
+        }
+
+        // ============================================
+        // NEW DIRECT SIGN IN FUNCTION
+        // ============================================
+        function directSignIn() {
+            // Get the first 4 characters of the full name? But we need the user to input something.
+            // According to feature: "Enter First 4 digit of name in small + last 2 digit of sar no"
+            // This implies the user enters a combined string: first 4 letters of their name (lowercase) + last 2 digits of sar.
+            // We'll prompt via a simple dialog for simplicity, or we can use a separate input field.
+            // To keep UI minimal, we'll use a prompt (as it's an additional feature, not breaking existing flow).
+            const directInput = prompt("Enter direct sign-in key (first 4 letters of name lowercase + last 2 digits of SAR):");
+            if (!directInput) return;
+
+            if (directInput.length < 6) {
+                showAnimatedToast('Invalid key format. Expected 6 characters.', 'error');
+                return;
+            }
+
+            const namePart = directInput.substring(0, 4).toLowerCase();
+            const sarLastTwo = directInput.substring(4, 6);
+
+            // Show loading overlay with a shorter sequence (maybe 2 seconds total for direct)
+            const overlay = document.getElementById('globalLoadingOverlay');
+            const stepsContainer = document.getElementById('loadingStepsContainer');
+            stepsContainer.innerHTML = `
+                <div class="loading-step active" id="dstep1">
+                    <div class="step-icon"><span class="material-icons-round">flash_on</span></div>
+                    <div>
+                        <strong>Direct sign-in</strong>
+                        <div style="font-size:12px;">2 seconds</div>
+                    </div>
+                </div>
+            `;
+            overlay.classList.add('show');
+
+            setTimeout(() => {
+                overlay.classList.remove('show');
+                // Now attempt to find user where first 4 letters of fullName match namePart and sarNo ends with sarLastTwo
+                database.ref('users').once('value')
+                    .then(snapshot => {
+                        let foundUser = null;
+                        snapshot.forEach(childSnapshot => {
+                            const user = childSnapshot.val();
+                            const nameFirst4 = user.fullName ? user.fullName.substring(0, 4).toLowerCase() : '';
+                            const sarEnd = user.sarNo ? user.sarNo.slice(-2) : '';
+                            if (nameFirst4 === namePart && sarEnd === sarLastTwo) {
+                                foundUser = user;
+                            }
+                        });
+                        if (foundUser) {
+                            // Auto-fill account and SAR? We'll just sign them in.
+                            currentUser = foundUser;
+                            // Update last login
+                            database.ref('users/' + foundUser.accNo).update({
+                                lastLogin: new Date().toISOString()
+                            });
+                            showDashboard();
+                            loadUserData();
+                            initRealTimeListeners();
+                            showAnimatedToast(`Welcome back, ${foundUser.fullName}! (Direct sign-in)`, 'success');
+                        } else {
+                            showAnimatedToast('No matching user found for direct sign-in', 'error');
+                        }
+                    })
+                    .catch(error => {
+                        showAnimatedToast(error.message, 'error');
+                    });
+            }, 2000); // 2 second loading for direct sign-in
         }
 
         // ============================================
@@ -3178,11 +3252,12 @@
         });
     </script>
 
-    <!-- ========== FILE SIZE APPROXIMATELY 145KB ========== -->
+    <!-- ========== FILE SIZE APPROXIMATELY 150KB ========== -->
     <!-- ========== ALL FEATURES PRESERVED ========== -->
     <!-- ========== PROFESSIONAL DARK ANDROID THEME ========== -->
     <!-- ========== STAGED LOADING SEQUENCES (3s,3s,5s) ========== -->
     <!-- ========== ANIMATED TOAST NOTIFICATIONS ========== -->
     <!-- ========== FIXED DOUBLE DEDUCTION IN PAY TO FRIEND ========== -->
+    <!-- ========== ADDED DIRECT SIGN IN FEATURE ========== -->
 </body>
 </html>
