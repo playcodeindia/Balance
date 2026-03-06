@@ -4,22 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>PlayCode · Professional Android Dashboard</title>
-    
-    <!-- PWA Manifest for Installable App -->
-    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22PlayCode%22%2C%22short_name%22%3A%22PlayCode%22%2C%22description%22%3A%22Google%20Play%20Code%20Management%22%2C%22start_url%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23141318%22%2C%22theme_color%22%3A%22%237C4DFF%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22192%22%20height%3D%22192%22%20viewBox%3D%220%200%20192%20192%22%3E%3Crect%20width%3D%22192%22%20height%3D%22192%22%20fill%3D%22%237C4DFF%22%20rx%3D%2230%22%2F%3E%3Cpath%20d%3D%22M64%2064L128%2096L64%20128V64Z%22%20fill%3D%22white%22%2F%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
-    
-    <!-- Theme Color for Status Bar -->
-    <meta name="theme-color" content="#7C4DFF">
-    
     <!-- Material Icons + Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Google+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
     <!-- Firebase 8.10.0 (legacy) -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    
     <style>
         /* ========== PROFESSIONAL DARK ANDROID THEME — MATERIAL YOU ========== */
         /* ========== ALL ORIGINAL FEATURES PRESERVED — NOTHING REMOVED ========== */
@@ -159,166 +150,6 @@
             filter: drop-shadow(0 1px 2px black);
         }
 
-        /* ===== INSTALL POPUP STYLES ===== */
-        .install-popup {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            max-width: 400px;
-            margin: 0 auto;
-            background: #24222A;
-            border: 1px solid rgba(124,77,255,0.3);
-            border-radius: 28px;
-            box-shadow: var(--shadow-2xl);
-            z-index: 10000;
-            backdrop-filter: blur(20px);
-            animation: slideUpPopup 0.5s cubic-bezier(0.2,0,0,1);
-            border-left: 4px solid #7C4DFF;
-        }
-
-        @keyframes slideUpPopup {
-            from {
-                opacity: 0;
-                transform: translateY(100px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .install-popup-content {
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .install-popup-logo {
-            flex-shrink: 0;
-        }
-
-        .install-popup-text {
-            flex: 1;
-        }
-
-        .install-popup-title {
-            color: white;
-            font-weight: 600;
-            margin-bottom: 4px;
-            font-size: 1rem;
-        }
-
-        .install-popup-subtitle {
-            color: #CBC7CF;
-            font-size: 0.85rem;
-        }
-
-        .install-popup-actions {
-            display: flex;
-            gap: 8px;
-            flex-shrink: 0;
-        }
-
-        .install-popup-btn {
-            padding: 8px 16px;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .install-popup-btn-primary {
-            background: #7C4DFF;
-            color: white;
-        }
-
-        .install-popup-btn-primary:hover {
-            background: #8F6EFF;
-            transform: scale(0.98);
-        }
-
-        .install-popup-btn-secondary {
-            background: rgba(255,255,255,0.08);
-            color: white;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .install-popup-btn-secondary:hover {
-            background: rgba(255,255,255,0.15);
-        }
-
-        .install-popup-close {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            width: 30px;
-            height: 30px;
-            border-radius: 30px;
-            background: #2C2A35;
-            border: 1px solid rgba(124,77,255,0.5);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.2rem;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .install-popup-close:hover {
-            background: #3A3750;
-        }
-
-        /* Install Badge for Already Installed */
-        .installed-badge {
-            background: rgba(66,214,137,0.15);
-            border: 1px solid rgba(66,214,137,0.3);
-            border-radius: 40px;
-            padding: 6px 14px;
-            color: #42D689;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 12px;
-        }
-
-        .pwa-install-prompt {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 20000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-        }
-
-        .pwa-install-prompt.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .pwa-install-card {
-            background: #1E1D24;
-            border: 1px solid #7C4DFF;
-            border-radius: 40px;
-            padding: 32px;
-            max-width: 320px;
-            text-align: center;
-        }
-
         /* ===== AUTH CONTAINER ===== */
         .auth-container {
             display: flex;
@@ -349,25 +180,6 @@
             transform: translateY(0);
             transition: transform var(--transition-base), box-shadow var(--transition-base);
             animation: cardFloatIn 0.6s cubic-bezier(0.2,0,0,1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .auth-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #7C4DFF, #B69EFF, #7C4DFF);
-            background-size: 200% 100%;
-            animation: gradientMove 3s infinite;
-        }
-
-        @keyframes gradientMove {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 200% 0%; }
         }
 
         @keyframes cardFloatIn {
@@ -1469,41 +1281,6 @@
     </style>
 </head>
 <body>
-    <!-- ========== INSTALL APP POPUP (SIGN PAGE PAR) ========== -->
-    <div id="installPopup" class="install-popup" style="display: none;">
-        <div class="install-popup-close" onclick="closeInstallPopup()">×</div>
-        <div class="install-popup-content">
-            <div class="install-popup-logo">
-                <div class="google-play-logo" style="width: 48px; height: 48px;">
-                    <div class="play-triangle" style="border-left-width: 14px; border-top-width: 10px; border-bottom-width: 10px;"></div>
-                </div>
-            </div>
-            <div class="install-popup-text">
-                <div class="install-popup-title">Install PlayCode App</div>
-                <div class="install-popup-subtitle">Add to home screen for quick access</div>
-            </div>
-            <div class="install-popup-actions">
-                <button class="install-popup-btn install-popup-btn-secondary" onclick="closeInstallPopup()">Later</button>
-                <button class="install-popup-btn install-popup-btn-primary" id="installButton" onclick="installApp()">Install</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ========== PWA INSTALL PROMPT (FOR ANDROID) ========== -->
-    <div id="pwaInstallPrompt" class="pwa-install-prompt">
-        <div class="pwa-install-card">
-            <div class="google-play-logo" style="width: 80px; height: 80px; margin: 0 auto 20px;">
-                <div class="play-triangle" style="border-left-width: 24px; border-top-width: 16px; border-bottom-width: 16px;"></div>
-            </div>
-            <h3 style="color: white; margin-bottom: 10px;">Add to Home Screen</h3>
-            <p style="color: #CBC7CF; margin-bottom: 20px;">Install PlayCode app for faster access and offline support</p>
-            <div style="display: flex; gap: 12px; justify-content: center;">
-                <button class="btn btn-secondary" onclick="closePwaPrompt()">Cancel</button>
-                <button class="btn btn-primary" id="confirmInstallBtn">Install Now</button>
-            </div>
-        </div>
-    </div>
-
     <!-- ========== GLOBAL LOADING OVERLAY ========== -->
     <div id="globalLoadingOverlay" class="loading-overlay">
         <div class="loading-card">
@@ -1553,12 +1330,6 @@
     <!-- ========== SIGN IN PAGE ========== -->
     <div id="signinPage" class="auth-container">
         <div class="auth-box">
-            <!-- Installed Badge (dikhega agar app install ho chuka hai) -->
-            <div id="installedBadge" class="installed-badge" style="display: none; margin-bottom: 20px;">
-                <span class="material-icons-round" style="font-size: 18px;">check_circle</span>
-                App Installed ✓
-            </div>
-            
             <div class="auth-header" style="text-align: center; margin-bottom: 32px;">
                 <div class="auth-logo" style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 16px;">
                     <div class="google-play-logo">
@@ -2173,92 +1944,6 @@
         let realTimeListeners = {};
         let allUsersCache = {};
         let currentRedeemCode = '';
-        
-        // PWA Install Variables
-        let deferredPrompt;
-        let isAppInstalled = false;
-
-        // ============================================
-        // PWA / INSTALL APP FUNCTIONS
-        // ============================================
-        
-        // Check if app is already installed
-        function checkIfInstalled() {
-            // Check if running in standalone mode (installed)
-            if (window.matchMedia('(display-mode: standalone)').matches || 
-                window.navigator.standalone === true) {
-                isAppInstalled = true;
-                document.getElementById('installedBadge').style.display = 'inline-flex';
-            }
-            
-            // Check localStorage for install preference
-            const installClosed = localStorage.getItem('installPopupClosed');
-            const installTime = localStorage.getItem('installPopupTime');
-            
-            // Show popup if not installed and not closed recently (7 days)
-            if (!isAppInstalled) {
-                if (!installClosed || (Date.now() - parseInt(installTime) > 7 * 24 * 60 * 60 * 1000)) {
-                    setTimeout(() => {
-                        showInstallPopup();
-                    }, 3000); // 3 second delay after page load
-                }
-            }
-        }
-
-        // Show install popup
-        function showInstallPopup() {
-            // Don't show if already installed
-            if (isAppInstalled) return;
-            
-            // Don't show if on iOS (PWA not supported well)
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-            if (isIOS) {
-                // Show iOS specific instructions
-                showAnimatedToast('Tap Share → Add to Home Screen', 'info');
-                return;
-            }
-            
-            document.getElementById('installPopup').style.display = 'block';
-        }
-
-        // Close install popup
-        function closeInstallPopup() {
-            document.getElementById('installPopup').style.display = 'none';
-            // Remember for 7 days
-            localStorage.setItem('installPopupClosed', 'true');
-            localStorage.setItem('installPopupTime', Date.now().toString());
-        }
-
-        // Install app function
-        function installApp() {
-            if (!deferredPrompt) {
-                // If no deferred prompt (maybe already installed or not supported)
-                showAnimatedToast('App already installed or not available', 'info');
-                closeInstallPopup();
-                return;
-            }
-
-            // Show the install prompt
-            deferredPrompt.prompt();
-            
-            // Wait for the user to respond to the prompt
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    isAppInstalled = true;
-                    document.getElementById('installedBadge').style.display = 'inline-flex';
-                    showAnimatedToast('App installed successfully!', 'success');
-                } else {
-                    showAnimatedToast('Installation cancelled', 'info');
-                }
-                deferredPrompt = null;
-                closeInstallPopup();
-            });
-        }
-
-        // Close PWA prompt
-        function closePwaPrompt() {
-            document.getElementById('pwaInstallPrompt').classList.remove('show');
-        }
 
         // ============================================
         // ANIMATED TOAST (WITH ENTRANCE EFFECT)
@@ -3577,46 +3262,9 @@
         }
 
         // ============================================
-        // PWA INSTALL EVENT LISTENER
-        // ============================================
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent Chrome 67 and earlier from automatically showing the prompt
-            e.preventDefault();
-            // Stash the event so it can be triggered later
-            deferredPrompt = e;
-            
-            // Update UI to notify the user they can add to home screen
-            // Only show if not already installed and not closed recently
-            if (!isAppInstalled) {
-                const installClosed = localStorage.getItem('installPopupClosed');
-                const installTime = localStorage.getItem('installPopupTime');
-                
-                if (!installClosed || (Date.now() - parseInt(installTime) > 7 * 24 * 60 * 60 * 1000)) {
-                    setTimeout(() => {
-                        showInstallPopup();
-                    }, 2000);
-                }
-            }
-        });
-
-        window.addEventListener('appinstalled', (evt) => {
-            // App is installed
-            isAppInstalled = true;
-            document.getElementById('installedBadge').style.display = 'inline-flex';
-            showAnimatedToast('App installed successfully! 🎉', 'success');
-            
-            // Hide any install popups
-            document.getElementById('installPopup').style.display = 'none';
-            deferredPrompt = null;
-        });
-
-        // ============================================
         // INITIALIZATION
         // ============================================
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if app is installed
-            checkIfInstalled();
-            
             // Add form submit handlers
             document.getElementById('signinForm')?.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -3637,12 +3285,6 @@
                     processDirectSignIn();
                 }
             });
-            
-            // Set up confirm install button
-            document.getElementById('confirmInstallBtn')?.addEventListener('click', function() {
-                installApp();
-                closePwaPrompt();
-            });
         });
 
         // Close dropdown when clicking outside
@@ -3661,14 +3303,6 @@
                 !event.target.closest('.user-search')) {
                 searchResults.style.display = 'none';
             }
-            
-            // Close install popup if clicking outside (optional)
-            const installPopup = document.getElementById('installPopup');
-            if (installPopup && installPopup.style.display === 'block' && 
-                !installPopup.contains(event.target) && 
-                !event.target.closest('.install-popup')) {
-                // Don't auto-close, user should explicitly close
-            }
         });
     </script>
 
@@ -3680,6 +3314,5 @@
     <!-- ========== FIXED DOUBLE DEDUCTION IN PAY TO FRIEND ========== -->
     <!-- ========== ADDED DIRECT SIGN IN MODAL ========== -->
     <!-- ========== FIXED SIGN OUT BUTTON ========== -->
-    <!-- ========== ADDED INSTALL APP POPUP + PWA SUPPORT ========== -->
 </body>
 </html>
