@@ -1278,7 +1278,16 @@
         .py-8 {
             padding-top: var(--space-8);
             padding-bottom: var(--space-8);
-        }
+        }/* Hide scrollbar but keep scroll working */
+
+/* For all modals */
+.modal-content::-webkit-scrollbar {
+    display: none;
+}
+
+.modal-content {
+    scrollbar-width: none; /* Firefox */
+}
     </style>
 </head>
 <body>
