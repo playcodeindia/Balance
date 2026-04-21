@@ -14,613 +14,188 @@
     <style>
         /* ========== PROFESSIONAL GOOGLE MATERIAL 3 THEME (DARK MODE ONLY) ========== */
         
-        /* ===== HIDE SCROLLBARS GLOBALLY BUT ALLOW SCROLLING ===== */
-        ::-webkit-scrollbar {
-            display: none;
-            width: 0;
-            background: transparent;
-        }
-        * {
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-        }
+        ::-webkit-scrollbar { display: none; width: 0; background: transparent; }
+        * { -ms-overflow-style: none; scrollbar-width: none; margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 
         :root {
             --md-sys-color-primary: #A8C7FA;
             --md-sys-color-on-primary: #062E6F;
             --md-sys-color-primary-container: #0842A0;
             --md-sys-color-on-primary-container: #D3E3FD;
-            
             --md-sys-color-secondary-container: #4A4458;
             --md-sys-color-on-secondary-container: #E8DEF8;
-            
             --md-sys-color-surface: #111114; 
             --md-sys-color-surface-container: #1E1F22; 
             --md-sys-color-surface-container-high: #2B2D31;
-            
             --md-sys-color-on-surface: #E2E2E2;
             --md-sys-color-on-surface-variant: #C4C7C5;
-            
             --md-sys-color-outline: #8E918F;
             --md-sys-color-outline-variant: #444746;
-            
             --md-sys-color-error: #F2B8B5;
             --md-sys-color-error-container: #8C1D18;
             --md-sys-color-on-error-container: #F9DEDC;
-            
             --md-sys-color-success: #81C995;
             --md-sys-color-success-container: #0F5223;
             --md-sys-color-on-success-container: #C4EED0;
-            
             --font-family-display: 'Google Sans', -apple-system, Roboto, sans-serif;
             --font-family-base: 'Roboto', -apple-system, sans-serif;
-            
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 24px;
-            --radius-xxl: 28px;
-            --radius-full: 9999px;
-            
+            --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px; --radius-xxl: 28px; --radius-full: 9999px;
             --shadow-1: 0 1px 2px 0 rgba(0,0,0,0.5), 0 1px 3px 1px rgba(0,0,0,0.3);
             --shadow-2: 0 1px 2px 0 rgba(0,0,0,0.6), 0 2px 6px 2px rgba(0,0,0,0.4);
             --shadow-3: 0 4px 8px 3px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.6);
-            
             --transition-standard: 200ms cubic-bezier(0.2, 0, 0, 1);
         }
 
-        body {
-            font-family: var(--font-family-display);
-            background-color: var(--md-sys-color-surface);
-            color: var(--md-sys-color-on-surface);
-            line-height: 1.5;
-            min-height: 100vh;
-            letter-spacing: 0.01em;
-            opacity: 0;
-            animation: bodyFadeIn 0.5s ease forwards;
-            overscroll-behavior-y: none;
-        }
+        body { font-family: var(--font-family-display); background-color: var(--md-sys-color-surface); color: var(--md-sys-color-on-surface); line-height: 1.5; min-height: 100vh; letter-spacing: 0.01em; opacity: 0; animation: bodyFadeIn 0.5s ease forwards; overscroll-behavior-y: none; }
+        @keyframes bodyFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        @keyframes bodyFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        .google-play-logo { width: 36px; height: 36px; background: #2B2D31; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.5); position: relative; overflow: hidden; }
+        .google-play-logo::before { content: ''; position: absolute; width: 100%; height: 100%; background: conic-gradient(from 90deg at 50% 50%, #4285F4 0deg 90deg, #EA4335 90deg 180deg, #FBBC05 180deg 270deg, #34A853 270deg 360deg); opacity: 0.25; }
+        .play-triangle { width: 0; height: 0; border-left: 12px solid var(--md-sys-color-primary); border-top: 8px solid transparent; border-bottom: 8px solid transparent; margin-left: 4px; z-index: 1; }
 
-        /* ===== GOOGLE BRANDING ===== */
-        .google-play-logo {
-            width: 36px;
-            height: 36px;
-            background: #2B2D31;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-            position: relative;
-            overflow: hidden;
-        }
-        .google-play-logo::before {
-            content: '';
-            position: absolute;
-            width: 100%; height: 100%;
-            background: conic-gradient(from 90deg at 50% 50%, #4285F4 0deg 90deg, #EA4335 90deg 180deg, #FBBC05 180deg 270deg, #34A853 270deg 360deg);
-            opacity: 0.25;
-        }
-        .play-triangle {
-            width: 0; height: 0;
-            border-left: 12px solid var(--md-sys-color-primary);
-            border-top: 8px solid transparent;
-            border-bottom: 8px solid transparent;
-            margin-left: 4px;
-            z-index: 1;
-        }
-
-        /* ===== FLOATING BACKGROUND LOGOS ===== */
-        .floating-icons-container {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            overflow: hidden;
-            z-index: 0;
-            pointer-events: none;
-        }
-        .floating-icon {
-            position: absolute;
-            width: 72px; height: 72px;
-            background: var(--md-sys-color-surface-container);
-            border: 1px solid var(--md-sys-color-outline-variant);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--md-sys-color-primary);
-            opacity: 0.15;
-            animation: float 6s infinite ease-in-out alternate;
-            box-shadow: var(--shadow-1);
-        }
+        .floating-icons-container { position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; z-index: 0; pointer-events: none; }
+        .floating-icon { position: absolute; width: 72px; height: 72px; background: var(--md-sys-color-surface-container); border: 1px solid var(--md-sys-color-outline-variant); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--md-sys-color-primary); opacity: 0.15; animation: float 6s infinite ease-in-out alternate; box-shadow: var(--shadow-1); }
         .floating-icon span { font-size: 36px; }
-        .icon-1 { top: 10%; left: 8%; animation-delay: 0s; transform: scale(1.1); }
-        .icon-2 { top: 65%; left: 12%; animation-delay: 1.5s; transform: scale(0.9); }
-        .icon-3 { top: 15%; right: 10%; animation-delay: 2.5s; transform: scale(1.2); }
-        .icon-4 { top: 70%; right: 15%; animation-delay: 0.5s; transform: scale(1); }
-        .icon-5 { top: 40%; left: 80%; animation-delay: 3s; transform: scale(0.8); }
+        .icon-1 { top: 10%; left: 8%; animation-delay: 0s; transform: scale(1.1); } .icon-2 { top: 65%; left: 12%; animation-delay: 1.5s; transform: scale(0.9); } .icon-3 { top: 15%; right: 10%; animation-delay: 2.5s; transform: scale(1.2); } .icon-4 { top: 70%; right: 15%; animation-delay: 0.5s; transform: scale(1); } .icon-5 { top: 40%; left: 80%; animation-delay: 3s; transform: scale(0.8); }
+        @keyframes float { 0% { transform: translateY(0px) rotate(0deg) scale(1); } 100% { transform: translateY(-40px) rotate(15deg) scale(1.05); } }
 
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg) scale(1); }
-            100% { transform: translateY(-40px) rotate(15deg) scale(1.05); }
-        }
+        .auth-container { display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 24px; background: var(--md-sys-color-surface); position: relative; }
+        .auth-box { background: var(--md-sys-color-surface-container); border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--radius-xl); padding: 40px 32px; width: 100%; max-width: 440px; box-shadow: var(--shadow-2); animation: slideUpFade 0.5s cubic-bezier(0.2,0,0,1); position: relative; z-index: 1; }
+        @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+        .auth-header { text-align: center; margin-bottom: 32px; } .auth-header h1 { font-size: 28px; font-weight: 400; color: var(--md-sys-color-on-surface); margin-bottom: 8px; } .auth-subtitle { color: var(--md-sys-color-on-surface-variant); font-size: 16px; }
 
-        /* ===== AUTH CONTAINER ===== */
-        .auth-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 24px;
-            background: var(--md-sys-color-surface);
-            position: relative;
-        }
-
-        .auth-box {
-            background: var(--md-sys-color-surface-container);
-            border: 1px solid var(--md-sys-color-outline-variant);
-            border-radius: var(--radius-xl);
-            padding: 40px 32px;
-            width: 100%;
-            max-width: 440px;
-            box-shadow: var(--shadow-2);
-            animation: slideUpFade 0.5s cubic-bezier(0.2,0,0,1);
-            position: relative;
-            z-index: 1;
-        }
-
-        @keyframes slideUpFade {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        .auth-header { text-align: center; margin-bottom: 32px; }
-        .auth-header h1 { font-size: 28px; font-weight: 400; color: var(--md-sys-color-on-surface); margin-bottom: 8px; }
-        .auth-subtitle { color: var(--md-sys-color-on-surface-variant); font-size: 16px; }
-
-        /* ===== INPUTS & FORMS ===== */
         .form-group { margin-bottom: 24px; position: relative; }
-        .form-label {
-            display: block;
-            margin-bottom: 6px;
-            color: var(--md-sys-color-on-surface-variant);
-            font-size: 14px;
-            font-weight: 500;
-        }
-        .form-control {
-            width: 100%;
-            padding: 16px;
-            background: transparent;
-            border: 1px solid var(--md-sys-color-outline);
-            border-radius: var(--radius-sm);
-            font-size: 16px;
-            color: var(--md-sys-color-on-surface);
-            transition: all var(--transition-standard);
-            font-family: var(--font-family-base);
-        }
-        .form-control:focus {
-            outline: none;
-            border: 2px solid var(--md-sys-color-primary);
-            padding: 15px;
-        }
+        .form-label { display: block; margin-bottom: 6px; color: var(--md-sys-color-on-surface-variant); font-size: 14px; font-weight: 500; }
+        .form-control { width: 100%; padding: 16px; background: transparent; border: 1px solid var(--md-sys-color-outline); border-radius: var(--radius-sm); font-size: 16px; color: var(--md-sys-color-on-surface); transition: all var(--transition-standard); font-family: var(--font-family-base); }
+        .form-control:focus { outline: none; border: 2px solid var(--md-sys-color-primary); padding: 15px; }
         .form-control::placeholder { color: var(--md-sys-color-outline-variant); }
-        select.form-control {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 -960 960 960' width='24' fill='%23C4C7C5'%3E%3Cpath d='M480-360 280-560h400L480-360Z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-            appearance: none;
-        }
+        select.form-control { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 -960 960 960' width='24' fill='%23C4C7C5'%3E%3Cpath d='M480-360 280-560h400L480-360Z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; appearance: none; }
         select.form-control option { background: var(--md-sys-color-surface-container); color: var(--md-sys-color-on-surface); }
 
-        /* ===== BUTTONS ===== */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px 24px;
-            min-height: 48px;
-            font-size: 14px;
-            font-weight: 500;
-            border-radius: var(--radius-full);
-            border: none;
-            cursor: pointer;
-            transition: all var(--transition-standard);
-            font-family: var(--font-family-display);
-        }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 24px; min-height: 48px; font-size: 14px; font-weight: 500; border-radius: var(--radius-full); border: none; cursor: pointer; transition: all var(--transition-standard); font-family: var(--font-family-display); }
         .btn:active { transform: scale(0.98); }
-        .btn-primary { background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); }
-        .btn-primary:hover { opacity: 0.9; box-shadow: var(--shadow-1); }
-        .btn-secondary { background: transparent; color: var(--md-sys-color-primary); border: 1px solid var(--md-sys-color-outline); }
-        .btn-secondary:hover { background: var(--md-sys-color-secondary-container); border-color: transparent; }
-        .btn-sm { min-height: 36px; padding: 6px 16px; font-size: 13px; border-color: var(--md-sys-color-outline-variant); color: var(--md-sys-color-on-surface); background: transparent; }
-        .btn-sm:hover { background: var(--md-sys-color-surface-container-high); border-color: transparent; }
+        .btn-primary { background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); } .btn-primary:hover { opacity: 0.9; box-shadow: var(--shadow-1); }
+        .btn-secondary { background: transparent; color: var(--md-sys-color-primary); border: 1px solid var(--md-sys-color-outline); } .btn-secondary:hover { background: var(--md-sys-color-secondary-container); border-color: transparent; }
+        .btn-sm { min-height: 36px; padding: 6px 16px; font-size: 13px; border-color: var(--md-sys-color-outline-variant); color: var(--md-sys-color-on-surface); background: transparent; } .btn-sm:hover { background: var(--md-sys-color-surface-container-high); border-color: transparent; }
         .btn-block { width: 100%; }
-        
         .btn-loading { pointer-events: none; opacity: 0.8; position: relative; color: transparent !important; }
-        .btn-loading::after {
-            content: ''; position: absolute; width: 20px; height: 20px;
-            border: 2px solid transparent; border-top-color: currentColor; border-right-color: currentColor;
-            border-radius: 50%; animation: spin 0.6s linear infinite;
-        }
+        .btn-loading::after { content: ''; position: absolute; width: 20px; height: 20px; border: 2px solid transparent; border-top-color: currentColor; border-right-color: currentColor; border-radius: 50%; animation: spin 0.6s linear infinite; }
         .btn-primary.btn-loading::after { border-top-color: var(--md-sys-color-on-primary); border-right-color: var(--md-sys-color-on-primary); }
-
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* ===== GLOBAL LOADING OVERLAY ===== */
-        .loading-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(17, 17, 20, 0.9); backdrop-filter: blur(4px);
-            display: flex; align-items: center; justify-content: center;
-            z-index: 10000; opacity: 0; visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
-        }
+        .loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 17, 20, 0.9); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 10000; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
         .loading-overlay.show { opacity: 1; visibility: visible; }
-        .loading-card {
-            background: var(--md-sys-color-surface-container); border-radius: var(--radius-xl);
-            padding: 32px; width: 90%; max-width: 340px; box-shadow: var(--shadow-3);
-            text-align: center; border: 1px solid var(--md-sys-color-outline-variant);
-        }
+        .loading-card { background: var(--md-sys-color-surface-container); border-radius: var(--radius-xl); padding: 32px; width: 90%; max-width: 340px; box-shadow: var(--shadow-3); text-align: center; border: 1px solid var(--md-sys-color-outline-variant); }
         .loading-steps { margin-top: 24px; text-align: left; }
         .loading-step { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; color: var(--md-sys-color-outline); font-size: 14px; }
         .loading-step.active { color: var(--md-sys-color-on-surface); font-weight: 500; }
         .loading-step .step-icon { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
-        .loading-step.active .step-icon { color: var(--md-sys-color-primary); }
-        .loading-step.completed .step-icon { color: var(--md-sys-color-success); }
-        .pulse-dot {
-            width: 48px; height: 48px; border: 4px solid var(--md-sys-color-surface-container-high);
-            border-top: 4px solid var(--md-sys-color-primary); border-radius: 50%;
-            margin: 0 auto; animation: spin 1s linear infinite;
-        }
+        .loading-step.active .step-icon { color: var(--md-sys-color-primary); } .loading-step.completed .step-icon { color: var(--md-sys-color-success); }
+        .pulse-dot { width: 48px; height: 48px; border: 4px solid var(--md-sys-color-surface-container-high); border-top: 4px solid var(--md-sys-color-primary); border-radius: 50%; margin: 0 auto; animation: spin 1s linear infinite; }
 
-        /* ===== DASHBOARD TOP BAR ===== */
-        .dashboard { 
-            display: none; 
-            padding-bottom: 80px; 
-            zoom: 1.1; /* 10% ZOOM AS REQUESTED */
-        }
-        .header {
-            background: var(--md-sys-color-surface);
-            padding: 16px 24px; position: sticky; top: 0; z-index: 1000;
-        }
-        .header-content {
-            max-width: 1200px; margin: 0 auto;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .logo { display: flex; align-items: center; gap: 12px; }
-        .logo-text { font-size: 20px; font-weight: 500; color: var(--md-sys-color-on-surface); }
-        
+        .dashboard { display: none; padding-bottom: 80px; zoom: 1.1; }
+        .header { background: var(--md-sys-color-surface); padding: 16px 24px; position: sticky; top: 0; z-index: 1000; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; } .logo-text { font-size: 20px; font-weight: 500; color: var(--md-sys-color-on-surface); }
         .header-actions { display: flex; align-items: center; gap: 16px; }
         .notification-icon { color: var(--md-sys-color-on-surface-variant); cursor: pointer; display: flex; align-items: center; }
 
-        /* ===== PROFILE MENU (IMAGE 2 MATCH) ===== */
         .user-menu { position: relative; }
-        .user-avatar {
-            width: 36px; height: 36px; border-radius: 50%;
-            background: #A8C7FA; color: #062E6F;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 600; font-size: 18px; cursor: pointer;
-        }
-        .dropdown-menu {
-            position: absolute; top: 48px; right: 0;
-            background: var(--md-sys-color-surface-container);
-            border-radius: var(--radius-lg); width: 320px;
-            box-shadow: var(--shadow-3); display: none; z-index: 1500;
-            overflow: hidden; border: 1px solid var(--md-sys-color-outline-variant);
-            padding: 16px;
-        }
-        
-        /* Mobile Dropdown Positioning Fix */
-        @media (max-width: 600px) {
-            .dropdown-menu { right: -20px; width: 300px; }
-        }
-
+        .user-avatar { width: 36px; height: 36px; border-radius: 50%; background: #A8C7FA; color: #062E6F; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 18px; cursor: pointer; }
+        .dropdown-menu { position: absolute; top: 48px; right: 0; background: var(--md-sys-color-surface-container); border-radius: var(--radius-lg); width: 320px; box-shadow: var(--shadow-3); display: none; z-index: 1500; overflow: hidden; border: 1px solid var(--md-sys-color-outline-variant); padding: 16px; }
+        @media (max-width: 600px) { .dropdown-menu { right: -20px; width: 300px; } }
         .dropdown-menu.show { display: block; animation: dropdownFade 0.2s ease; }
         @keyframes dropdownFade { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .dropdown-header { display: flex; gap: 16px; align-items: center; margin-bottom: 24px; }
-        .dropdown-header .user-avatar { width: 56px; height: 56px; font-size: 28px; }
-        .dropdown-name { font-size: 18px; font-weight: 500; color: white; }
-        .dropdown-id { font-size: 13px; color: var(--md-sys-color-outline); margin-top: 2px; }
-        
-        .dropdown-financials { margin-bottom: 16px; }
-        .financials-label { font-size: 11px; font-weight: 600; color: var(--md-sys-color-outline); letter-spacing: 1px; margin-bottom: 8px; }
-        .financials-row { display: flex; justify-content: space-between; align-items: center; }
-        .financials-amount { font-size: 28px; font-weight: 600; color: var(--md-sys-color-primary); }
-        
+        .dropdown-header { display: flex; gap: 16px; align-items: center; margin-bottom: 24px; } .dropdown-header .user-avatar { width: 56px; height: 56px; font-size: 28px; } .dropdown-name { font-size: 18px; font-weight: 500; color: white; } .dropdown-id { font-size: 13px; color: var(--md-sys-color-outline); margin-top: 2px; }
+        .dropdown-financials { margin-bottom: 16px; } .financials-label { font-size: 11px; font-weight: 600; color: var(--md-sys-color-outline); letter-spacing: 1px; margin-bottom: 8px; } .financials-row { display: flex; justify-content: space-between; align-items: center; } .financials-amount { font-size: 28px; font-weight: 600; color: var(--md-sys-color-primary); }
         .dropdown-menu hr { border: none; border-top: 1px solid var(--md-sys-color-outline-variant); margin: 12px -16px; }
-        
-        .dropdown-item {
-            padding: 12px 16px; margin: 0 -16px; display: flex; align-items: center; gap: 16px;
-            color: var(--md-sys-color-on-surface); cursor: pointer; font-size: 15px; font-weight: 500;
-            transition: background 0.2s;
-        }
+        .dropdown-item { padding: 12px 16px; margin: 0 -16px; display: flex; align-items: center; gap: 16px; color: var(--md-sys-color-on-surface); cursor: pointer; font-size: 15px; font-weight: 500; transition: background 0.2s; }
         .dropdown-item:hover { background: var(--md-sys-color-surface-container-high); }
         .dropdown-item .material-icons-round { color: var(--md-sys-color-on-surface-variant); font-size: 22px; }
+        .dropdown-signout { color: #F2B8B5 !important; } .dropdown-signout .material-icons-round { color: #F2B8B5 !important; }
 
-        .dropdown-signout { color: #F2B8B5 !important; }
-        .dropdown-signout .material-icons-round { color: #F2B8B5 !important; }
-
-        /* ===== HERO / WELCOME (IMAGE 1 MATCH & MOBILE OPTIMIZED) ===== */
         .container { max-width: 1200px; margin: 0 auto; padding: 16px 24px; }
-        
-        .welcome-card {
-            background: var(--md-sys-color-surface-container);
-            border: 1px solid var(--md-sys-color-outline-variant);
-            border-radius: var(--radius-xl);
-            margin-bottom: 40px;
-            position: relative; overflow: hidden;
-            display: flex;
-            
-            /* Mobile Defaults */
-            flex-direction: column; 
-            padding: 24px;
-            align-items: flex-start;
-            gap: 20px;
-        }
-        
-        @media (min-width: 768px) {
-            .welcome-card {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                padding: 32px 40px;
-                gap: 24px;
-            }
-        }
+        .welcome-card { background: var(--md-sys-color-surface-container); border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--radius-xl); margin-bottom: 40px; position: relative; overflow: hidden; display: flex; flex-direction: column; padding: 24px; align-items: flex-start; gap: 20px; }
+        @media (min-width: 768px) { .welcome-card { flex-direction: row; justify-content: space-between; align-items: center; padding: 32px 40px; gap: 24px; } }
+        .welcome-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.03) 1px, transparent 1px), radial-gradient(circle at 70% 60%, rgba(255,255,255,0.03) 1px, transparent 1px), radial-gradient(circle at 40% 80%, rgba(255,255,255,0.02) 1.5px, transparent 1.5px), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.02) 1.5px, transparent 1.5px); background-size: 150px 150px; pointer-events: none; z-index: 0; }
+        .welcome-content { position: relative; z-index: 1; } .welcome-title { font-size: 32px; font-weight: 600; color: white; margin-bottom: 8px; line-height: 1.2; } .welcome-subtitle { color: var(--md-sys-color-on-surface-variant); font-size: 16px; }
+        .welcome-financials { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; text-align: left; width: 100%; }
+        @media (min-width: 768px) { .welcome-financials { align-items: flex-end; text-align: right; width: auto; } }
+        .welcome-fin-label { font-size: 12px; font-weight: 600; color: var(--md-sys-color-outline); letter-spacing: 1.5px; margin-bottom: 4px; text-transform: uppercase; } .welcome-fin-amount { font-size: 36px; font-weight: 600; color: var(--md-sys-color-primary); margin-bottom: 12px; }
 
-        /* Subtle starry background effect for the welcome card */
-        .welcome-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.03) 1px, transparent 1px),
-                              radial-gradient(circle at 70% 60%, rgba(255,255,255,0.03) 1px, transparent 1px),
-                              radial-gradient(circle at 40% 80%, rgba(255,255,255,0.02) 1.5px, transparent 1.5px),
-                              radial-gradient(circle at 80% 20%, rgba(255,255,255,0.02) 1.5px, transparent 1.5px);
-            background-size: 150px 150px; pointer-events: none; z-index: 0;
-        }
-        
-        .welcome-content { position: relative; z-index: 1; }
-        .welcome-title { font-size: 32px; font-weight: 600; color: white; margin-bottom: 8px; line-height: 1.2; }
-        .welcome-subtitle { color: var(--md-sys-color-on-surface-variant); font-size: 16px; }
-        
-        .welcome-financials { 
-            position: relative; z-index: 1; 
-            display: flex; flex-direction: column; 
-            /* Mobile defaults */
-            align-items: flex-start;
-            text-align: left;
-            width: 100%;
-        }
-        @media (min-width: 768px) {
-            .welcome-financials {
-                align-items: flex-end;
-                text-align: right;
-                width: auto;
-            }
-        }
-        
-        .welcome-fin-label { font-size: 12px; font-weight: 600; color: var(--md-sys-color-outline); letter-spacing: 1.5px; margin-bottom: 4px; text-transform: uppercase; }
-        .welcome-fin-amount { font-size: 36px; font-weight: 600; color: var(--md-sys-color-primary); margin-bottom: 12px; }
-
-        /* ===== QUICK ACTIONS (MOBILE OPTIMIZED) ===== */
         .section-title { font-size: 22px; font-weight: 600; margin-bottom: 20px; color: white; }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr; /* Mobile: Stack vertically */
-            gap: 16px; margin-bottom: 24px;
-        }
-        @media (min-width: 600px) {
-            .features-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-        }
-        @media (min-width: 900px) {
-            .features-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        }
-        
-        .feature-card {
-            background: var(--md-sys-color-surface-container);
-            border: 1px solid var(--md-sys-color-outline-variant);
-            border-radius: var(--radius-xl);
-            padding: 24px; cursor: pointer;
-            transition: transform var(--transition-standard), box-shadow var(--transition-standard);
-            display: flex; flex-direction: column; text-align: left;
-        }
-        .feature-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-2); background: var(--md-sys-color-surface-container-high); }
-        .feature-card:active { transform: translateY(0); }
-        
-        .feature-icon-wrapper {
-            width: 48px; height: 48px; border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 20px;
-        }
-        .feature-icon-wrapper .material-icons-round { font-size: 24px; }
-        
-        .ic-blue { background: rgba(10, 86, 208, 0.2); color: #A8C7FA; }
-        .ic-green { background: rgba(20, 108, 46, 0.2); color: #81C995; }
-        .ic-orange { background: rgba(230, 115, 0, 0.2); color: #FFB580; }
-        .ic-purple { background: rgba(150, 40, 200, 0.2); color: #D7A3F6; }
-        
-        .feature-title { font-size: 16px; font-weight: 600; color: white; margin-bottom: 8px; }
-        .feature-description { color: var(--md-sys-color-on-surface-variant); font-size: 13px; line-height: 1.4; }
+        .features-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 24px; }
+        @media (min-width: 600px) { .features-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+        @media (min-width: 900px) { .features-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
+        .feature-card { background: var(--md-sys-color-surface-container); border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--radius-xl); padding: 24px; cursor: pointer; transition: transform var(--transition-standard), box-shadow var(--transition-standard); display: flex; flex-direction: column; text-align: left; }
+        .feature-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-2); background: var(--md-sys-color-surface-container-high); } .feature-card:active { transform: translateY(0); }
+        .feature-icon-wrapper { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; } .feature-icon-wrapper .material-icons-round { font-size: 24px; }
+        .ic-blue { background: rgba(10, 86, 208, 0.2); color: #A8C7FA; } .ic-green { background: rgba(20, 108, 46, 0.2); color: #81C995; } .ic-orange { background: rgba(230, 115, 0, 0.2); color: #FFB580; } .ic-purple { background: rgba(150, 40, 200, 0.2); color: #D7A3F6; }
+        .feature-title { font-size: 16px; font-weight: 600; color: white; margin-bottom: 8px; } .feature-description { color: var(--md-sys-color-on-surface-variant); font-size: 13px; line-height: 1.4; }
+        .secondary-features { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 20px; } @media (min-width: 600px) { .secondary-features { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
 
-        .secondary-features { 
-            display: grid; 
-            grid-template-columns: 1fr; /* Mobile */
-            gap: 16px; margin-top: 20px; 
-        }
-        @media (min-width: 600px) { 
-            .secondary-features { grid-template-columns: repeat(2, 1fr); gap: 20px; } 
-        }
+        .trust-score-card { background: var(--md-sys-color-surface-container); border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--radius-lg); padding: 20px 24px; margin-top: 32px; }
+        .trust-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; } .trust-title { font-size: 15px; font-weight: 600; color: white; } .trust-status { font-size: 14px; font-weight: 600; color: var(--md-sys-color-success); }
+        .trust-bar-bg { height: 6px; background: #2B2D31; border-radius: 4px; overflow: hidden; margin-bottom: 12px; } .trust-bar-fill { height: 100%; width: 85%; background: var(--md-sys-color-success); border-radius: 4px; } .trust-footer { display: flex; align-items: center; gap: 8px; color: var(--md-sys-color-outline); font-size: 12px; } .trust-footer .material-icons-round { font-size: 16px; color: var(--md-sys-color-success); }
 
-        /* ===== TRUST SCORE CARD ===== */
-        .trust-score-card {
-            background: var(--md-sys-color-surface-container);
-            border: 1px solid var(--md-sys-color-outline-variant);
-            border-radius: var(--radius-lg);
-            padding: 20px 24px; margin-top: 32px;
-        }
-        .trust-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .trust-title { font-size: 15px; font-weight: 600; color: white; }
-        .trust-status { font-size: 14px; font-weight: 600; color: var(--md-sys-color-success); }
-        .trust-bar-bg { height: 6px; background: #2B2D31; border-radius: 4px; overflow: hidden; margin-bottom: 12px; }
-        .trust-bar-fill { height: 100%; width: 85%; background: var(--md-sys-color-success); border-radius: 4px; }
-        .trust-footer { display: flex; align-items: center; gap: 8px; color: var(--md-sys-color-outline); font-size: 12px; }
-        .trust-footer .material-icons-round { font-size: 16px; color: var(--md-sys-color-success); }
-
-        /* ===== VIRTUALIZED TABLES & OTHER STYLES ===== */
-        .table-container {
-            background: var(--md-sys-color-surface-container); border-radius: var(--radius-xl);
-            border: 1px solid var(--md-sys-color-outline-variant); overflow-x: auto; margin-bottom: 32px;
-        }
+        .table-container { background: var(--md-sys-color-surface-container); border-radius: var(--radius-xl); border: 1px solid var(--md-sys-color-outline-variant); overflow-x: auto; margin-bottom: 32px; }
         table { width: 100%; border-collapse: collapse; min-width: 600px; }
         th { background: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface-variant); padding: 16px 24px; font-weight: 500; font-size: 14px; text-align: left; border-bottom: 1px solid var(--md-sys-color-outline-variant); }
         tbody { content-visibility: auto; contain-intrinsic-size: 500px; }
-        td { padding: 16px 24px; border-bottom: 1px solid var(--md-sys-color-outline-variant); color: var(--md-sys-color-on-surface); font-size: 14px; }
-        tr:last-child td { border-bottom: none; }
-        tr:hover { background: var(--md-sys-color-surface-container-high); }
-
+        td { padding: 16px 24px; border-bottom: 1px solid var(--md-sys-color-outline-variant); color: var(--md-sys-color-on-surface); font-size: 14px; } tr:last-child td { border-bottom: none; } tr:hover { background: var(--md-sys-color-surface-container-high); }
         .status-badge { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: var(--radius-full); font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
-        .status-pending { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
-        .status-completed { background: var(--md-sys-color-success-container); color: var(--md-sys-color-on-success-container); }
-        .status-cancelled { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); }
+        .status-pending { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); } .status-completed { background: var(--md-sys-color-success-container); color: var(--md-sys-color-on-success-container); } .status-cancelled { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); }
 
-        /* ===== MODALS ===== */
-        .modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); z-index: 2000; align-items: flex-end; justify-content: center;
-            opacity: 0; transition: opacity 0.3s; will-change: opacity;
-        }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; align-items: flex-end; justify-content: center; opacity: 0; transition: opacity 0.3s; will-change: opacity; }
         .modal.show { display: flex; opacity: 1; }
-        .modal-content {
-            background: var(--md-sys-color-surface-container); border-radius: var(--radius-xxl) var(--radius-xxl) 0 0;
-            width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto;
-            transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.2,0,0,1);
-            position: relative; will-change: transform; border: 1px solid var(--md-sys-color-outline-variant); border-bottom: none;
-        }
-        .modal-content::before {
-            content: ''; position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
-            width: 32px; height: 4px; border-radius: 4px; background: var(--md-sys-color-outline-variant);
-        }
+        .modal-content { background: var(--md-sys-color-surface-container); border-radius: var(--radius-xxl) var(--radius-xxl) 0 0; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.2,0,0,1); position: relative; will-change: transform; border: 1px solid var(--md-sys-color-outline-variant); border-bottom: none; }
+        .modal-content::before { content: ''; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 32px; height: 4px; border-radius: 4px; background: var(--md-sys-color-outline-variant); }
         .modal.show .modal-content { transform: translateY(0); }
+        @media (min-width: 600px) { .modal { align-items: center; padding: 24px; } .modal-content { border-radius: var(--radius-xl); transform: scale(0.95); border-bottom: 1px solid var(--md-sys-color-outline-variant); } .modal-content::before { display: none; } .modal.show .modal-content { transform: scale(1); } }
 
-        @media (min-width: 600px) {
-            .modal { align-items: center; padding: 24px; }
-            .modal-content { border-radius: var(--radius-xl); transform: scale(0.95); border-bottom: 1px solid var(--md-sys-color-outline-variant); }
-            .modal-content::before { display: none; }
-            .modal.show .modal-content { transform: scale(1); }
-        }
+        .modal-header { padding: 32px 24px 16px; display: flex; justify-content: space-between; align-items: center; } .modal-title { font-size: 22px; font-weight: 400; color: white; }
+        .modal-close { background: transparent; border: none; color: var(--md-sys-color-on-surface-variant); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; transition: background 0.2s; } .modal-close:hover { background: var(--md-sys-color-surface-container-high); }
+        .modal-body { padding: 0 24px 24px; } .modal-footer { padding: 16px 24px; display: flex; justify-content: flex-end; gap: 8px; }
 
-        .modal-header { padding: 32px 24px 16px; display: flex; justify-content: space-between; align-items: center; }
-        .modal-title { font-size: 22px; font-weight: 400; color: white; }
-        .modal-close {
-            background: transparent; border: none; color: var(--md-sys-color-on-surface-variant);
-            width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 24px; cursor: pointer; transition: background 0.2s;
-        }
-        .modal-close:hover { background: var(--md-sys-color-surface-container-high); }
-        .modal-body { padding: 0 24px 24px; }
-        .modal-footer { padding: 16px 24px; display: flex; justify-content: flex-end; gap: 8px; }
+        .toast { background: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface); border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--radius-sm); padding: 14px 24px; box-shadow: var(--shadow-2); display: flex; align-items: center; gap: 12px; max-width: 90vw; margin: 0 auto 8px; transform: translateY(150%); transition: transform 0.3s cubic-bezier(0.2,0,0,1), opacity 0.3s; will-change: transform; font-family: var(--font-family-base); font-size: 14px; }
+        .toast.show { transform: translateY(0); } .toast-icon { font-size: 20px; }
+        .toast-success .toast-icon { color: var(--md-sys-color-success); } .toast-error .toast-icon { color: var(--md-sys-color-error); } .toast-warning .toast-icon { color: #FDD663; } .toast-info .toast-icon { color: var(--md-sys-color-primary); }
+        .toast-content { flex: 1; } .toast-title { display: none; } .toast-message { font-weight: 400; } .toast-close { display: none; } #toastContainer { position: fixed; bottom: 24px; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; pointer-events: none; z-index: 9999; }
 
-        /* ===== TOASTS ===== */
-        .toast {
-            background: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface);
-            border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--radius-sm);
-            padding: 14px 24px; box-shadow: var(--shadow-2); display: flex; align-items: center; gap: 12px;
-            max-width: 90vw; margin: 0 auto 8px; transform: translateY(150%);
-            transition: transform 0.3s cubic-bezier(0.2,0,0,1), opacity 0.3s;
-            will-change: transform; font-family: var(--font-family-base); font-size: 14px;
-        }
-        .toast.show { transform: translateY(0); }
-        .toast-icon { font-size: 20px; }
-        .toast-success .toast-icon { color: var(--md-sys-color-success); }
-        .toast-error .toast-icon { color: var(--md-sys-color-error); }
-        .toast-warning .toast-icon { color: #FDD663; }
-        .toast-info .toast-icon { color: var(--md-sys-color-primary); }
-        .toast-content { flex: 1; }
-        .toast-title { display: none; }
-        .toast-message { font-weight: 400; }
-        .toast-close { display: none; }
-        #toastContainer { position: fixed; bottom: 24px; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; pointer-events: none; z-index: 9999; }
-
-        /* ===== TRANSACTIONS & OTHERS ===== */
-        .balance-display { text-align: center; padding: 24px 0; }
-        .balance-amount { font-size: 48px; font-weight: 400; color: white; margin-bottom: 8px; }
-
+        .balance-display { text-align: center; padding: 24px 0; } .balance-amount { font-size: 48px; font-weight: 400; color: white; margin-bottom: 8px; }
         .filter-controls { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
-        .filter-btn {
-            padding: 8px 16px; border-radius: var(--radius-sm); background: var(--md-sys-color-surface-container);
-            border: 1px solid var(--md-sys-color-outline); color: var(--md-sys-color-on-surface-variant);
-            font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s;
-        }
-        .filter-btn.active { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); border-color: transparent; }
+        .filter-btn { padding: 8px 16px; border-radius: var(--radius-sm); background: var(--md-sys-color-surface-container); border: 1px solid var(--md-sys-color-outline); color: var(--md-sys-color-on-surface-variant); font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; } .filter-btn.active { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); border-color: transparent; }
 
         .transactions-list { display: flex; flex-direction: column; gap: 12px; content-visibility: auto; contain-intrinsic-size: 800px; }
-        .transaction-item {
-            background: var(--md-sys-color-surface-container); border: 1px solid var(--md-sys-color-outline-variant);
-            border-radius: var(--radius-lg); padding: 16px; display: flex; flex-direction: column;
-        }
-        .transaction-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .transaction-type { display: inline-flex; align-items: center; gap: 6px; color: var(--md-sys-color-on-surface-variant); font-size: 14px; font-weight: 500; }
-        .transaction-amount { font-weight: 500; font-size: 16px; }
-        .transaction-details { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--md-sys-color-outline); }
-        .transaction-meta { display: flex; justify-content: space-between; }
+        .transaction-item { background: var(--md-sys-color-surface-container); border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--radius-lg); padding: 16px; display: flex; flex-direction: column; }
+        .transaction-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; } .transaction-type { display: inline-flex; align-items: center; gap: 6px; color: var(--md-sys-color-on-surface-variant); font-size: 14px; font-weight: 500; } .transaction-amount { font-weight: 500; font-size: 16px; } .transaction-details { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--md-sys-color-outline); } .transaction-meta { display: flex; justify-content: space-between; }
 
-        .star-rating { display: flex; justify-content: center; gap: 8px; }
-        .star { font-size: 40px; color: var(--md-sys-color-outline-variant); cursor: pointer; transition: color 0.2s; }
-        .star.selected, .star:hover { color: #FBBC04; }
+        .star-rating { display: flex; justify-content: center; gap: 8px; } .star { font-size: 40px; color: var(--md-sys-color-outline-variant); cursor: pointer; transition: color 0.2s; } .star.selected, .star:hover { color: #FBBC04; }
 
-        .redeem-code-display {
-            background: var(--md-sys-color-surface-container-high); border: 1px dashed var(--md-sys-color-outline);
-            border-radius: var(--radius-md); padding: 24px; font-size: 24px; font-weight: 500;
-            color: white; text-align: center; letter-spacing: 2px; position: relative; margin-bottom: 16px;
-        }
-        .redeem-copy-btn {
-            position: absolute; top: 12px; right: 12px; background: var(--md-sys-color-primary-container); border: none;
-            width: 36px; height: 36px; border-radius: 50%; color: var(--md-sys-color-on-primary-container);
-            display: flex; align-items: center; justify-content: center; cursor: pointer;
-        }
-        .redeem-instructions { background: var(--md-sys-color-secondary-container); border-radius: var(--radius-md); padding: 16px; }
-        .redeem-instructions h4 { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: white; font-size: 14px; }
-        .redeem-instructions ul { padding-left: 24px; color: var(--md-sys-color-on-surface-variant); font-size: 14px; }
+        .redeem-code-display { background: var(--md-sys-color-surface-container-high); border: 1px dashed var(--md-sys-color-outline); border-radius: var(--radius-md); padding: 24px; font-size: 24px; font-weight: 500; color: white; text-align: center; letter-spacing: 2px; position: relative; margin-bottom: 16px; }
+        .redeem-copy-btn { position: absolute; top: 12px; right: 12px; background: var(--md-sys-color-primary-container); border: none; width: 36px; height: 36px; border-radius: 50%; color: var(--md-sys-color-on-primary-container); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .redeem-instructions { background: var(--md-sys-color-secondary-container); border-radius: var(--radius-md); padding: 16px; } .redeem-instructions h4 { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: white; font-size: 14px; } .redeem-instructions ul { padding-left: 24px; color: var(--md-sys-color-on-surface-variant); font-size: 14px; }
 
-        .text-muted { color: var(--md-sys-color-on-surface-variant) !important; }
-        .text-success { color: var(--md-sys-color-success) !important; }
-        .text-error { color: var(--md-sys-color-error) !important; }
-        .text-sm { font-size: 12px; } .text-xs { font-size: 11px; }
-        .font-medium { font-weight: 500; } .font-semibold { font-weight: 600; }
-        .mt-1 { margin-top: 4px; } .mt-4 { margin-top: 16px; } .mt-6 { margin-top: 24px; }
-        .mb-2 { margin-bottom: 8px; } .mb-4 { margin-bottom: 16px; } .mb-6 { margin-bottom: 24px; }
-        .flex { display: flex; } .justify-between { justify-content: space-between; }
-        .bg-surface-variant { background: var(--md-sys-color-surface-container-high); border-radius: var(--radius-md); padding: 16px; }
-        .link { color: var(--md-sys-color-primary); font-weight: 500; text-decoration: none; }
-        .link:hover { text-decoration: underline; }
-        .text-center { text-align: center; }
+        .text-muted { color: var(--md-sys-color-on-surface-variant) !important; } .text-success { color: var(--md-sys-color-success) !important; } .text-error { color: var(--md-sys-color-error) !important; } .text-sm { font-size: 12px; } .text-xs { font-size: 11px; } .font-medium { font-weight: 500; } .font-semibold { font-weight: 600; } .mt-1 { margin-top: 4px; } .mt-4 { margin-top: 16px; } .mt-6 { margin-top: 24px; } .mb-2 { margin-bottom: 8px; } .mb-4 { margin-bottom: 16px; } .mb-6 { margin-bottom: 24px; } .flex { display: flex; } .justify-between { justify-content: space-between; } .bg-surface-variant { background: var(--md-sys-color-surface-container-high); border-radius: var(--radius-md); padding: 16px; } .link { color: var(--md-sys-color-primary); font-weight: 500; text-decoration: none; } .link:hover { text-decoration: underline; } .text-center { text-align: center; }
 
-        .search-results {
-            position: absolute; top: 100%; left: 0; right: 0; background: var(--md-sys-color-surface-container);
-            border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--radius-sm);
-            max-height: 200px; overflow-y: auto; z-index: 100; display: none; box-shadow: var(--shadow-2);
-        }
-        .search-result-item { padding: 12px 16px; cursor: pointer; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--md-sys-color-surface-container-high); }
-        .search-result-item:hover { background: var(--md-sys-color-surface-container-high); }
+        .search-results { position: absolute; top: 100%; left: 0; right: 0; background: var(--md-sys-color-surface-container); border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--radius-sm); max-height: 200px; overflow-y: auto; z-index: 100; display: none; box-shadow: var(--shadow-2); }
+        .search-result-item { padding: 12px 16px; cursor: pointer; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--md-sys-color-surface-container-high); } .search-result-item:hover { background: var(--md-sys-color-surface-container-high); }
         .user-avatar-small { width: 32px; height: 32px; border-radius: 50%; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); display: flex; align-items: center; justify-content: center; font-weight: 500; }
         
-        .live-indicator { display: flex; align-items: center; gap: 6px; color: var(--md-sys-color-success); font-size: 14px; font-weight: 500; }
-        .live-dot { width: 8px; height: 8px; background-color: var(--md-sys-color-success); border-radius: 50%; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
+        .live-indicator { display: flex; align-items: center; gap: 6px; color: var(--md-sys-color-success); font-size: 14px; font-weight: 500; } .live-dot { width: 8px; height: 8px; background-color: var(--md-sys-color-success); border-radius: 50%; animation: pulse 1.5s infinite; } @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
         
-        .action-buttons { display: flex; gap: 8px; }
-        .action-btn { padding: 6px 12px; border-radius: var(--radius-sm); border: none; font-weight: 500; cursor: pointer; }
-        .action-btn-primary { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); }
-        .action-btn-danger { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); }
-        .action-btn-success { background: var(--md-sys-color-success-container); color: var(--md-sys-color-on-success-container); }
+        .action-buttons { display: flex; gap: 8px; } .action-btn { padding: 6px 12px; border-radius: var(--radius-sm); border: none; font-weight: 500; cursor: pointer; } .action-btn-primary { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); } .action-btn-danger { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); } .action-btn-success { background: var(--md-sys-color-success-container); color: var(--md-sys-color-on-success-container); }
+
+        /* Payment Buttons Styling */
+        .payment-method-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; background: var(--md-sys-color-surface-container-high); border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--radius-lg); cursor: pointer; transition: all 0.2s; width: 100%; }
+        .payment-method-btn:hover { border-color: var(--md-sys-color-primary); background: var(--md-sys-color-secondary-container); }
+        .payment-method-btn .material-icons-round { font-size: 32px; color: var(--md-sys-color-primary); }
+        .payment-method-btn span { font-size: 16px; font-weight: 500; color: white; }
+
+        /* QR Styling */
+        .qr-container { background: white; padding: 16px; border-radius: var(--radius-md); display: inline-block; margin-bottom: 16px; }
+        .qr-container img { width: 200px; height: 200px; display: block; }
+        .timer-badge { display: inline-block; padding: 6px 12px; background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); border-radius: var(--radius-full); font-weight: 600; font-size: 14px; margin-bottom: 16px; }
     </style>
 </head>
 <body>
@@ -668,9 +243,7 @@
         <div class="auth-box">
             <div class="auth-header">
                 <div style="display: flex; justify-content: center; margin-bottom: 16px;">
-                    <div class="google-play-logo">
-                        <div class="play-triangle"></div>
-                    </div>
+                    <div class="google-play-logo"><div class="play-triangle"></div></div>
                 </div>
                 <h1>Sign in</h1>
                 <p class="auth-subtitle">to continue to PlayCode</p>
@@ -688,16 +261,10 @@
                     <span class="btn-text">Sign In</span>
                 </button>
             </form>
-            <button class="btn btn-secondary btn-block mt-4" onclick="showDirectSignInModal()">
-                Quick Sign In
-            </button>
+            <button class="btn btn-secondary btn-block mt-4" onclick="showDirectSignInModal()">Quick Sign In</button>
             <div class="text-center mt-6">
-                <p class="text-sm text-muted">Don't have an account? 
-                    <a href="#" class="link" onclick="showSignUp()">Create account</a>
-                </p>
-                <button class="btn btn-secondary btn-block mt-4" style="border:none; background:transparent" onclick="showAdminModal()">
-                    Admin Access
-                </button>
+                <p class="text-sm text-muted">Don't have an account? <a href="#" class="link" onclick="showSignUp()">Create account</a></p>
+                <button class="btn btn-secondary btn-block mt-4" style="border:none; background:transparent" onclick="showAdminModal()">Admin Access</button>
             </div>
         </div>
     </div>
@@ -710,13 +277,10 @@
             <div class="floating-icon icon-4"><span class="material-icons-round">manage_search</span></div>
             <div class="floating-icon icon-5"><span class="material-icons-round">star_rate</span></div>
         </div>
-
         <div class="auth-box">
             <div class="auth-header">
                 <div style="display: flex; justify-content: center; margin-bottom: 16px;">
-                    <div class="google-play-logo">
-                        <div class="play-triangle"></div>
-                    </div>
+                    <div class="google-play-logo"><div class="play-triangle"></div></div>
                 </div>
                 <h1>Create Account</h1>
                 <p class="auth-subtitle">Join PlayCode Workspace</p>
@@ -754,9 +318,7 @@
                 </button>
             </form>
             <div class="text-center mt-6">
-                <p class="text-sm text-muted">Already have an account? 
-                    <a href="#" class="link" onclick="showSignIn()">Sign in instead</a>
-                </p>
+                <p class="text-sm text-muted">Already have an account? <a href="#" class="link" onclick="showSignIn()">Sign in instead</a></p>
             </div>
         </div>
     </div>
@@ -765,26 +327,18 @@
         <div class="header">
             <div class="header-content">
                 <div class="logo">
-                    <div class="google-play-logo">
-                        <div class="play-triangle"></div>
-                    </div>
+                    <div class="google-play-logo"><div class="play-triangle"></div></div>
                     <div class="logo-text">PlayCode <span class="text-muted" style="font-size: 16px; font-weight: 400;">Workspace</span></div>
                 </div>
                 <div class="header-actions">
                     <span class="material-icons-round notification-icon">notifications_none</span>
                     <div class="user-menu">
-                        <div class="user-avatar" onclick="toggleUserMenu()" id="userAvatar">
-                            <span id="userInitial">U</span>
-                        </div>
+                        <div class="user-avatar" onclick="toggleUserMenu()" id="userAvatar"><span id="userInitial">U</span></div>
                         <div id="userDropdown" class="dropdown-menu">
                             <div class="dropdown-header">
                                 <div class="user-avatar"><span id="dropdownInitial">S</span></div>
-                                <div>
-                                    <div class="dropdown-name" id="dropdownName">Loading...</div>
-                                    <div class="dropdown-id">ID: <span id="dropdownId">...</span></div>
-                                </div>
+                                <div><div class="dropdown-name" id="dropdownName">Loading...</div><div class="dropdown-id">ID: <span id="dropdownId">...</span></div></div>
                             </div>
-                            
                             <div class="dropdown-financials">
                                 <div class="financials-label">FINANCIALS</div>
                                 <div class="financials-row">
@@ -792,24 +346,12 @@
                                     <button class="btn btn-secondary btn-sm" style="border: none; background: var(--md-sys-color-secondary-container); color: white;" onclick="addBalance(); toggleUserMenu();">Deposit</button>
                                 </div>
                             </div>
-                            
                             <hr>
-                            
-                            <div class="dropdown-item" onclick="showManageAccount()">
-                                <span class="material-icons-round">dashboard</span> <span>Dashboard Home</span>
-                            </div>
-                            <div class="dropdown-item" onclick="showMyOrders()">
-                                <span class="material-icons-round">receipt_long</span> <span>My Orders</span>
-                            </div>
-                            <div class="dropdown-item" onclick="showTransactionHistory()">
-                                <span class="material-icons-round">history</span> <span>Transaction History</span>
-                            </div>
-                            
+                            <div class="dropdown-item" onclick="showManageAccount()"><span class="material-icons-round">dashboard</span> <span>Dashboard Home</span></div>
+                            <div class="dropdown-item" onclick="showMyOrders()"><span class="material-icons-round">receipt_long</span> <span>My Orders</span></div>
+                            <div class="dropdown-item" onclick="showTransactionHistory()"><span class="material-icons-round">history</span> <span>Transaction History</span></div>
                             <hr>
-                            
-                            <div class="dropdown-item dropdown-signout" onclick="executeSignOut(event)">
-                                <span class="material-icons-round">logout</span> <span>Secure Sign Out</span>
-                            </div>
+                            <div class="dropdown-item dropdown-signout" onclick="executeSignOut(event)"><span class="material-icons-round">logout</span> <span>Secure Sign Out</span></div>
                         </div>
                     </div>
                 </div>
@@ -835,7 +377,7 @@
                     <div class="feature-card" onclick="addBalance()">
                         <div class="feature-icon-wrapper ic-blue"><span class="material-icons-round">account_balance_wallet</span></div>
                         <h3 class="feature-title">Add Balance</h3>
-                        <p class="feature-description">Deposit funds securely via your assigned agent code.</p>
+                        <p class="feature-description">Deposit funds securely via UPI or agent code.</p>
                     </div>
                     <div class="feature-card" onclick="orderCode()">
                         <div class="feature-icon-wrapper ic-green"><span class="material-icons-round">qr_code_2</span></div>
@@ -868,17 +410,9 @@
                 </div>
 
                 <div class="trust-score-card">
-                    <div class="trust-header">
-                        <span class="trust-title">Account Trust Score</span>
-                        <span class="trust-status">Excellent</span>
-                    </div>
-                    <div class="trust-bar-bg">
-                        <div class="trust-bar-fill"></div>
-                    </div>
-                    <div class="trust-footer">
-                        <span class="material-icons-round">verified</span>
-                        Protected by Firebase Security Rules
-                    </div>
+                    <div class="trust-header"><span class="trust-title">Account Trust Score</span><span class="trust-status">Excellent</span></div>
+                    <div class="trust-bar-bg"><div class="trust-bar-fill"></div></div>
+                    <div class="trust-footer"><span class="material-icons-round">verified</span> Protected by Firebase Security Rules</div>
                 </div>
             </div>
 
@@ -895,25 +429,15 @@
                     <button class="filter-btn" onclick="filterTransactions('transfer_out')">Sent</button>
                     <button class="filter-btn" onclick="filterTransactions('order')">Orders</button>
                 </div>
-                <div class="transactions-list" id="transactionsList">
-                </div>
+                <div class="transactions-list" id="transactionsList"></div>
             </div>
 
             <div id="myOrdersSection" style="display: none;">
                 <h2 class="section-title">My Orders</h2>
                 <div class="table-container">
                     <table>
-                        <thead>
-                            <tr>
-                                <th>Order ID</th>
-                                <th>Amount</th>
-                                <th>Date & Time</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="userOrdersTable">
-                        </tbody>
+                        <thead><tr><th>Order ID</th><th>Amount</th><th>Date & Time</th><th>Status</th><th>Actions</th></tr></thead>
+                        <tbody id="userOrdersTable"></tbody>
                     </table>
                 </div>
             </div>
@@ -927,43 +451,26 @@
                     <div class="google-play-logo"><div class="play-triangle"></div></div>
                     <div class="logo-text">Admin Console</div>
                 </div>
-                <button class="btn btn-secondary" onclick="logoutAdmin()">Sign Out</button>
+                <div class="header-actions">
+                    <button class="btn btn-primary btn-sm" onclick="showGenerateCodeModal()"><span class="material-icons-round" style="font-size:16px">vpn_key</span> Generate Code</button>
+                    <button class="btn btn-secondary btn-sm" onclick="logoutAdmin()">Sign Out</button>
+                </div>
             </div>
         </div>
         <div class="container">
             <h2 class="section-title">User Management</h2>
             <div class="table-container mb-6">
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Account No</th>
-                            <th>Full Name</th>
-                            <th>Balance</th>
-                            <th>Agent Code</th>
-                            <th>Joined Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="usersTable">
-                    </tbody>
+                    <thead><tr><th>Account No</th><th>Full Name</th><th>Balance</th><th>Agent Code</th><th>Joined Date</th><th>Actions</th></tr></thead>
+                    <tbody id="usersTable"></tbody>
                 </table>
             </div>
 
             <h2 class="section-title">All Orders</h2>
             <div class="table-container">
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Order ID</th>
-                            <th>Account No</th>
-                            <th>Amount</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="allOrdersTable">
-                    </tbody>
+                    <thead><tr><th>Order ID</th><th>Account No</th><th>Amount</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+                    <tbody id="allOrdersTable"></tbody>
                 </table>
             </div>
         </div>
@@ -971,41 +478,22 @@
 
     <div id="adminModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Admin Verify</h2>
-                <button class="modal-close" onclick="closeAdminModal()"><span class="material-icons-round">close</span></button>
-            </div>
+            <div class="modal-header"><h2 class="modal-title">Admin Verify</h2><button class="modal-close" onclick="closeAdminModal()"><span class="material-icons-round">close</span></button></div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label class="form-label">PUKCODE</label>
-                    <input type="password" id="pukCode" class="form-control" placeholder="Enter admin code">
-                </div>
+                <div class="form-group"><label class="form-label">PUKCODE</label><input type="password" id="pukCode" class="form-control" placeholder="Enter admin code"></div>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeAdminModal()">Cancel</button>
-                <button class="btn btn-primary" onclick="adminLogin()">Verify</button>
-            </div>
+            <div class="modal-footer"><button class="btn btn-secondary" onclick="closeAdminModal()">Cancel</button><button class="btn btn-primary" onclick="adminLogin()">Verify</button></div>
         </div>
     </div>
 
     <div id="balanceModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Account Balance</h2>
-                <button class="modal-close" onclick="closeModal('balanceModal')"><span class="material-icons-round">close</span></button>
-            </div>
+            <div class="modal-header"><h2 class="modal-title">Account Balance</h2><button class="modal-close" onclick="closeModal('balanceModal')"><span class="material-icons-round">close</span></button></div>
             <div class="modal-body">
-                <div id="balanceLoading" style="display:flex; flex-direction:column; align-items:center; padding: 40px 0;">
-                    <div class="pulse-dot" style="width:32px; height:32px;"></div>
-                    <p class="text-muted mt-4">Syncing...</p>
-                </div>
+                <div id="balanceLoading" style="display:flex; flex-direction:column; align-items:center; padding: 40px 0;"><div class="pulse-dot" style="width:32px; height:32px;"></div><p class="text-muted mt-4">Syncing...</p></div>
                 <div id="balanceResult" style="display: none;">
-                    <div class="balance-display">
-                        <div class="balance-amount" id="balanceAmount">₹0</div>
-                        <p class="text-muted text-sm">Available balance</p>
-                        <div class="mt-6">
-                            <button class="btn btn-primary" onclick="closeModal('balanceModal'); addBalance()">Add Funds</button>
-                        </div>
+                    <div class="balance-display"><div class="balance-amount" id="balanceAmount">₹0</div><p class="text-muted text-sm">Available balance</p>
+                        <div class="mt-6"><button class="btn btn-primary" onclick="closeModal('balanceModal'); addBalance()">Add Funds</button></div>
                     </div>
                 </div>
             </div>
@@ -1014,10 +502,7 @@
 
     <div id="addBalanceModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Add Balance</h2>
-                <button class="modal-close" onclick="closeModal('addBalanceModal')"><span class="material-icons-round">close</span></button>
-            </div>
+            <div class="modal-header"><h2 class="modal-title">Add Balance</h2><button class="modal-close" onclick="closeModal('addBalanceModal')"><span class="material-icons-round">close</span></button></div>
             <div class="modal-body">
                 <div class="form-group">
                     <label class="form-label">Amount (₹)</label>
@@ -1027,216 +512,186 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" onclick="closeModal('addBalanceModal')">Cancel</button>
-                <button class="btn btn-primary" onclick="proceedToPayment()">Continue</button>
+                <button class="btn btn-primary" onclick="proceedToPaymentMethod()">Continue</button>
             </div>
         </div>
     </div>
 
-    <div id="paymentModal" class="modal">
+    <div id="paymentMethodModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Complete Deposit</h2>
-                <button class="modal-close" onclick="closeModal('paymentModal')"><span class="material-icons-round">close</span></button>
-            </div>
+            <div class="modal-header"><h2 class="modal-title">Payment Method</h2><button class="modal-close" onclick="closeModal('paymentMethodModal')"><span class="material-icons-round">close</span></button></div>
             <div class="modal-body">
+                <div class="bg-surface-variant mb-6 text-center">
+                    <p class="text-muted text-sm mb-1">You are adding</p>
+                    <h3 class="font-semibold text-success" id="methodAmountDisplay" style="font-size: 24px;">₹0</h3>
+                </div>
+                <div style="display: flex; gap: 16px;">
+                    <div class="payment-method-btn" onclick="openUPIPayment()">
+                        <span class="material-icons-round">qr_code_scanner</span>
+                        <span>Pay via UPI</span>
+                    </div>
+                    <div class="payment-method-btn" onclick="openAgentPayment()">
+                        <span class="material-icons-round">support_agent</span>
+                        <span>Pay via Agent</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="upiPaymentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header"><h2 class="modal-title">UPI Payment</h2><button class="modal-close" onclick="closeModal('upiPaymentModal'); clearInterval(upiTimerInterval);"><span class="material-icons-round">close</span></button></div>
+            <div class="modal-body text-center" id="upiQrSection">
+                <div class="timer-badge">Expires in <span id="upiTimerDisplay">60s</span></div>
+                <p class="text-muted mb-4">Scan QR code using any UPI App to pay <strong class="text-success" id="upiAmountText">₹0</strong></p>
+                <div class="qr-container">
+                    <img id="upiQrImage" src="" alt="UPI QR Code">
+                </div>
+                <p class="text-sm font-medium mt-2">UPI ID: amitrakhi83@oksbi</p>
+                <p class="text-xs text-muted mt-2">Please wait here after scanning. Do not close this window.</p>
+            </div>
+
+            <div class="modal-body text-left" id="upiFormSection" style="display: none;">
+                <p class="text-muted mb-4">Time expired. Please enter your payment details manually to verify.</p>
                 <div class="form-group">
-                    <label class="form-label">Transaction Reference</label>
-                    <input type="text" id="transactionCode" class="form-control" placeholder="e.g., PL018">
-                    <p class="text-sm text-muted mt-1">Enter code provided by agent</p>
+                    <label class="form-label">Your UPI ID</label>
+                    <input type="text" id="userUpiId" class="form-control" placeholder="e.g., username@okicici">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Transaction ID / UTR</label>
+                    <input type="text" id="userUtrId" class="form-control" placeholder="12-digit UTR number">
+                </div>
+                <div class="bg-surface-variant mt-4">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-muted">Deposit Amount:</span>
+                        <span class="font-semibold" id="upiFinalAmountDisplay">₹0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" id="upiFooterSection" style="display: none;">
+                <button class="btn btn-primary btn-block" onclick="submitUPIPayment()">Verify & Add Balance</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="agentPaymentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header"><h2 class="modal-title">Agent Payment</h2><button class="modal-close" onclick="closeModal('agentPaymentModal')"><span class="material-icons-round">close</span></button></div>
+            <div class="modal-body">
+                <p class="text-muted text-sm mb-4">Enter the secure transaction code provided by your agent.</p>
+                <div class="form-group">
+                    <label class="form-label">Transaction Code</label>
+                    <input type="text" id="transactionCode" class="form-control" placeholder="e.g., PL012345" style="text-transform: uppercase;">
                 </div>
                 <div class="bg-surface-variant">
-                    <div class="flex justify-between text-sm mb-2">
-                        <span class="text-muted">Deposit Amount:</span>
-                        <span class="font-semibold" id="paymentAmountDisplay">₹0</span>
-                    </div>
-                    <div class="flex justify-between text-sm">
-                        <span class="text-muted">New Balance:</span>
-                        <span class="font-semibold text-success" id="newBalanceDisplay">₹0</span>
+                    <div class="flex justify-between text-sm mb-2"><span class="text-muted">Expected Amount:</span><span class="font-semibold" id="agentAmountDisplay">₹0</span></div>
+                    <div class="flex justify-between text-sm"><span class="text-muted">New Balance:</span><span class="font-semibold text-success" id="agentNewBalanceDisplay">₹0</span></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('agentPaymentModal')">Cancel</button>
+                <button class="btn btn-primary" id="agentConfirmBtn" onclick="completeAgentPayment()">Verify Code</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="adminGenerateCodeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header"><h2 class="modal-title">Generate Code</h2><button class="modal-close" onclick="closeModal('adminGenerateCodeModal')"><span class="material-icons-round">close</span></button></div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Amount for this Code (₹)</label>
+                    <input type="number" id="generateCodeAmount" class="form-control" placeholder="0" min="10">
+                </div>
+                <div id="generatedCodeDisplaySection" style="display: none; margin-top: 16px;">
+                    <p class="text-sm font-medium mb-2 text-success">Code generated successfully!</p>
+                    <div class="redeem-code-display" style="margin-bottom: 0;">
+                        <span id="generatedCodeResult">...</span>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeModal('paymentModal')">Cancel</button>
-                <button class="btn btn-primary" onclick="completePayment()">Confirm</button>
+                <button class="btn btn-primary btn-block" onclick="adminGenerateAgentCode()">Generate Code</button>
             </div>
         </div>
     </div>
+
 
     <div id="orderCodeModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Order Play Code</h2>
-                <button class="modal-close" onclick="closeModal('orderCodeModal')"><span class="material-icons-round">close</span></button>
-            </div>
+            <div class="modal-header"><h2 class="modal-title">Order Play Code</h2><button class="modal-close" onclick="closeModal('orderCodeModal')"><span class="material-icons-round">close</span></button></div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label class="form-label">Amount (₹)</label>
-                    <input type="number" id="orderAmount" class="form-control" placeholder="0" min="10" step="10">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Confirm PIN</label>
-                    <input type="password" id="orderPin" class="form-control" placeholder="••••" maxlength="4" pattern="\d{4}">
-                </div>
+                <div class="form-group"><label class="form-label">Amount (₹)</label><input type="number" id="orderAmount" class="form-control" placeholder="0" min="10" step="10"></div>
+                <div class="form-group"><label class="form-label">Confirm PIN</label><input type="password" id="orderPin" class="form-control" placeholder="••••" maxlength="4" pattern="\d{4}"></div>
                 <div class="bg-surface-variant">
-                    <div class="flex justify-between text-sm mb-2">
-                        <span class="text-muted">Current Balance:</span>
-                        <span class="font-semibold" id="currentBalanceDisplay">₹0</span>
-                    </div>
-                    <div class="flex justify-between text-sm">
-                        <span class="text-muted">Balance After:</span>
-                        <span class="font-semibold" id="balanceAfterDisplay">₹0</span>
-                    </div>
+                    <div class="flex justify-between text-sm mb-2"><span class="text-muted">Current Balance:</span><span class="font-semibold" id="currentBalanceDisplay">₹0</span></div>
+                    <div class="flex justify-between text-sm"><span class="text-muted">Balance After:</span><span class="font-semibold" id="balanceAfterDisplay">₹0</span></div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeModal('orderCodeModal')">Cancel</button>
-                <button class="btn btn-primary" onclick="submitOrder()">Generate</button>
-            </div>
+            <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('orderCodeModal')">Cancel</button><button class="btn btn-primary" onclick="submitOrder()">Generate</button></div>
         </div>
     </div>
 
     <div id="payToFriendModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Send Money</h2>
-                <button class="modal-close" onclick="closeModal('payToFriendModal')"><span class="material-icons-round">close</span></button>
-            </div>
+            <div class="modal-header"><h2 class="modal-title">Send Money</h2><button class="modal-close" onclick="closeModal('payToFriendModal')"><span class="material-icons-round">close</span></button></div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label class="form-label">Recipient Account</label>
-                    <div class="user-search" style="position: relative;">
-                        <input type="text" id="friendAccNo" class="form-control" placeholder="Search by name or ID" oninput="searchUsers()">
-                        <div id="searchResults" class="search-results"></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Amount (₹)</label>
-                    <input type="number" id="transferAmount" class="form-control" placeholder="0" min="1" oninput="updateTransferSummary()">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Confirm PIN</label>
-                    <input type="password" id="transferPin" class="form-control" placeholder="••••" maxlength="4" pattern="\d{4}">
-                </div>
+                <div class="form-group"><label class="form-label">Recipient Account</label><div class="user-search" style="position: relative;"><input type="text" id="friendAccNo" class="form-control" placeholder="Search by name or ID" oninput="searchUsers()"><div id="searchResults" class="search-results"></div></div></div>
+                <div class="form-group"><label class="form-label">Amount (₹)</label><input type="number" id="transferAmount" class="form-control" placeholder="0" min="1" oninput="updateTransferSummary()"></div>
+                <div class="form-group"><label class="form-label">Confirm PIN</label><input type="password" id="transferPin" class="form-control" placeholder="••••" maxlength="4" pattern="\d{4}"></div>
                 <div class="bg-surface-variant">
-                    <div id="friendInfo" style="display: none; margin-bottom: 8px;">
-                        <p class="text-sm font-medium">To: <span id="friendName">...</span></p>
-                    </div>
-                    <div class="flex justify-between text-sm mb-2">
-                        <span class="text-muted">Current Balance:</span>
-                        <span class="font-semibold" id="currentTransferBalance">₹0</span>
-                    </div>
-                    <div class="flex justify-between text-sm">
-                        <span class="text-muted">Balance After:</span>
-                        <span class="font-semibold" id="balanceAfterTransfer">₹0</span>
-                    </div>
+                    <div id="friendInfo" style="display: none; margin-bottom: 8px;"><p class="text-sm font-medium">To: <span id="friendName">...</span></p></div>
+                    <div class="flex justify-between text-sm mb-2"><span class="text-muted">Current Balance:</span><span class="font-semibold" id="currentTransferBalance">₹0</span></div>
+                    <div class="flex justify-between text-sm"><span class="text-muted">Balance After:</span><span class="font-semibold" id="balanceAfterTransfer">₹0</span></div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeModal('payToFriendModal')">Cancel</button>
-                <button class="btn btn-primary" onclick="processTransfer()">Send</button>
-            </div>
+            <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('payToFriendModal')">Cancel</button><button class="btn btn-primary" onclick="processTransfer()">Send</button></div>
         </div>
     </div>
 
     <div id="rateModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Feedback</h2>
-                <button class="modal-close" onclick="closeModal('rateModal')"><span class="material-icons-round">close</span></button>
-            </div>
+            <div class="modal-header"><h2 class="modal-title">Feedback</h2><button class="modal-close" onclick="closeModal('rateModal')"><span class="material-icons-round">close</span></button></div>
             <div class="modal-body text-center">
                 <p class="text-muted mb-6">How was your experience today?</p>
-                <div class="star-rating" id="starRating">
-                    <span class="star material-icons-round" onclick="rate(1)">star_outline</span>
-                    <span class="star material-icons-round" onclick="rate(2)">star_outline</span>
-                    <span class="star material-icons-round" onclick="rate(3)">star_outline</span>
-                    <span class="star material-icons-round" onclick="rate(4)">star_outline</span>
-                    <span class="star material-icons-round" onclick="rate(5)">star_outline</span>
-                </div>
+                <div class="star-rating" id="starRating"><span class="star material-icons-round" onclick="rate(1)">star_outline</span><span class="star material-icons-round" onclick="rate(2)">star_outline</span><span class="star material-icons-round" onclick="rate(3)">star_outline</span><span class="star material-icons-round" onclick="rate(4)">star_outline</span><span class="star material-icons-round" onclick="rate(5)">star_outline</span></div>
             </div>
         </div>
     </div>
 
     <div id="redeemCodeModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Your Code</h2>
-                <button class="modal-close" onclick="closeModal('redeemCodeModal')"><span class="material-icons-round">close</span></button>
-            </div>
+            <div class="modal-header"><h2 class="modal-title">Your Code</h2><button class="modal-close" onclick="closeModal('redeemCodeModal')"><span class="material-icons-round">close</span></button></div>
             <div class="modal-body">
                 <p class="text-muted mb-4 text-sm">Google Play Redemption Code</p>
-                <div class="redeem-code-display">
-                    <span id="redeemCodeValue">...</span>
-                    <button class="redeem-copy-btn" onclick="copyRedeemCode()">
-                        <span class="material-icons-round" style="font-size: 18px;">content_copy</span>
-                    </button>
-                </div>
-                <div class="redeem-instructions">
-                    <h4><span class="material-icons-round" style="font-size: 18px;">info</span> How to redeem</h4>
-                    <ul>
-                        <li>Open Google Play Store</li>
-                        <li>Tap profile icon</li>
-                        <li>Select "Payments & subscriptions"</li>
-                        <li>Tap "Redeem gift code"</li>
-                    </ul>
-                </div>
+                <div class="redeem-code-display"><span id="redeemCodeValue">...</span><button class="redeem-copy-btn" onclick="copyRedeemCode()"><span class="material-icons-round" style="font-size: 18px;">content_copy</span></button></div>
+                <div class="redeem-instructions"><h4><span class="material-icons-round" style="font-size: 18px;">info</span> How to redeem</h4><ul><li>Open Google Play Store</li><li>Tap profile icon</li><li>Select "Payments & subscriptions"</li><li>Tap "Redeem gift code"</li></ul></div>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary btn-block" onclick="copyRedeemCode()">Copy Code</button>
-            </div>
+            <div class="modal-footer"><button class="btn btn-primary btn-block" onclick="copyRedeemCode()">Copy Code</button></div>
         </div>
     </div>
 
     <div id="adminBalanceModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Manage Balance</h2>
-                <button class="modal-close" onclick="closeModal('adminBalanceModal')"><span class="material-icons-round">close</span></button>
-            </div>
+            <div class="modal-header"><h2 class="modal-title">Manage Balance</h2><button class="modal-close" onclick="closeModal('adminBalanceModal')"><span class="material-icons-round">close</span></button></div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label class="form-label">Action</label>
-                    <select id="balanceAction" class="form-control">
-                        <option value="add">Add Funds</option>
-                        <option value="deduct">Deduct Funds</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Amount (₹)</label>
-                    <input type="number" id="adminBalanceAmount" class="form-control" placeholder="0" min="1">
-                </div>
-                <div class="bg-surface-variant">
-                    <p class="text-sm font-medium mb-1" id="adminUserInfo">User: ...</p>
-                    <p class="text-sm text-muted" id="adminCurrentBalance">Balance: ...</p>
-                </div>
+                <div class="form-group"><label class="form-label">Action</label><select id="balanceAction" class="form-control"><option value="add">Add Funds</option><option value="deduct">Deduct Funds</option></select></div>
+                <div class="form-group"><label class="form-label">Amount (₹)</label><input type="number" id="adminBalanceAmount" class="form-control" placeholder="0" min="1"></div>
+                <div class="bg-surface-variant"><p class="text-sm font-medium mb-1" id="adminUserInfo">User: ...</p><p class="text-sm text-muted" id="adminCurrentBalance">Balance: ...</p></div>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeModal('adminBalanceModal')">Cancel</button>
-                <button class="btn btn-primary" onclick="updateUserBalance()">Update</button>
-            </div>
+            <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('adminBalanceModal')">Cancel</button><button class="btn btn-primary" onclick="updateUserBalance()">Update</button></div>
         </div>
     </div>
 
     <div id="orderDetailsModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Fulfill Order</h2>
-                <button class="modal-close" onclick="closeModal('orderDetailsModal')"><span class="material-icons-round">close</span></button>
-            </div>
+            <div class="modal-header"><h2 class="modal-title">Fulfill Order</h2><button class="modal-close" onclick="closeModal('orderDetailsModal')"><span class="material-icons-round">close</span></button></div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label class="form-label">Supply Code</label>
-                    <input type="text" id="redeemCode" class="form-control" placeholder="Enter valid play code">
-                </div>
-                <div class="bg-surface-variant">
-                    <p class="text-sm font-medium mb-2" id="orderInfo">Order: ...</p>
-                    <p class="text-sm text-muted" id="orderUserInfo">User: ...</p>
-                </div>
+                <div class="form-group"><label class="form-label">Supply Code</label><input type="text" id="redeemCode" class="form-control" placeholder="Enter valid play code"></div>
+                <div class="bg-surface-variant"><p class="text-sm font-medium mb-2" id="orderInfo">Order: ...</p><p class="text-sm text-muted" id="orderUserInfo">User: ...</p></div>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="cancelOrder()" style="color:var(--md-sys-color-error)">Refund</button>
-                <button class="btn btn-primary" onclick="completeOrder()">Complete</button>
-            </div>
+            <div class="modal-footer"><button class="btn btn-secondary" onclick="cancelOrder()" style="color:var(--md-sys-color-error)">Refund</button><button class="btn btn-primary" onclick="completeOrder()">Complete</button></div>
         </div>
     </div>
 
@@ -1255,20 +710,13 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
-        let currentUser = null;
-        let currentAdmin = false;
-        let selectedUserId = null;
-        let selectedOrderId = null;
-        let currentRating = 0;
-        let paymentAmount = 0;
-        let transactionFilter = 'all';
-        let realTimeListeners = {};
-        let allUsersCache = {};
-        let currentRedeemCode = '';
+        let currentUser = null, currentAdmin = false, selectedUserId = null, selectedOrderId = null;
+        let currentRating = 0, paymentAmount = 0, transactionFilter = 'all';
+        let realTimeListeners = {}, allUsersCache = {}, currentRedeemCode = '';
+        let upiTimerInterval;
 
         function showAnimatedToast(message, type = 'info', duration = 5000) {
-            const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
+            const container = document.getElementById('toastContainer'), toast = document.createElement('div');
             toast.className = `toast toast-${type}`;
             const icons = { success: 'check_circle', error: 'error', warning: 'warning', info: 'info' };
             toast.innerHTML = `<span class="material-icons-round toast-icon">${icons[type]}</span><div class="toast-content"><div class="toast-title">${type}</div><div class="toast-message">${message}</div></div><button class="toast-close" onclick="this.parentElement.remove()">×</button>`;
@@ -1277,20 +725,15 @@
             setTimeout(() => { if (toast.parentElement) { toast.classList.remove('show'); setTimeout(() => toast.remove(), 500); } }, duration);
         }
 
-        const showToast = showAnimatedToast;
-
         function showDirectSignInModal() { document.getElementById('directSignInKey').value = ''; showModal('directSignInModal'); }
 
         function processDirectSignIn() {
             const directInput = document.getElementById('directSignInKey').value.trim();
-            if (!directInput) { showAnimatedToast('Please enter your direct sign-in key', 'error'); return; }
-            if (directInput.length < 6) { showAnimatedToast('Invalid key format. Expected 6 characters.', 'error'); return; }
-            const namePart = directInput.substring(0, 4).toLowerCase();
-            const sarLastTwo = directInput.substring(4, 6);
+            if (!directInput || directInput.length < 6) return showAnimatedToast('Invalid key format. Expected 6 characters.', 'error');
+            const namePart = directInput.substring(0, 4).toLowerCase(), sarLastTwo = directInput.substring(4, 6);
             closeModal('directSignInModal');
             const overlay = document.getElementById('globalLoadingOverlay');
-            const stepsContainer = document.getElementById('loadingStepsContainer');
-            stepsContainer.innerHTML = `<div class="loading-step active" id="dstep1"><div class="step-icon"><span class="material-icons-round">flash_on</span></div><div><strong>Direct sign-in</strong><div style="font-size:12px;">2 seconds</div></div></div>`;
+            document.getElementById('loadingStepsContainer').innerHTML = `<div class="loading-step active"><div class="step-icon"><span class="material-icons-round">flash_on</span></div><div><strong>Direct sign-in</strong><div style="font-size:12px;">2 seconds</div></div></div>`;
             overlay.classList.add('show');
             setTimeout(() => {
                 overlay.classList.remove('show');
@@ -1299,26 +742,21 @@
                         snapshot.forEach(childSnapshot => {
                             const user = childSnapshot.val();
                             const nameFirst4 = user.fullName ? user.fullName.substring(0, 4).toLowerCase() : '';
-                            const sarEnd = user.sarNo ? user.sarNo.slice(-2) : '';
-                            if (nameFirst4 === namePart && sarEnd === sarLastTwo) foundUser = user;
+                            if (nameFirst4 === namePart && (user.sarNo ? user.sarNo.slice(-2) : '') === sarLastTwo) foundUser = user;
                         });
                         if (foundUser) {
-                            currentUser = foundUser;
-                            database.ref('users/' + foundUser.accNo).update({ lastLogin: new Date().toISOString() });
-                            showDashboard(); loadUserData(); initRealTimeListeners();
-                            showAnimatedToast(`Welcome back, ${foundUser.fullName}!`, 'success');
+                            currentUser = foundUser; database.ref('users/' + foundUser.accNo).update({ lastLogin: new Date().toISOString() });
+                            showDashboard(); loadUserData(); initRealTimeListeners(); showAnimatedToast(`Welcome back, ${foundUser.fullName}!`, 'success');
                         } else { showAnimatedToast('No matching user found', 'error'); }
                     }).catch(error => showAnimatedToast(error.message, 'error'));
             }, 2000);
         }
 
         function startSignInSequence() {
-            const accNo = document.getElementById('loginAccNo').value.trim();
-            const sarNo = document.getElementById('loginSar').value.trim();
-            if (!accNo || !sarNo) { showAnimatedToast('Please enter both', 'error'); return; }
+            const accNo = document.getElementById('loginAccNo').value.trim(), sarNo = document.getElementById('loginSar').value.trim();
+            if (!accNo || !sarNo) return showAnimatedToast('Please enter both', 'error');
             const overlay = document.getElementById('globalLoadingOverlay');
-            const stepsContainer = document.getElementById('loadingStepsContainer');
-            stepsContainer.innerHTML = `<div class="loading-step" id="step1"><div class="step-icon"><span class="material-icons-round">verified</span></div><div><strong>Verifying</strong></div></div><div class="loading-step" id="step2"><div class="step-icon"><span class="material-icons-round">cloud_upload</span></div><div><strong>Connecting</strong></div></div><div class="loading-step" id="step3"><div class="step-icon"><span class="material-icons-round">lock_open</span></div><div><strong>Signing in</strong></div></div>`;
+            document.getElementById('loadingStepsContainer').innerHTML = `<div class="loading-step" id="step1"><div class="step-icon"><span class="material-icons-round">verified</span></div><div><strong>Verifying</strong></div></div><div class="loading-step" id="step2"><div class="step-icon"><span class="material-icons-round">cloud_upload</span></div><div><strong>Connecting</strong></div></div><div class="loading-step" id="step3"><div class="step-icon"><span class="material-icons-round">lock_open</span></div><div><strong>Signing in</strong></div></div>`;
             overlay.classList.add('show');
             setTimeout(() => { document.getElementById('step1')?.classList.add('active'); }, 100);
             setTimeout(() => { document.getElementById('step1')?.classList.replace('active', 'completed'); document.getElementById('step2')?.classList.add('active'); }, 3000);
@@ -1331,18 +769,17 @@
             const btn = document.getElementById('signinBtn'); btn.classList.add('btn-loading');
             database.ref('users/' + accNo).once('value').then(snapshot => {
                     if (snapshot.exists() && snapshot.val().sarNo === sarNo) {
-                        database.ref('users/' + accNo).update({ lastLogin: new Date().toISOString() });
-                        currentUser = snapshot.val(); showDashboard(); loadUserData(); initRealTimeListeners();
-                        showAnimatedToast(`Welcome back!`, 'success');
+                        currentUser = snapshot.val(); database.ref('users/' + accNo).update({ lastLogin: new Date().toISOString() });
+                        showDashboard(); loadUserData(); initRealTimeListeners(); showAnimatedToast(`Welcome back!`, 'success');
                     } else { showAnimatedToast('Invalid details!', 'error'); }
                 }).catch(e => showAnimatedToast(e.message, 'error')).finally(() => btn.classList.remove('btn-loading'));
         }
 
         function startSignUpSequence() {
             const accNo = document.getElementById('accNo').value.trim(), sarNo = document.getElementById('sarNo').value.trim(), fullName = document.getElementById('fullName').value.trim(), agentCode = document.getElementById('agentCode').value, pin = document.getElementById('pin').value;
-            if (!accNo || !sarNo || !fullName || !agentCode || !pin || pin.length !== 4 || !/^\d{4}$/.test(pin)) { showAnimatedToast('Fill correctly', 'error'); return; }
-            const overlay = document.getElementById('globalLoadingOverlay'), stepsContainer = document.getElementById('loadingStepsContainer');
-            stepsContainer.innerHTML = `<div class="loading-step" id="step1"><div class="step-icon"><span class="material-icons-round">assignment</span></div><div><strong>Validating</strong></div></div><div class="loading-step" id="step2"><div class="step-icon"><span class="material-icons-round">cloud_upload</span></div><div><strong>Creating</strong></div></div>`;
+            if (!accNo || !sarNo || !fullName || !agentCode || !pin || pin.length !== 4) return showAnimatedToast('Fill correctly', 'error');
+            const overlay = document.getElementById('globalLoadingOverlay');
+            document.getElementById('loadingStepsContainer').innerHTML = `<div class="loading-step" id="step1"><div class="step-icon"><span class="material-icons-round">assignment</span></div><div><strong>Validating</strong></div></div><div class="loading-step" id="step2"><div class="step-icon"><span class="material-icons-round">cloud_upload</span></div><div><strong>Creating</strong></div></div>`;
             overlay.classList.add('show');
             setTimeout(() => document.getElementById('step1')?.classList.add('active'), 100);
             setTimeout(() => { document.getElementById('step1')?.classList.replace('active', 'completed'); document.getElementById('step2')?.classList.add('active'); }, 3000);
@@ -1355,11 +792,11 @@
             database.ref('users/' + accNo).once('value').then(snapshot => {
                     if (snapshot.exists()) { showAnimatedToast('Exists!', 'error'); btn.classList.remove('btn-loading'); }
                     else {
-                        const userData = { accNo, sarNo, fullName, agentCode, pin, balance: 0, createdAt: new Date().toISOString(), lastLogin: null };
+                        const userData = { accNo, sarNo, fullName, agentCode, pin, balance: 0, createdAt: new Date().toISOString() };
                         database.ref('users/' + accNo).set(userData).then(() => {
-                                const transactionId = 'TX' + Date.now();
-                                return database.ref('transactions/' + transactionId).set({ transactionId, accNo, type: 'account_creation', amount: 0, description: 'Created', date: new Date().toISOString(), balanceAfter: 0 });
-                            }).then(() => { showAnimatedToast('Created!', 'success'); showSignIn(); clearSignUpForm(); }).catch(e => showAnimatedToast(e.message, 'error')).finally(() => btn.classList.remove('btn-loading'));
+                            const transactionId = 'TX' + Date.now();
+                            return database.ref('transactions/' + transactionId).set({ transactionId, accNo, type: 'account_creation', amount: 0, description: 'Created', date: new Date().toISOString(), balanceAfter: 0 });
+                        }).then(() => { showAnimatedToast('Created!', 'success'); showSignIn(); clearSignUpForm(); }).finally(() => btn.classList.remove('btn-loading'));
                     }
                 }).catch(e => { showAnimatedToast(e.message, 'error'); btn.classList.remove('btn-loading'); });
         }
@@ -1369,15 +806,7 @@
         function clearSignUpForm() { ['accNo', 'sarNo', 'fullName', 'agentCode', 'pin'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).value = ''; }); }
         function clearSignInForm() { document.getElementById('loginAccNo').value = ''; document.getElementById('loginSar').value = ''; }
         
-        function showDashboard() { 
-            document.getElementById('signinPage').style.display = 'none'; 
-            document.getElementById('dashboard').style.display = 'block'; 
-            document.getElementById('myOrdersSection').style.display = 'none'; 
-            document.getElementById('transactionHistorySection').style.display = 'none'; 
-            document.getElementById('manageAccount').style.display = 'block'; 
-            window.scrollTo(0, 0); 
-        }
-        
+        function showDashboard() { document.getElementById('signinPage').style.display = 'none'; document.getElementById('dashboard').style.display = 'block'; document.getElementById('myOrdersSection').style.display = 'none'; document.getElementById('transactionHistorySection').style.display = 'none'; document.getElementById('manageAccount').style.display = 'block'; window.scrollTo(0, 0); }
         function toggleUserMenu() { document.getElementById('userDropdown').classList.toggle('show'); }
         function showManageAccount() { document.getElementById('myOrdersSection').style.display = 'none'; document.getElementById('transactionHistorySection').style.display = 'none'; document.getElementById('manageAccount').style.display = 'block'; toggleUserMenu(); }
         function showMyOrders() { document.getElementById('manageAccount').style.display = 'none'; document.getElementById('transactionHistorySection').style.display = 'none'; document.getElementById('myOrdersSection').style.display = 'block'; loadUserOrders(); toggleUserMenu(); }
@@ -1386,27 +815,17 @@
         function loadUserData() { 
             if (currentUser) { 
                 const firstName = currentUser.fullName.split(' ')[0];
-                document.getElementById('welcomeTitle').textContent = `Welcome, ${firstName}`; 
-                document.getElementById('welcomeBalanceDisplay').textContent = `₹${currentUser.balance || 0}`; 
-                
-                // Dropdown Profile Updates (Image 2 format)
-                document.getElementById('dropdownInitial').textContent = currentUser.fullName.charAt(0).toUpperCase();
-                document.getElementById('dropdownName').textContent = currentUser.fullName;
-                document.getElementById('dropdownId').textContent = currentUser.accNo;
-                document.getElementById('dropdownBalance').textContent = `₹${currentUser.balance || 0}`;
-
-                // Other Updates
+                document.getElementById('welcomeTitle').textContent = `Welcome, ${firstName}`; document.getElementById('welcomeBalanceDisplay').textContent = `₹${currentUser.balance || 0}`; 
+                document.getElementById('dropdownInitial').textContent = currentUser.fullName.charAt(0).toUpperCase(); document.getElementById('dropdownName').textContent = currentUser.fullName; document.getElementById('dropdownId').textContent = currentUser.accNo; document.getElementById('dropdownBalance').textContent = `₹${currentUser.balance || 0}`;
                 document.getElementById('userInitial').textContent = currentUser.fullName.charAt(0).toUpperCase(); 
                 if(document.getElementById('currentBalanceDisplay')) document.getElementById('currentBalanceDisplay').textContent = `₹${currentUser.balance || 0}`; 
                 if(document.getElementById('currentTransferBalance')) document.getElementById('currentTransferBalance').textContent = `₹${currentUser.balance || 0}`; 
             } 
         }
-        
         function updateBalanceDisplay() { 
             if (currentUser) { 
                 const balance = currentUser.balance || 0; 
-                document.getElementById('welcomeBalanceDisplay').textContent = `₹${balance}`; 
-                document.getElementById('dropdownBalance').textContent = `₹${balance}`;
+                document.getElementById('welcomeBalanceDisplay').textContent = `₹${balance}`; document.getElementById('dropdownBalance').textContent = `₹${balance}`;
                 if(document.getElementById('currentTransferBalance')) document.getElementById('currentTransferBalance').textContent = `₹${balance}`; 
                 updateTransferSummary(); 
             } 
@@ -1415,84 +834,187 @@
         function initRealTimeListeners() {
             if (!currentUser) return;
             Object.keys(realTimeListeners).forEach(key => { if (realTimeListeners[key]) realTimeListeners[key](); });
-            realTimeListeners = {};
             realTimeListeners.balance = database.ref('users/' + currentUser.accNo + '/balance').on('value', (snapshot) => {
                 if (snapshot.exists() && currentUser) { const newBalance = snapshot.val(); if (newBalance !== currentUser.balance) { currentUser.balance = newBalance; updateBalanceDisplay(); } }
             });
         }
 
-        // ============================================
-        // BULLETPROOF SIGN OUT IMPLEMENTATION
         function executeSignOut(event) {
-            // Stop the click from interfering with any other code
             if (event) event.stopPropagation(); 
-            
             try {
-                // 1. Remove listeners safely
-                if (realTimeListeners) {
-                    Object.keys(realTimeListeners).forEach(key => { 
-                        if (typeof realTimeListeners[key] === 'function') realTimeListeners[key](); 
-                    });
-                    realTimeListeners = {}; 
-                }
-                
-                // 2. Wipe memory variables
-                currentUser = null; 
-                currentAdmin = false;
-                allUsersCache = {};
-                
-                // 3. Close the dropdown gracefully
-                const dropdown = document.getElementById('userDropdown');
-                if (dropdown) dropdown.classList.remove('show');
-                
-                // 4. Force hide ALL dashboard screens instantly
-                const sectionsToHide = ['dashboard', 'adminPanel', 'manageAccount', 'myOrdersSection', 'transactionHistorySection'];
-                sectionsToHide.forEach(id => {
-                    const el = document.getElementById(id);
-                    if (el) el.style.display = 'none';
-                });
-                
-                // 5. Instantly show the Sign In Page & clear forms
-                showSignIn();
-                clearSignInForm(); 
-                
-                // 6. Show the success toast
-                showAnimatedToast('Signed out securely', 'success');
-                
-            } catch (error) {
-                // If anything above somehow fails, fall back to hard reload so it never gets stuck
-                console.error("Sign out error:", error);
-                window.location.reload(); 
-            }
+                if (realTimeListeners) { Object.keys(realTimeListeners).forEach(key => { if (typeof realTimeListeners[key] === 'function') realTimeListeners[key](); }); realTimeListeners = {}; }
+                currentUser = null; currentAdmin = false; allUsersCache = {};
+                const dropdown = document.getElementById('userDropdown'); if (dropdown) dropdown.classList.remove('show');
+                ['dashboard', 'adminPanel', 'manageAccount', 'myOrdersSection', 'transactionHistorySection'].forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
+                showSignIn(); clearSignInForm(); showAnimatedToast('Signed out securely', 'success');
+            } catch (error) { window.location.reload(); }
         }
 
-        function logoutAdmin() { 
-            currentAdmin = false; 
-            document.getElementById('adminPanel').style.display = 'none';
-            showSignIn();
-            clearSignInForm();
-            showAnimatedToast('Admin session ended', 'info');
-        }
-        // ============================================
-
+        function logoutAdmin() { currentAdmin = false; document.getElementById('adminPanel').style.display = 'none'; showSignIn(); clearSignInForm(); showAnimatedToast('Admin session ended', 'info'); }
         function showAdminModal() { showModal('adminModal'); }
         function closeAdminModal() { closeModal('adminModal'); document.getElementById('pukCode').value = ''; }
         function adminLogin() { const pukCode = document.getElementById('pukCode').value; if (pukCode === 'PC15836215') { currentAdmin = true; closeAdminModal(); showAdminPanel(); loadAllUsers(); loadAllOrders(); showAnimatedToast('Logged in', 'success'); } else { showAnimatedToast('Invalid PUKCODE!', 'error'); } }
-        
         function showAdminPanel() { document.getElementById('signinPage').style.display = 'none'; document.getElementById('adminPanel').style.display = 'block'; window.scrollTo(0, 0); }
         function checkBalance() { showModal('balanceModal'); document.getElementById('balanceLoading').style.display = 'flex'; document.getElementById('balanceResult').style.display = 'none'; setTimeout(() => { document.getElementById('balanceLoading').style.display = 'none'; document.getElementById('balanceResult').style.display = 'block'; document.getElementById('balanceAmount').textContent = `₹${currentUser.balance || 0}`; }, 2000); }
-        function addBalance() { showModal('addBalanceModal'); }
-        function proceedToPayment() { const amount = parseFloat(document.getElementById('addAmount').value); if (!amount || amount < 10) { showAnimatedToast('Min ₹10', 'error'); return; } paymentAmount = amount; document.getElementById('paymentAmountDisplay').textContent = `₹${amount}`; document.getElementById('newBalanceDisplay').textContent = `₹${(currentUser.balance || 0) + amount}`; closeModal('addBalanceModal'); showModal('paymentModal'); }
-        function completePayment() { const transactionCode = document.getElementById('transactionCode').value.trim(); if (!transactionCode) { showAnimatedToast('Enter code', 'error'); return; } const newBalance = (currentUser.balance || 0) + paymentAmount; const transactionId = 'TX' + Date.now(); const transactionData = { transactionId, accNo: currentUser.accNo, type: 'deposit', amount: paymentAmount, description: `Deposit - Ref: ${transactionCode}`, date: new Date().toISOString(), balanceAfter: newBalance, referenceId: transactionCode }; const updates = {}; updates[`users/${currentUser.accNo}/balance`] = newBalance; updates[`transactions/${transactionId}`] = transactionData; database.ref().update(updates).then(() => { closeModal('paymentModal'); showAnimatedToast(`Added ₹${paymentAmount}`, 'success'); document.getElementById('addAmount').value = ''; document.getElementById('transactionCode').value = ''; }).catch(e => showAnimatedToast(e.message, 'error')); }
-        function orderCode() { document.getElementById('currentBalanceDisplay').textContent = `₹${currentUser.balance || 0}`; document.getElementById('orderAmount').value = ''; document.getElementById('orderPin').value = ''; showModal('orderCodeModal'); }
-        function submitOrder() { const amountInput = document.getElementById('orderAmount'), pinInput = document.getElementById('orderPin'), amount = parseFloat(amountInput.value), pin = pinInput.value; if (!amount || amount < 10) { showAnimatedToast('Min ₹10', 'error'); return; } if (pin !== currentUser.pin) { showAnimatedToast('Invalid PIN!', 'error'); return; } if ((currentUser.balance || 0) < amount) { showAnimatedToast('Insufficient!', 'error'); return; } const orderId = 'ORD' + Date.now(); const orderData = { orderId, accNo: currentUser.accNo, fullName: currentUser.fullName, amount, status: 'Pending', date: new Date().toISOString(), agentCode: currentUser.agentCode }; const transactionId = 'TX' + Date.now(); const transactionData = { transactionId, accNo: currentUser.accNo, type: 'order', amount, description: `Order ${orderId}`, date: new Date().toISOString(), balanceAfter: (currentUser.balance || 0) - amount, referenceId: orderId }; const updates = {}; updates[`orders/${orderId}`] = orderData; updates[`transactions/${transactionId}`] = transactionData; updates[`users/${currentUser.accNo}/balance`] = (currentUser.balance || 0) - amount; database.ref().update(updates).then(() => { closeModal('orderCodeModal'); showAnimatedToast('Placed!', 'success'); amountInput.value = ''; pinInput.value = ''; }).catch(e => showAnimatedToast(e.message, 'error')); }
-        function payToFriend() { document.getElementById('friendAccNo').value = ''; document.getElementById('transferAmount').value = ''; document.getElementById('transferPin').value = ''; document.getElementById('friendInfo').style.display = 'none'; document.getElementById('currentTransferBalance').textContent = `₹${currentUser.balance || 0}`; updateTransferSummary(); showModal('payToFriendModal'); }
-        function searchUsers() { const searchTerm = document.getElementById('friendAccNo').value.trim(); const searchResults = document.getElementById('searchResults'); if (searchTerm.length < 2) { searchResults.style.display = 'none'; document.getElementById('friendInfo').style.display = 'none'; return; } searchResults.innerHTML = ''; if (Object.keys(allUsersCache).length > 0) { const filteredUsers = Object.values(allUsersCache).filter(user => user.accNo.includes(searchTerm) || user.fullName.toLowerCase().includes(searchTerm.toLowerCase())); displaySearchResults(filteredUsers); } else { database.ref('users').once('value').then(snapshot => { snapshot.forEach(childSnapshot => { const user = childSnapshot.val(); allUsersCache[user.accNo] = user; }); const filteredUsers = Object.values(allUsersCache).filter(user => user.accNo.includes(searchTerm) || user.fullName.toLowerCase().includes(searchTerm.toLowerCase())); displaySearchResults(filteredUsers); }).catch(e => showAnimatedToast('Error: ' + e.message, 'error')); } }
-        function displaySearchResults(users) { const searchResults = document.getElementById('searchResults'); if (users.length === 0) { searchResults.innerHTML = '<div class="search-result-item"><span class="text-muted">No users found</span></div>'; searchResults.style.display = 'block'; return; } users.forEach(user => { if (user.accNo === currentUser.accNo) return; const resultItem = document.createElement('div'); resultItem.className = 'search-result-item'; resultItem.innerHTML = `<div class="user-avatar-small">${user.fullName.charAt(0).toUpperCase()}</div><div><div class="font-medium">${user.fullName}</div><div class="text-xs text-muted">${user.accNo}</div></div>`; resultItem.onclick = () => { document.getElementById('friendAccNo').value = user.accNo; document.getElementById('friendName').textContent = `${user.fullName} (${user.accNo})`; document.getElementById('friendInfo').style.display = 'block'; document.getElementById('searchResults').style.display = 'none'; updateTransferSummary(); }; searchResults.appendChild(resultItem); }); searchResults.style.display = 'block'; }
-        function updateTransferSummary() { const amount = parseFloat(document.getElementById('transferAmount').value) || 0; const currentBalance = currentUser.balance || 0; const balanceAfter = currentBalance - amount; document.getElementById('balanceAfterTransfer').textContent = `₹${Math.max(0, balanceAfter)}`; }
-        function processTransfer() { const friendAccNo = document.getElementById('friendAccNo').value.trim(); const amount = parseFloat(document.getElementById('transferAmount').value); const pin = document.getElementById('transferPin').value; if (!friendAccNo || !amount || amount <= 0 || pin !== currentUser.pin) { showAnimatedToast('Fill correctly', 'error'); return; } if (friendAccNo === currentUser.accNo) { showAnimatedToast('Self transfer not allowed', 'error'); return; } if (amount > (currentUser.balance || 0)) { showAnimatedToast('Insufficient!', 'error'); return; } database.ref('users/' + friendAccNo).once('value').then(snapshot => { if (!snapshot.exists()) { showAnimatedToast('User not found', 'error'); return Promise.reject('User not found'); } const friend = snapshot.val(); const timestamp = Date.now(); const senderNewBalance = (currentUser.balance || 0) - amount; const receiverNewBalance = (friend.balance || 0) + amount; const updates = {}; updates[`users/${currentUser.accNo}/balance`] = senderNewBalance; updates[`users/${friendAccNo}/balance`] = receiverNewBalance; updates[`transactions/TX${timestamp}S`] = { transactionId: `TX${timestamp}S`, accNo: currentUser.accNo, type: 'transfer_out', amount, description: `To ${friend.fullName}`, date: new Date().toISOString(), balanceAfter: senderNewBalance }; updates[`transactions/TX${timestamp}R`] = { transactionId: `TX${timestamp}R`, accNo: friendAccNo, type: 'transfer_in', amount, description: `From ${currentUser.fullName}`, date: new Date().toISOString(), balanceAfter: receiverNewBalance }; return database.ref().update(updates); }).then(() => { closeModal('payToFriendModal'); showAnimatedToast(`Sent ₹${amount}`, 'success'); }).catch(e => { if (e !== 'User not found') showAnimatedToast(e.message, 'error'); }); }
+        
+        // --- NEW BALANCE ADDITION FLOW ---
+        function addBalance() { 
+            document.getElementById('addAmount').value = '';
+            showModal('addBalanceModal'); 
+        }
 
-        function loadTransactionHistory() {
+        function proceedToPaymentMethod() {
+            const amount = parseFloat(document.getElementById('addAmount').value);
+            if (!amount || amount < 10) return showAnimatedToast('Min deposit is ₹10', 'error');
+            paymentAmount = amount;
+            
+            document.getElementById('methodAmountDisplay').textContent = `₹${amount}`;
+            closeModal('addBalanceModal');
+            showModal('paymentMethodModal');
+        }
+
+        // --- UPI FLOW ---
+        function openUPIPayment() {
+            closeModal('paymentMethodModal');
+            
+            const upiString = encodeURIComponent(`upi://pay?pa=amitrakhi83@oksbi&pn=Playcode Agent&am=${paymentAmount}`);
+            document.getElementById('upiQrImage').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${upiString}`;
+            document.getElementById('upiAmountText').innerText = `₹${paymentAmount}`;
+            document.getElementById('upiFinalAmountDisplay').innerText = `₹${paymentAmount}`;
+            
+            // Reset modal states
+            document.getElementById('upiQrSection').style.display = 'block';
+            document.getElementById('upiFormSection').style.display = 'none';
+            document.getElementById('upiFooterSection').style.display = 'none';
+            document.getElementById('userUpiId').value = '';
+            document.getElementById('userUtrId').value = '';
+            
+            showModal('upiPaymentModal');
+            
+            let timeLeft = 60;
+            document.getElementById('upiTimerDisplay').innerText = `60s`;
+            clearInterval(upiTimerInterval);
+            
+            upiTimerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('upiTimerDisplay').innerText = `${timeLeft}s`;
+                if (timeLeft <= 0) {
+                    clearInterval(upiTimerInterval);
+                    document.getElementById('upiQrSection').style.display = 'none';
+                    document.getElementById('upiFormSection').style.display = 'block';
+                    document.getElementById('upiFooterSection').style.display = 'flex';
+                }
+            }, 1000);
+        }
+
+        function submitUPIPayment() {
+            const upiId = document.getElementById('userUpiId').value.trim();
+            const utrId = document.getElementById('userUtrId').value.trim();
+            if(!upiId || !utrId) return showAnimatedToast('Please enter both UPI ID and UTR', 'error');
+
+            const newBalance = (currentUser.balance || 0) + paymentAmount;
+            const transactionId = 'TX' + Date.now();
+            const updates = {};
+            
+            updates[`users/${currentUser.accNo}/balance`] = newBalance;
+            updates[`transactions/${transactionId}`] = {
+                transactionId, accNo: currentUser.accNo, type: 'deposit',
+                amount: paymentAmount, description: `UPI Deposit - UTR: ${utrId}`,
+                date: new Date().toISOString(), balanceAfter: newBalance, referenceId: utrId
+            };
+
+            database.ref().update(updates).then(() => {
+                closeModal('upiPaymentModal');
+                showAnimatedToast(`Successfully added ₹${paymentAmount}`, 'success');
+            }).catch(e => showAnimatedToast(e.message, 'error'));
+        }
+
+        // --- AGENT CODE FLOW ---
+        function openAgentPayment() {
+            closeModal('paymentMethodModal');
+            document.getElementById('transactionCode').value = '';
+            document.getElementById('agentAmountDisplay').textContent = `₹${paymentAmount}`;
+            document.getElementById('agentNewBalanceDisplay').textContent = `₹${(currentUser.balance || 0) + paymentAmount}`;
+            showModal('agentPaymentModal');
+        }
+
+        function completeAgentPayment() { 
+            const code = document.getElementById('transactionCode').value.trim().toUpperCase(); 
+            if (!code) return showAnimatedToast('Enter code', 'error'); 
+            
+            const btn = document.getElementById('agentConfirmBtn');
+            btn.classList.add('btn-loading');
+
+            database.ref('agentCodes/' + code).once('value').then(snapshot => {
+                if (!snapshot.exists()) {
+                    showAnimatedToast('Invalid Agent Code', 'error');
+                    return;
+                }
+                const codeData = snapshot.val();
+                if (codeData.used) {
+                    showAnimatedToast('Code already used', 'error');
+                    return;
+                }
+                if (parseFloat(codeData.amount) !== paymentAmount) {
+                    showAnimatedToast(`Code is for ₹${codeData.amount}, but you entered ₹${paymentAmount}. Please start over.`, 'error');
+                    return;
+                }
+
+                const newBalance = (currentUser.balance || 0) + paymentAmount; 
+                const transactionId = 'TX' + Date.now(); 
+                
+                const updates = {}; 
+                updates[`users/${currentUser.accNo}/balance`] = newBalance; 
+                updates[`transactions/${transactionId}`] = { transactionId, accNo: currentUser.accNo, type: 'deposit', amount: paymentAmount, description: `Agent Deposit - Ref: ${code}`, date: new Date().toISOString(), balanceAfter: newBalance, referenceId: code }; 
+                
+                updates[`agentCodes/${code}/used`] = true;
+                updates[`agentCodes/${code}/usedBy`] = currentUser.accNo;
+                updates[`agentCodes/${code}/usedAt`] = new Date().toISOString();
+
+                return database.ref().update(updates).then(() => { 
+                    closeModal('agentPaymentModal'); 
+                    showAnimatedToast(`Added ₹${paymentAmount} via Agent`, 'success'); 
+                });
+            }).catch(e => showAnimatedToast(e.message, 'error'))
+            .finally(() => btn.classList.remove('btn-loading'));
+        }
+        
+        // --- ADMIN GENERATE CODE ---
+        function showGenerateCodeModal() {
+            document.getElementById('generateCodeAmount').value = '';
+            document.getElementById('generatedCodeDisplaySection').style.display = 'none';
+            showModal('adminGenerateCodeModal');
+        }
+
+        function adminGenerateAgentCode() {
+            const amount = parseFloat(document.getElementById('generateCodeAmount').value);
+            if (!amount || amount < 10) return showAnimatedToast('Enter valid amount (Min 10)', 'error');
+
+            const code = 'PL0' + Math.floor(10000 + Math.random() * 90000); 
+
+            const codeData = {
+                code: code,
+                amount: amount,
+                used: false,
+                createdBy: 'admin',
+                createdAt: new Date().toISOString()
+            };
+
+            database.ref('agentCodes/' + code).set(codeData).then(() => {
+                document.getElementById('generatedCodeResult').innerText = code;
+                document.getElementById('generatedCodeDisplaySection').style.display = 'block';
+                showAnimatedToast('Code Generated successfully!', 'success');
+            }).catch(e => showAnimatedToast(e.message, 'error'));
+        }
+
+        function orderCode() { document.getElementById('currentBalanceDisplay').textContent = `₹${currentUser.balance || 0}`; document.getElementById('orderAmount').value = ''; document.getElementById('orderPin').value = ''; showModal('orderCodeModal'); }
+        function submitOrder() { const amountInput = document.getElementById('orderAmount'), pinInput = document.getElementById('orderPin'), amount = parseFloat(amountInput.value), pin = pinInput.value; if (!amount || amount < 10) return showAnimatedToast('Min ₹10', 'error'); if (pin !== currentUser.pin) return showAnimatedToast('Invalid PIN!', 'error'); if ((currentUser.balance || 0) < amount) return showAnimatedToast('Insufficient!', 'error'); const orderId = 'ORD' + Date.now(), orderData = { orderId, accNo: currentUser.accNo, fullName: currentUser.fullName, amount, status: 'Pending', date: new Date().toISOString(), agentCode: currentUser.agentCode }, transactionId = 'TX' + Date.now(), transactionData = { transactionId, accNo: currentUser.accNo, type: 'order', amount, description: `Order ${orderId}`, date: new Date().toISOString(), balanceAfter: (currentUser.balance || 0) - amount, referenceId: orderId }, updates = {}; updates[`orders/${orderId}`] = orderData; updates[`transactions/${transactionId}`] = transactionData; updates[`users/${currentUser.accNo}/balance`] = (currentUser.balance || 0) - amount; database.ref().update(updates).then(() => { closeModal('orderCodeModal'); showAnimatedToast('Placed!', 'success'); amountInput.value = ''; pinInput.value = ''; }).catch(e => showAnimatedToast(e.message, 'error')); }
+        function payToFriend() { document.getElementById('friendAccNo').value = ''; document.getElementById('transferAmount').value = ''; document.getElementById('transferPin').value = ''; document.getElementById('friendInfo').style.display = 'none'; document.getElementById('currentTransferBalance').textContent = `₹${currentUser.balance || 0}`; updateTransferSummary(); showModal('payToFriendModal'); }
+        function searchUsers() { const searchTerm = document.getElementById('friendAccNo').value.trim(); const searchResults = document.getElementById('searchResults'); if (searchTerm.length < 2) { searchResults.style.display = 'none'; document.getElementById('friendInfo').style.display = 'none'; return; } searchResults.innerHTML = ''; if (Object.keys(allUsersCache).length > 0) { displaySearchResults(Object.values(allUsersCache).filter(user => user.accNo.includes(searchTerm) || user.fullName.toLowerCase().includes(searchTerm.toLowerCase()))); } else { database.ref('users').once('value').then(snapshot => { snapshot.forEach(childSnapshot => { const user = childSnapshot.val(); allUsersCache[user.accNo] = user; }); displaySearchResults(Object.values(allUsersCache).filter(user => user.accNo.includes(searchTerm) || user.fullName.toLowerCase().includes(searchTerm.toLowerCase()))); }).catch(e => showAnimatedToast('Error: ' + e.message, 'error')); } }
+        function displaySearchResults(users) { const searchResults = document.getElementById('searchResults'); if (users.length === 0) { searchResults.innerHTML = '<div class="search-result-item"><span class="text-muted">No users found</span></div>'; searchResults.style.display = 'block'; return; } users.forEach(user => { if (user.accNo === currentUser.accNo) return; const resultItem = document.createElement('div'); resultItem.className = 'search-result-item'; resultItem.innerHTML = `<div class="user-avatar-small">${user.fullName.charAt(0).toUpperCase()}</div><div><div class="font-medium">${user.fullName}</div><div class="text-xs text-muted">${user.accNo}</div></div>`; resultItem.onclick = () => { document.getElementById('friendAccNo').value = user.accNo; document.getElementById('friendName').textContent = `${user.fullName} (${user.accNo})`; document.getElementById('friendInfo').style.display = 'block'; document.getElementById('searchResults').style.display = 'none'; updateTransferSummary(); }; searchResults.appendChild(resultItem); }); searchResults.style.display = 'block'; }
+        function updateTransferSummary() { const amount = parseFloat(document.getElementById('transferAmount').value) || 0; document.getElementById('balanceAfterTransfer').textContent = `₹${Math.max(0, (currentUser.balance || 0) - amount)}`; }
+        function processTransfer() { const friendAccNo = document.getElementById('friendAccNo').value.trim(), amount = parseFloat(document.getElementById('transferAmount').value), pin = document.getElementById('transferPin').value; if (!friendAccNo || !amount || amount <= 0 || pin !== currentUser.pin) return showAnimatedToast('Fill correctly', 'error'); if (friendAccNo === currentUser.accNo) return showAnimatedToast('Self transfer not allowed', 'error'); if (amount > (currentUser.balance || 0)) return showAnimatedToast('Insufficient!', 'error'); database.ref('users/' + friendAccNo).once('value').then(snapshot => { if (!snapshot.exists()) return Promise.reject('User not found'); const friend = snapshot.val(), timestamp = Date.now(), senderNewBalance = (currentUser.balance || 0) - amount, receiverNewBalance = (friend.balance || 0) + amount, updates = {}; updates[`users/${currentUser.accNo}/balance`] = senderNewBalance; updates[`users/${friendAccNo}/balance`] = receiverNewBalance; updates[`transactions/TX${timestamp}S`] = { transactionId: `TX${timestamp}S`, accNo: currentUser.accNo, type: 'transfer_out', amount, description: `To ${friend.fullName}`, date: new Date().toISOString(), balanceAfter: senderNewBalance }; updates[`transactions/TX${timestamp}R`] = { transactionId: `TX${timestamp}R`, accNo: friendAccNo, type: 'transfer_in', amount, description: `From ${currentUser.fullName}`, date: new Date().toISOString(), balanceAfter: receiverNewBalance }; return database.ref().update(updates); }).then(() => { closeModal('payToFriendModal'); showAnimatedToast(`Sent ₹${amount}`, 'success'); }).catch(e => { if (e !== 'User not found') showAnimatedToast(e.message, 'error'); else showAnimatedToast(e, 'error'); }); }
+function loadTransactionHistory() {
             if (!currentUser) return;
             
             database.ref('transactions').orderByChild('accNo').equalTo(currentUser.accNo).once('value')
@@ -1564,45 +1086,27 @@
                 });
         }
 
-        function filterTransactions(type) {
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            transactionFilter = type;
-            loadTransactionHistory();
-        }
-
-        function loadUserOrders() { if (!currentUser) return; database.ref('orders').orderByChild('accNo').equalTo(currentUser.accNo).once('value').then(snapshot => { const ordersTable = document.getElementById('userOrdersTable'); ordersTable.innerHTML = ''; if (!snapshot.exists()) { ordersTable.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 24px;">No orders</td></tr>'; return; } snapshot.forEach(c => { const order = c.val(); const date = new Date(order.date).toLocaleString(); const statusClass = order.status === 'Completed' ? 'status-completed' : order.status === 'Cancelled' ? 'status-cancelled' : 'status-pending'; const redeemButton = order.status === 'Completed' && order.redeemCode ? `<button class="action-btn action-btn-success" onclick="showRedeemCode('${order.redeemCode}')">View</button>` : ''; ordersTable.innerHTML += `<tr><td class="font-medium">${order.orderId}</td><td>₹${order.amount}</td><td class="text-muted text-sm">${date}</td><td><span class="status-badge ${statusClass}">${order.status}</span></td><td>${redeemButton}</td></tr>`; }); }).catch(e => showAnimatedToast(e.message, 'error')); }
+        function loadUserOrders() { if (!currentUser) return; database.ref('orders').orderByChild('accNo').equalTo(currentUser.accNo).once('value').then(snapshot => { const ordersTable = document.getElementById('userOrdersTable'); ordersTable.innerHTML = ''; if (!snapshot.exists()) return ordersTable.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 24px;">No orders</td></tr>'; snapshot.forEach(c => { const order = c.val(), date = new Date(order.date).toLocaleString(), statusClass = order.status === 'Completed' ? 'status-completed' : order.status === 'Cancelled' ? 'status-cancelled' : 'status-pending', redeemButton = order.status === 'Completed' && order.redeemCode ? `<button class="action-btn action-btn-success" onclick="showRedeemCode('${order.redeemCode}')">View</button>` : ''; ordersTable.innerHTML += `<tr><td class="font-medium">${order.orderId}</td><td>₹${order.amount}</td><td class="text-muted text-sm">${date}</td><td><span class="status-badge ${statusClass}">${order.status}</span></td><td>${redeemButton}</td></tr>`; }); }).catch(e => showAnimatedToast(e.message, 'error')); }
         function showRedeemCode(code) { currentRedeemCode = code; document.getElementById('redeemCodeValue').textContent = code; showModal('redeemCodeModal'); }
         function copyRedeemCode() { if (!currentRedeemCode) return; navigator.clipboard.writeText(currentRedeemCode).then(() => showAnimatedToast('Copied!', 'success')).catch(() => showAnimatedToast('Failed', 'error')); }
         function rateUs() { resetStars(); showModal('rateModal'); }
         function rate(stars) { currentRating = stars; document.querySelectorAll('#starRating .star').forEach((star, i) => { if (i < stars) { star.textContent = 'star'; star.classList.add('selected'); } else { star.textContent = 'star_outline'; star.classList.remove('selected'); } }); setTimeout(() => { closeModal('rateModal'); showAnimatedToast(`Thanks for ${stars} stars!`, 'success'); currentRating = 0; }, 600); }
         function resetStars() { document.querySelectorAll('#starRating .star').forEach(star => { star.textContent = 'star_outline'; star.classList.remove('selected'); }); }
-        function loadAllUsers() { database.ref('users').once('value').then(snapshot => { const usersTable = document.getElementById('usersTable'); usersTable.innerHTML = ''; if (!snapshot.exists()) { usersTable.innerHTML = '<tr><td colspan="6" align="center">No users</td></tr>'; return; } snapshot.forEach(c => { const user = c.val(); usersTable.innerHTML += `<tr><td>${user.accNo}</td><td>${user.fullName}</td><td class="text-success font-medium">₹${user.balance||0}</td><td>${user.agentCode}</td><td>${user.createdAt?new Date(user.createdAt).toLocaleDateString():'N/A'}</td><td><button class="action-btn action-btn-primary" onclick="showAdminBalanceModal('${user.accNo}')">Bal</button> <button class="action-btn action-btn-danger" onclick="deleteUser('${user.accNo}')">Del</button></td></tr>`; }); }); }
+        function loadAllUsers() { database.ref('users').once('value').then(snapshot => { const usersTable = document.getElementById('usersTable'); usersTable.innerHTML = ''; if (!snapshot.exists()) return usersTable.innerHTML = '<tr><td colspan="6" align="center">No users</td></tr>'; snapshot.forEach(c => { const user = c.val(); usersTable.innerHTML += `<tr><td>${user.accNo}</td><td>${user.fullName}</td><td class="text-success font-medium">₹${user.balance||0}</td><td>${user.agentCode}</td><td>${user.createdAt?new Date(user.createdAt).toLocaleDateString():'N/A'}</td><td><button class="action-btn action-btn-primary" onclick="showAdminBalanceModal('${user.accNo}')">Bal</button> <button class="action-btn action-btn-danger" onclick="deleteUser('${user.accNo}')">Del</button></td></tr>`; }); }); }
         function loadAllOrders() { database.ref('orders').once('value').then(snapshot => { const ordersTable = document.getElementById('allOrdersTable'); ordersTable.innerHTML = ''; if (!snapshot.exists()) return; snapshot.forEach(c => { const order = c.val(); ordersTable.innerHTML += `<tr><td>${order.orderId}</td><td>${order.accNo}</td><td>₹${order.amount}</td><td>${new Date(order.date).toLocaleDateString()}</td><td>${order.status}</td><td><button class="action-btn action-btn-success" onclick="showOrderDetails('${order.orderId}')">Edit</button></td></tr>`; }); }); }
         function showAdminBalanceModal(accNo) { selectedUserId = accNo; database.ref('users/' + accNo).once('value').then(s => { const user = s.val(); document.getElementById('adminUserInfo').textContent = `User: ${user.fullName}`; document.getElementById('adminCurrentBalance').textContent = `Bal: ₹${user.balance||0}`; document.getElementById('adminBalanceAmount').value = ''; showModal('adminBalanceModal'); }); }
         function updateUserBalance() { const action = document.getElementById('balanceAction').value, amount = parseFloat(document.getElementById('adminBalanceAmount').value); if(!amount) return; database.ref('users/'+selectedUserId).once('value').then(s => { let bal = s.val().balance||0; action==='add'?bal+=amount:bal-=amount; if(bal<0)bal=0; const updates={}; updates[`users/${selectedUserId}/balance`]=bal; return database.ref().update(updates); }).then(()=>{loadAllUsers(); closeModal('adminBalanceModal'); showAnimatedToast('Updated', 'success');}); }
         function deleteUser(accNo) { if(confirm('Delete user?')) database.ref('users/'+accNo).remove().then(()=>loadAllUsers()); }
         function showOrderDetails(orderId) { selectedOrderId = orderId; database.ref('orders/'+orderId).once('value').then(s=>{ const o = s.val(); document.getElementById('orderInfo').textContent = `Order: ${orderId}`; document.getElementById('orderUserInfo').textContent = `User: ${o.accNo}`; document.getElementById('redeemCode').value = o.redeemCode||''; showModal('orderDetailsModal'); }); }
         function completeOrder() { const code = document.getElementById('redeemCode').value.trim(); if(!code) return; database.ref('orders/'+selectedOrderId).update({status:'Completed', redeemCode:code}).then(()=>{loadAllOrders(); closeModal('orderDetailsModal'); showAnimatedToast('Completed', 'success');}); }
-        function cancelOrder() { if(!confirm('Refund?'))return; database.ref('orders/'+selectedOrderId).once('value').then(s=>{ const o = s.val(); return database.ref('users/'+o.accNo).once('value').then(us=>{ const u=us.val(); const updates={}; updates[`orders/${selectedOrderId}/status`] = 'Cancelled'; updates[`users/${o.accNo}/balance`] = (u.balance||0)+o.amount; return database.ref().update(updates); }); }).then(()=>{loadAllOrders(); closeModal('orderDetailsModal'); showAnimatedToast('Refunded', 'success');}); }
+        function cancelOrder() { if(!confirm('Refund?'))return; database.ref('orders/'+selectedOrderId).once('value').then(s=>{ const o = s.val(); return database.ref('users/'+o.accNo).once('value').then(us=>{ const u=us.val(), updates={}; updates[`orders/${selectedOrderId}/status`] = 'Cancelled'; updates[`users/${o.accNo}/balance`] = (u.balance||0)+o.amount; return database.ref().update(updates); }); }).then(()=>{loadAllOrders(); closeModal('orderDetailsModal'); showAnimatedToast('Refunded', 'success');}); }
 
         function showModal(modalId) { const el = document.getElementById(modalId); el.style.display = 'flex'; setTimeout(() => el.classList.add('show'), 10); document.body.style.overflow = 'hidden'; }
         function closeModal(modalId) { const el = document.getElementById(modalId); el.classList.remove('show'); setTimeout(() => el.style.display = 'none', 300); document.body.style.overflow = ''; }
         window.onclick = function(event) { if (event.target.classList.contains('modal')) closeModal(event.target.id); }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('transferAmount')?.addEventListener('input', updateTransferSummary);
-            document.getElementById('directSignInKey')?.addEventListener('keypress', function(e) { if (e.key === 'Enter') processDirectSignIn(); });
-        });
-        
-        document.addEventListener('click', function(event) {
-            const dropdown = document.getElementById('userDropdown'), userAvatar = document.querySelector('.user-avatar');
-            if (dropdown && dropdown.classList.contains('show') && !dropdown.contains(event.target) && !userAvatar.contains(event.target)) dropdown.classList.remove('show');
-            const searchResults = document.getElementById('searchResults');
-            if (searchResults && searchResults.style.display !== 'none' && !event.target.closest('.user-search')) searchResults.style.display = 'none';
-        });
+        document.addEventListener('DOMContentLoaded', function() { document.getElementById('transferAmount')?.addEventListener('input', updateTransferSummary); document.getElementById('directSignInKey')?.addEventListener('keypress', function(e) { if (e.key === 'Enter') processDirectSignIn(); }); });
+        document.addEventListener('click', function(event) { const dropdown = document.getElementById('userDropdown'), userAvatar = document.querySelector('.user-avatar'); if (dropdown && dropdown.classList.contains('show') && !dropdown.contains(event.target) && !userAvatar.contains(event.target)) dropdown.classList.remove('show'); const searchResults = document.getElementById('searchResults'); if (searchResults && searchResults.style.display !== 'none' && !event.target.closest('.user-search')) searchResults.style.display = 'none'; });
     </script>
 </body>
 </html>
