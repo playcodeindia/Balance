@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -22,18 +24,15 @@
            ========================================================================== */
         
         :root {
-            /* Core Theme Colors */
             --bg-base: #050507;
             --bg-surface: #141417; 
             --bg-surface-hover: #1e1e24;
             --bg-modal: #0f0f12;
             
-            /* Text & Typography */
             --text-primary: #ffffff;
             --text-secondary: #a1a1aa;
             --text-tertiary: #71717a;
             
-            /* Accents */
             --accent-blue: #4285F4;
             --accent-red: #EA4335;
             --accent-yellow: #FBBC05;
@@ -41,28 +40,23 @@
             --accent-purple: #a855f7;
             --accent-cyan: #06b6d4;
             
-            /* Borders */
             --border-glass: rgba(255, 255, 255, 0.08);
             --border-highlight: rgba(255, 255, 255, 0.15);
             --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
             
-            /* Radii */
             --radius-sm: 12px;
             --radius-md: 20px;
             --radius-lg: 32px;
             --radius-xl: 40px; 
             --radius-full: 9999px;
             
-            /* Animation Curves */
             --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             --transition-bounce: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             
-            /* Typography Scale */
             --font-display: 'Plus Jakarta Sans', sans-serif;
             --font-body: 'Outfit', sans-serif;
         }
 
-        /* RESET & BASE */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         ::-webkit-scrollbar { display: none; width: 0; background: transparent; }
         
@@ -72,19 +66,16 @@
             -webkit-font-smoothing: antialiased; scrollbar-width: none;
         }
 
-        /* CANVAS BACKGROUND */
         #bg-canvas {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: -2; opacity: 0.8; pointer-events: none;
             background: radial-gradient(circle at 50% 0%, rgba(66, 133, 244, 0.05) 0%, transparent 70%);
         }
 
-        /* ORIGINAL PLAYCODE LOGO CSS */
         .google-play-logo { width: 36px; height: 36px; background: #2B2D31; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.5); position: relative; overflow: hidden; flex-shrink: 0; }
         .google-play-logo::before { content: ''; position: absolute; width: 100%; height: 100%; background: conic-gradient(from 90deg at 50% 50%, #4285F4 0deg 90deg, #EA4335 90deg 180deg, #FBBC05 180deg 270deg, #34A853 270deg 360deg); opacity: 0.25; }
         .play-triangle { width: 0; height: 0; border-left: 12px solid var(--accent-blue); border-top: 8px solid transparent; border-bottom: 8px solid transparent; margin-left: 4px; z-index: 1; }
 
-        /* UTILITIES */
         .text-muted { color: var(--text-secondary) !important; }
         .text-success { color: var(--accent-green) !important; }
         .text-error { color: var(--accent-red) !important; }
@@ -111,14 +102,13 @@
             border: 1px solid rgba(255, 255, 255, 0.05); 
             border-radius: var(--radius-lg); 
             width: 100%; 
-            max-width: 440px; /* Slimmer and sleeker on desktop */
+            max-width: 440px;
             padding: 48px 40px; 
             box-shadow: 0 32px 64px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
             animation: fadeUp 0.8s ease forwards;
             position: relative;
         }
 
-        /* 2026 Ambient Glow behind auth box */
         .auth-box::before {
             content: ''; position: absolute; inset: -2px; z-index: -1;
             background: linear-gradient(45deg, rgba(66, 133, 244, 0.3), rgba(168, 85, 247, 0.1), rgba(66, 133, 244, 0.3));
@@ -168,6 +158,31 @@
         .btn-sm { padding: 10px 18px; font-size: 14px; min-height: 36px; }
         .btn-block { width: 100%; margin-top: 8px; }
 
+        /* Google Sign-In Button */
+        .btn-google {
+            background: #ffffff;
+            color: #1f1f1f;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .btn-google:hover {
+            background: #f1f3f4;
+            color: #1f1f1f;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+        }
+        .btn-google .material-icons-round { color: #4285F4; }
+
+        .auth-divider {
+            display: flex; align-items: center; gap: 12px;
+            margin: 20px 0; color: var(--text-tertiary);
+            font-size: 13px; font-weight: 500; letter-spacing: 1px;
+        }
+        .auth-divider::before,
+        .auth-divider::after {
+            content: ''; flex: 1; height: 1px; background: rgba(255, 255, 255, 0.08);
+        }
+
         .btn-loading { pointer-events: none; opacity: 0.8; color: transparent !important; position: relative; }
         .btn-loading::after {
             content: ''; position: absolute; width: 20px; height: 20px; border: 2px solid transparent;
@@ -175,7 +190,7 @@
         }
 
         /* --------------------------------------------------------------------------
-           DASHBOARD LAYOUT (Sidebar + Main Wrapper)
+           DASHBOARD LAYOUT
            -------------------------------------------------------------------------- */
         .app-wrapper { display: flex; flex-grow: 1; position: relative; width: 100%; min-height: 100vh; overflow-x: hidden; }
         
@@ -214,7 +229,6 @@
         
         .header-actions { display: flex; align-items: center; gap: 16px; }
         
-        /* Notifications */
         .notification-button {
             position: relative; width: 52px; height: 52px; border: 1px solid var(--border-glass); border-radius: 50%;
             background: var(--bg-surface); color: var(--text-primary); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition-bounce);
@@ -234,9 +248,6 @@
 
         .content-container { padding: 20px 60px 80px; max-width: 1600px; margin: 0 auto; width: 100%; flex-grow: 1; }
 
-        /* --------------------------------------------------------------------------
-           DASHBOARD CONTENT & GRID
-           -------------------------------------------------------------------------- */
         .greeting-section { margin-bottom: 64px; animation: fadeUp 0.8s ease forwards; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; }
         .greeting-content { flex: 1; }
         .greeting-title { font-family: var(--font-display); font-size: clamp(36px, 4vw, 56px); font-weight: 700; letter-spacing: -1px; margin-bottom: 8px; line-height: 1.1; }
@@ -263,7 +274,6 @@
         .app-label { font-family: var(--font-display); font-size: 15px; font-weight: 500; text-align: center; color: var(--text-primary); transition: var(--transition-smooth); line-height: 1.3; }
         .app-item:hover .app-label { transform: scale(1.05); }
 
-        /* Specific App Colors & Gradients */
         .app-item.deposit .app-icon-wrapper { background: linear-gradient(135deg, #1e3a8a, #020617); border-color: rgba(59, 130, 246, 0.3); color: #60a5fa;}
         .app-item.order .app-icon-wrapper { background: linear-gradient(135deg, #0f766e, #042f2e); border-color: rgba(20, 184, 166, 0.3); color: #2dd4bf;}
         .app-item.transfer .app-icon-wrapper { background: linear-gradient(135deg, #991b1b, #450a0a); border-color: rgba(239, 68, 68, 0.3); color: #f87171;}
@@ -271,7 +281,6 @@
         .app-item.check .app-icon-wrapper { background: linear-gradient(135deg, #0f172a, #020617); border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;}
         .app-item.rate .app-icon-wrapper { background: linear-gradient(135deg, #854d0e, #422006); border-color: rgba(250, 204, 21, 0.4); color: #facc15;}
 
-        /* Trust Score Card */
         .trust-score-card { background: var(--bg-surface); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 24px 32px; margin-top: 32px; }
         .trust-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
         .trust-title { font-family: var(--font-display); font-size: 18px; font-weight: 600; }
@@ -280,11 +289,7 @@
         .trust-bar-fill { height: 100%; width: 92%; background: linear-gradient(90deg, var(--accent-blue), var(--accent-green)); border-radius: 4px; }
         .trust-footer { display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 13px; }
 
-        /* --------------------------------------------------------------------------
-           TABLES & LISTS (Updated for smaller screens)
-           -------------------------------------------------------------------------- */
         .table-container { background: var(--bg-surface); border-radius: var(--radius-lg); border: 1px solid var(--border-glass); overflow-x: auto; margin-bottom: 32px; box-shadow: var(--shadow-glass); }
-        /* Removed min-width so it can fit on mobile perfectly */
         table { width: 100%; border-collapse: collapse; } 
         th { background: rgba(0,0,0,0.4); color: var(--text-secondary); padding: 20px 24px; font-weight: 500; font-size: 14px; text-align: left; border-bottom: 1px solid var(--border-glass); white-space: nowrap; }
         td { padding: 20px 24px; border-bottom: 1px solid var(--border-glass); color: var(--text-primary); font-size: 15px; }
@@ -305,7 +310,6 @@
         .action-btn-success { background: rgba(52, 168, 83, 0.2); color: var(--accent-green); border: 1px solid rgba(52, 168, 83, 0.3); }
         .action-btn-success:hover { background: var(--accent-green); color: white; }
 
-        /* Transactions Filter & List */
         .filter-controls { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
         .filter-btn { padding: 10px 20px; border-radius: var(--radius-full); background: var(--bg-surface); border: 1px solid var(--border-glass); color: var(--text-secondary); font-size: 14px; font-weight: 500; cursor: pointer; transition: var(--transition-smooth); }
         .filter-btn:hover { border-color: rgba(255,255,255,0.3); color: white; }
@@ -328,9 +332,6 @@
         .empty-state h3 { font-family: var(--font-display); font-size: 20px; color: var(--text-primary); margin-bottom: 8px; }
         .empty-state p { font-size: 15px; color: var(--text-secondary); }
 
-        /* --------------------------------------------------------------------------
-           MODALS (UNIVERSAL SYSTEM)
-           -------------------------------------------------------------------------- */
         .modal {
             position: fixed; inset: 0; background: rgba(0,0,0,0.85); 
             z-index: 2000; display: flex; align-items: center; justify-content: center;
@@ -356,7 +357,6 @@
         .bg-surface-variant { background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 20px; margin-bottom: 20px; }
         .modal-footer { display: flex; justify-content: flex-end; gap: 12px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-glass); }
 
-        /* Custom Keypad for PINs */
         .keypad-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 320px; margin: 0 auto; }
         .keypad-btn { background: var(--bg-surface); color: white; border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 20px; font-size: 24px; cursor: pointer; font-family: var(--font-display); font-weight: 500; transition: var(--transition-bounce); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
         .keypad-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.1); }
@@ -367,7 +367,6 @@
         .pin-dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--text-tertiary); transition: var(--transition-bounce); }
         .pin-dot.filled { background: var(--accent-blue); border-color: var(--accent-blue); transform: scale(1.3); box-shadow: 0 0 12px rgba(66, 133, 244, 0.6); }
 
-        /* Payment Methods Grid */
         .payment-method-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 24px; background: var(--bg-surface); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); cursor: pointer; transition: var(--transition-bounce); width: 100%; box-shadow: var(--shadow-glass); }
         .payment-method-btn:hover { border-color: var(--accent-blue); background: rgba(66, 133, 244, 0.1); transform: translateY(-4px); }
         .payment-method-btn .material-icons-round { font-size: 40px; color: var(--accent-blue); }
@@ -382,7 +381,6 @@
         .search-result-item:hover { background: var(--bg-surface-hover); }
         .user-avatar-small { width: 36px; height: 36px; border-radius: 50%; background: var(--accent-purple); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-family: var(--font-display); }
 
-        /* Order Details Specifics */
         .order-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
         .detail-box { background: rgba(0,0,0,0.4); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-glass); }
         .detail-label { font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; font-weight: 500; }
@@ -390,14 +388,10 @@
         .redeem-code-display { background: rgba(0,0,0,0.5); padding: 20px; border-radius: var(--radius-md); border: 1px dashed var(--accent-green); display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .redeem-code-display span#viewOrderCodeValue { font-family: 'Courier New', monospace; font-size: 24px; font-weight: 700; letter-spacing: 4px; color: var(--accent-green); }
 
-        /* Star Rating */
         .star-rating { display: flex; justify-content: center; gap: 12px; margin: 24px 0; }
         .star-rating .star { font-size: 48px; cursor: pointer; color: var(--accent-yellow); transition: var(--transition-bounce); }
         .star-rating .star:hover { transform: scale(1.2); }
 
-        /* --------------------------------------------------------------------------
-           DROPDOWNS & NOTIFICATIONS PANELS
-           -------------------------------------------------------------------------- */
         .dropdown-menu { position: absolute; top: 76px; right: 40px; background: var(--bg-modal); border: 1px solid var(--border-highlight); border-radius: var(--radius-lg); width: 340px; box-shadow: var(--shadow-glass); display: none; z-index: 1500; overflow: hidden; padding: 20px; }
         .dropdown-menu.show { display: block; animation: fadeUp 0.3s cubic-bezier(0.2,0,0,1); }
         
@@ -419,7 +413,6 @@
         .dropdown-signout { color: var(--accent-red) !important; }
         .dropdown-signout .material-icons-round { color: var(--accent-red) !important; }
 
-        /* Notifications Dropdown Panel */
         .notification-panel { position: absolute; top: 76px; right: 108px; width: 400px; max-height: 600px; background: var(--bg-modal); border: 1px solid var(--border-highlight); border-radius: var(--radius-lg); box-shadow: var(--shadow-glass); z-index: 1700; display: none; overflow: hidden; }
         @media (max-width: 600px) { .notification-panel { position: fixed; right: 16px; left: 16px; width: auto; } .dropdown-menu { right: 16px; width: 300px; } }
         .notification-panel.show { display: flex; flex-direction: column; animation: fadeUp 0.3s cubic-bezier(0.2,0,0,1); }
@@ -455,9 +448,6 @@
         .notification-item-close { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; transition: 0.2s; padding: 4px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         .notification-item-close:hover { background: rgba(255,255,255,0.1); color: white; }
 
-        /* --------------------------------------------------------------------------
-           TOASTS & LOADERS 
-           -------------------------------------------------------------------------- */
         .toast { background: var(--bg-modal); color: white; border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 16px 24px; box-shadow: var(--shadow-glass); display: flex; align-items: center; gap: 16px; max-width: 90vw; margin: 0 auto 12px; transform: translateY(150%); transition: transform 0.4s cubic-bezier(0.2,0,0,1), opacity 0.4s; font-family: var(--font-body); font-size: 15px; font-weight: 500; z-index: 9999; }
         .toast.show { transform: translateY(0); }
         .toast-icon { font-size: 24px; }
@@ -490,59 +480,21 @@
         .push-notification-users { display: none; }
         .push-notification-users.show { display: block; }
         
-        /* ==========================================================================
-           MOBILE & PORTRAIT OPTIMIZATION (THE FIX)
-           ========================================================================== */
         @media (max-width: 1024px) {
-            /* Sidebar Fix */
-            .sidebar {
-                transform: translateX(-100%); 
-                box-shadow: 4px 0 24px rgba(0,0,0,0.8);
-            }
-            .sidebar.active {
-                transform: translateX(0); 
-            }
-            .main-wrapper {
-                margin-left: 0; 
-                max-width: 100vw;
-            }
-            
-            /* Content Padding Fix - this stops the extreme narrowness! */
-            .content-container { 
-                padding: 24px 16px 80px; /* Reduced from 60px horizontal */
-            }
-            .top-bar {
-                padding: 16px;
-            }
-            
-            /* Auth Page Mobile Fixes */
+            .sidebar { transform: translateX(-100%); box-shadow: 4px 0 24px rgba(0,0,0,0.8); }
+            .sidebar.active { transform: translateX(0); }
+            .main-wrapper { margin-left: 0; max-width: 100vw; }
+            .content-container { padding: 24px 16px 80px; }
+            .top-bar { padding: 16px; }
             .auth-container { padding: 16px; }
-            .auth-box { 
-                padding: 40px 24px; /* Less side padding so inputs have room */
-                max-width: 100%;
-            }
-
-            /* App Grid Fix for Portrait - Exactly 2 per row so they don't squish */
-            .app-grid { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 24px 16px; 
-            }
-            
+            .auth-box { padding: 40px 24px; max-width: 100%; }
+            .app-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
             .greeting-section { gap: 24px; margin-bottom: 40px; }
             .trust-score-card { padding: 20px 16px; }
-
-            /* Table Container Fixes */
-            .table-container { 
-                margin-left: -16px; /* Bleed to edges on mobile */
-                margin-right: -16px;
-                border-radius: 0;
-                border-left: none; 
-                border-right: none;
-            }
+            .table-container { margin-left: -16px; margin-right: -16px; border-radius: 0; border-left: none; border-right: none; }
             td, th { padding: 16px; }
         }
 
-        /* Smaller mobile tweaks */
         @media (max-width: 400px) {
             .app-icon-wrapper { width: 80px; height: 80px; }
             .app-icon-wrapper .material-icons-round { font-size: 32px; }
@@ -552,10 +504,8 @@
 </head>
 <body>
 
-    <!-- Particle Engine Canvas -->
     <canvas id="bg-canvas"></canvas>
 
-    <!-- Global Loaders & Toasts -->
     <div id="globalLoadingOverlay" class="loading-overlay">
         <div class="loading-card">
             <div class="pulse-dot"></div>
@@ -588,7 +538,6 @@
         </div>
     </div>
 
-    <!-- Reusable 2-Step Verification & Change PIN Keypad Modal -->
     <div id="pinVerificationModal" class="modal">
         <div class="modal-content text-center">
             <div class="modal-header" style="border-bottom: none; justify-content: center; position: relative;">
@@ -620,7 +569,6 @@
         </div>
     </div>
 
-    <!-- Forgot SAR Modal -->
     <div id="forgotSarModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -665,7 +613,6 @@
         </div>
     </div>
 
-    <!-- Admin Verify Modal -->
     <div id="adminModal" class="modal">
         <div class="modal-content">
             <div class="modal-header"><h2 class="modal-title">Admin Verify</h2><button class="modal-close" onclick="closeAdminModal()"><span class="material-icons-round">close</span></button></div>
@@ -676,11 +623,56 @@
         </div>
     </div>
 
+    <!-- ====== GOOGLE AUTH: NOT-LINKED MODAL ====== -->
+    <div id="googleNotLinkedModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Google Account Not Linked</h2>
+                <button class="modal-close" onclick="closeModal('googleNotLinkedModal')"><span class="material-icons-round">close</span></button>
+            </div>
+            <div class="modal-body">
+                <div style="display:flex; justify-content:center; margin-bottom: 20px;">
+                    <span class="material-icons-round" style="font-size: 64px; color: var(--accent-yellow);">link_off</span>
+                </div>
+                <p class="text-muted mb-4 text-center">This Google account is not linked to any PlayCode account. Please sign in using your <strong class="text-primary">Account Number and SAR</strong> first, then link this Google account from your profile.</p>
+                <div class="bg-surface-variant">
+                    <p class="text-xs text-muted text-center">Google login works only after your PlayCode account has been linked.</p>
+                </div>
+            </div>
+            <div class="modal-footer" style="justify-content: center;">
+                <button class="btn btn-secondary" onclick="closeModal('googleNotLinkedModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="closeModal('googleNotLinkedModal'); showSignIn();">Sign In with Account Number</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== MANAGE GOOGLE ACCOUNT MODAL ====== -->
+    <div id="manageGoogleModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Manage Google Account</h2>
+                <button class="modal-close" onclick="closeModal('manageGoogleModal')"><span class="material-icons-round">close</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="bg-surface-variant" style="text-align:center;">
+                    <span class="material-icons-round" style="font-size: 48px; color: var(--accent-green);">verified</span>
+                    <p class="text-muted text-sm mt-2 mb-1">Linked Google Account</p>
+                    <p class="font-semibold" id="manageGoogleEmail" style="font-size:16px; color:white; word-break: break-all;">-</p>
+                    <p class="text-xs text-muted mt-2" id="manageGoogleLinkedAt">-</p>
+                </div>
+                <p class="text-sm text-muted text-center">Unlinking will remove Google sign-in for this account. Your Account Number + SAR login will remain available.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('manageGoogleModal')">Close</button>
+                <button class="btn" style="background:rgba(234,67,53,0.15); color:var(--accent-red); border:1px solid rgba(234,67,53,0.3);" onclick="unlinkGoogleAccount()">Unlink Google Account</button>
+            </div>
+        </div>
+    </div>
+
     <!-- ================= AUTH PAGES ================= -->
     <div id="signinPage" class="auth-container">
         <div class="auth-box">
             <div class="auth-header">
-                <!-- Original Playcode Logo Restored here -->
                 <div class="google-play-logo" style="width: 64px; height: 64px; margin: 0 auto 20px; border-radius: 16px;">
                     <div class="play-triangle" style="border-left-width: 20px; border-top-width: 12px; border-bottom-width: 12px; margin-left: 6px;"></div>
                 </div>
@@ -706,7 +698,15 @@
                     <span class="btn-text">Sign In</span>
                 </button>
             </form>
-            
+
+            <div class="auth-divider"><span>OR</span></div>
+
+            <button type="button" class="btn btn-google btn-block" id="googleSignInBtn" onclick="googleSignIn()">
+                <span class="material-icons-round">account_circle</span>
+                Continue with Google
+            </button>
+            <p class="text-xs text-muted text-center mt-2">Google login works only after your PlayCode account has been linked.</p>
+
             <button class="btn btn-secondary btn-block mt-4" onclick="showDirectSignInModal()">Quick Key Sign In</button>
             
             <div class="text-center mt-6 pt-6" style="border-top: 1px solid rgba(255,255,255,0.05);">
@@ -719,7 +719,6 @@
     <div id="signupPage" class="auth-container" style="display: none;">
         <div class="auth-box">
             <div class="auth-header">
-                <!-- Original Playcode Logo Restored here -->
                 <div class="google-play-logo" style="width: 64px; height: 64px; margin: 0 auto 20px; border-radius: 16px;">
                     <div class="play-triangle" style="border-left-width: 20px; border-top-width: 12px; border-bottom-width: 12px; margin-left: 6px;"></div>
                 </div>
@@ -753,10 +752,8 @@
 
     <!-- ================= MAIN DASHBOARD APPLICATION ================= -->
     <div id="dashboard" class="app-wrapper" style="display: none;">
-        <!-- SIDEBAR -->
         <aside class="sidebar" id="sidebar">
             <a href="#" class="sidebar-brand">
-                <!-- Original Playcode Logo Restored here -->
                 <div class="google-play-logo"><div class="play-triangle"></div></div>
                 <span>PlayCode</span>
             </a>
@@ -770,7 +767,6 @@
             </nav>
         </aside>
 
-        <!-- MAIN CONTENT WRAPPER -->
         <main class="main-wrapper" id="mainWrapper">
             
             <header class="top-bar">
@@ -784,7 +780,6 @@
                     </button>
                     <div class="user-avatar" onclick="toggleUserMenu()" id="userAvatar"><span id="userInitial">U</span></div>
                     
-                    <!-- User Dropdown -->
                     <div id="userDropdown" class="dropdown-menu">
                         <div class="dropdown-header">
                             <div class="user-avatar"><span id="dropdownInitial">S</span></div>
@@ -800,6 +795,7 @@
                                 <button class="btn btn-primary btn-sm" onclick="addBalance(); toggleUserMenu();">Deposit</button>
                             </div>
                         </div>
+                        <div id="googleLinkSection"></div>
                         <hr>
                         <div class="dropdown-item" onclick="showManageAccount()"><span class="material-icons-round">dashboard</span> <span>Dashboard Home</span></div>
                         <div class="dropdown-item" onclick="showMyOrders()"><span class="material-icons-round">receipt_long</span> <span>My Orders</span></div>
@@ -810,7 +806,6 @@
                 </div>
             </header>
 
-            <!-- Notifications Panel -->
             <div id="notificationPanel" class="notification-panel" aria-hidden="true">
                 <div class="notification-panel-header">
                     <div class="notification-panel-title">Notifications</div>
@@ -830,7 +825,6 @@
 
             <div class="content-container">
                 
-                <!-- USER DASHBOARD HOME -->
                 <div id="manageAccount">
                     <div class="greeting-section">
                         <div class="greeting-content">
@@ -902,7 +896,6 @@
                     </div>
                 </div>
 
-                <!-- TRANSACTION HISTORY -->
                 <div id="transactionHistorySection" style="display: none;">
                     <div class="flex justify-between items-center mb-6">
                         <h2 class="section-header" style="margin:0;"><span class="material-icons-round" style="color:var(--accent-purple)">history</span> Transaction History</h2>
@@ -921,12 +914,10 @@
                     <div class="transactions-list" id="transactionsList"></div>
                 </div>
 
-                <!-- MY ORDERS -->
                 <div id="myOrdersSection" style="display: none;">
                     <h2 class="section-header"><span class="material-icons-round" style="color:var(--accent-green)">receipt_long</span> My Orders</h2>
                     <div class="table-container" id="ordersTableContainer">
                         <table>
-                            <!-- CHANGED: Sirf Order ID aur Actions Rakha hai taaki space bache -->
                             <thead><tr><th>Order ID</th><th style="text-align:right;">Actions</th></tr></thead>
                             <tbody id="userOrdersTable"></tbody>
                         </table>
@@ -942,13 +933,10 @@
     </div>
 
     <!-- ================= DASHBOARD MODALS ================= -->
-
-    <!-- Balance Check Modal -->
     <div id="balanceModal" class="modal">
         <div class="modal-content">
             <div class="modal-header"><h2 class="modal-title">Account Balance</h2><button class="modal-close" onclick="closeModal('balanceModal')"><span class="material-icons-round">close</span></button></div>
             <div class="modal-body">
-                <!-- 3 Second Loader hardcoded in JS logic -->
                 <div id="balanceLoading" style="display:flex; flex-direction:column; align-items:center; padding: 40px 0;"><div class="pulse-dot"></div><p class="text-muted mt-4 font-medium">Syncing Ledger...</p></div>
                 <div id="balanceResult" style="display: none;">
                     <div class="text-center" style="padding: 24px 0;">
@@ -961,7 +949,6 @@
         </div>
     </div>
 
-    <!-- Add Balance Modals Flow -->
     <div id="addBalanceModal" class="modal">
         <div class="modal-content">
             <div class="modal-header"><h2 class="modal-title">Add Balance</h2><button class="modal-close" onclick="closeModal('addBalanceModal')"><span class="material-icons-round">close</span></button></div>
@@ -1086,7 +1073,6 @@
         </div>
     </div>
 
-    <!-- Quick Actions Modals -->
     <div id="orderCodeModal" class="modal">
         <div class="modal-content">
             <div class="modal-header"><h2 class="modal-title">Order Play Code</h2><button class="modal-close" onclick="closeModal('orderCodeModal')"><span class="material-icons-round">close</span></button></div>
@@ -1125,7 +1111,6 @@
         </div>
     </div>
 
-    <!-- Rating Modal -->
     <div id="rateModal" class="modal">
         <div class="modal-content">
             <div class="modal-header"><h2 class="modal-title">Feedback</h2><button class="modal-close" onclick="closeModal('rateModal')"><span class="material-icons-round">close</span></button></div>
@@ -1142,7 +1127,6 @@
         </div>
     </div>
 
-    <!-- User Order Details Modal -->
     <div id="userOrderDetailsModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1185,7 +1169,6 @@
     <!-- ================= ADMIN PANEL & MODALS ================= -->
     <div id="adminPanel" class="app-wrapper" style="display: none; flex-direction: column;">
         <header class="top-bar">
-            <!-- Original Playcode Logo Restored here -->
             <div class="sidebar-brand" style="margin-bottom:0;">
                 <div class="google-play-logo"><div class="play-triangle"></div></div>
                 <span>Admin Console</span>
@@ -1314,7 +1297,6 @@
         </div>
     </div>
 
-
     <!-- ================= SCRIPTS ================= -->
     <script>
         // ----------------------------------------------------------------------
@@ -1371,7 +1353,7 @@
 
 
         // ----------------------------------------------------------------------
-        // COMPLETE FIREBASE & BACKEND LOGIC
+        // FIREBASE INITIALIZATION (DB + AUTH)
         // ----------------------------------------------------------------------
         const firebaseConfig = {
             apiKey: "AIzaSyC799pLj50Sg877kdBPTIXkJPRGHr4ZC4s",
@@ -1386,6 +1368,9 @@
 
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
+        const auth = firebase.auth();
+        const googleProvider = new firebase.auth.GoogleAuthProvider();
+        googleProvider.setCustomParameters({ prompt: 'select_account' });
 
         let currentUser = null;
         let currentAdmin = false;
@@ -1400,6 +1385,10 @@
         let upiTimerInterval;
         let myOrdersCache = {}; 
         let currentNotifications = [];
+
+        // Google Auth state
+        let googleAuthInProgress = false;   // guards against onAuthStateChanged races during popup flows
+        let googleAuthRestoreInProgress = false;
 
         const notificationIconMap = {
             info: { icon: 'info', className: 'notification-icon-info' },
@@ -1453,6 +1442,340 @@
             container.appendChild(toast);
             setTimeout(() => toast.classList.add('show'), 20);
             setTimeout(() => { if (toast.parentElement) { toast.classList.remove('show'); setTimeout(() => toast.remove(), 500); } }, duration);
+        }
+
+        // ==========================================
+        // GOOGLE AUTH: CORE FUNCTIONS
+        // ==========================================
+        function initializeFirebaseAuth() {
+            // Ensure LOCAL persistence is used so Google sessions survive refresh/restart.
+            auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+                .catch((error) => { console.warn('Firebase Auth persistence setup failed:', error); });
+
+            auth.onAuthStateChanged(async function(firebaseUser) {
+                // Ignore while an explicit popup (sign-in / link) is in progress
+                if (googleAuthInProgress) return;
+
+                if (!firebaseUser) return; // No Google session -> stay on sign-in page
+
+                // If a user is already logged in via Account Number + SAR:
+                if (currentUser) {
+                    // If this Firebase session doesn't match the logged-in user's linked Google uid,
+                    // sign it out so refresh doesn't auto-restore the WRONG user.
+                    if (!currentUser.googleUid || currentUser.googleUid !== firebaseUser.uid) {
+                        try { await auth.signOut(); } catch (e) {}
+                    }
+                    return;
+                }
+
+                // Otherwise, attempt to auto-restore this PlayCode account via googleUid
+                await restoreGooglePlayCodeSession(firebaseUser);
+            });
+        }
+
+        function findPlayCodeUserByGoogleUid(uid) {
+            if (!uid) return Promise.resolve(null);
+            // Uses Firebase Realtime Database indexed query.
+            // Add ".indexOn": ["googleUid"] under users in your Realtime Database Rules for best performance.
+            return database.ref('users')
+                .orderByChild('googleUid')
+                .equalTo(uid)
+                .once('value')
+                .then(snapshot => {
+                    let found = null;
+                    if (snapshot.exists()) {
+                        snapshot.forEach(child => {
+                            if (!found) {
+                                found = child.val();
+                            }
+                        });
+                    }
+                    return found;
+                })
+                .catch(err => {
+                    // Fallback: scan client-side (in case the index is missing)
+                    console.warn('Indexed googleUid query failed, falling back to scan:', err && err.message);
+                    return database.ref('users').once('value').then(snap => {
+                        let found = null;
+                        snap.forEach(child => {
+                            const u = child.val();
+                            if (u && u.googleUid === uid && !found) found = u;
+                        });
+                        return found;
+                    });
+                });
+        }
+
+        async function restoreGooglePlayCodeSession(firebaseUser) {
+            if (!firebaseUser) return;
+            if (googleAuthRestoreInProgress) return;
+            googleAuthRestoreInProgress = true;
+            try {
+                const matchedUser = await findPlayCodeUserByGoogleUid(firebaseUser.uid);
+                // If the user already signed in while we were fetching, do not override
+                if (currentUser) return;
+                if (!matchedUser) {
+                    // No linked PlayCode account -> keep normal sign-in page visible
+                    return;
+                }
+                if (matchedUser.adminLocked) {
+                    showAnimatedToast('Account is locked. Contact Admin.', 'error');
+                    return;
+                }
+                if (matchedUser.lockedUntil && Date.now() < matchedUser.lockedUntil) {
+                    const mins = Math.ceil((matchedUser.lockedUntil - Date.now()) / 60000);
+                    showAnimatedToast(`Account locked. Try again in ${mins} min(s).`, 'error');
+                    return;
+                }
+                // Update last login and login metadata (non-blocking)
+                database.ref('users/' + matchedUser.accNo).update({
+                    lastLogin: new Date().toISOString(),
+                    failedAttempts: 0,
+                    lockCount: 0,
+                    lockedUntil: null,
+                    adminLocked: false
+                }).catch(() => {});
+
+                currentUser = matchedUser;
+                showDashboard();
+                loadUserData();
+                initRealTimeListeners();
+                showAnimatedToast(`Welcome back, ${matchedUser.fullName}!`, 'success');
+            } catch (e) {
+                console.warn('Google restore failed:', e);
+            } finally {
+                googleAuthRestoreInProgress = false;
+            }
+        }
+
+        function handleGoogleAuthError(error) {
+            const code = (error && error.code) ? error.code : '';
+            let message = 'Google sign-in failed. Please try again.';
+            switch (code) {
+                case 'auth/popup-closed-by-user':
+                case 'auth/cancelled-popup-request':
+                    message = 'Google sign-in popup was closed.';
+                    break;
+                case 'auth/popup-blocked':
+                    message = 'Popup was blocked. Please allow popups and try again.';
+                    break;
+                case 'auth/account-exists-with-different-credential':
+                    message = 'This email is already linked to another sign-in method.';
+                    break;
+                case 'auth/credential-already-in-use':
+                    message = 'This Google account is already linked to another account.';
+                    break;
+                case 'auth/network-request-failed':
+                    message = 'Network error. Check your connection and try again.';
+                    break;
+                case 'auth/user-cancelled':
+                    message = 'Google sign-in was cancelled.';
+                    break;
+                case 'auth/unauthorized-domain':
+                    message = 'This domain is not authorized for Google sign-in.';
+                    break;
+                case 'auth/operation-not-allowed':
+                    message = 'Google sign-in is not enabled for this project.';
+                    break;
+                default:
+                    console.warn('Google auth error:', error);
+            }
+            showAnimatedToast(message, 'error');
+        }
+
+        // Sign in with Google from the Sign-in page
+        async function googleSignIn() {
+            if (googleAuthInProgress) return;
+            googleAuthInProgress = true;
+            const btn = document.getElementById('googleSignInBtn');
+            if (btn) btn.classList.add('btn-loading');
+            try {
+                await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+                const result = await auth.signInWithPopup(googleProvider);
+                const firebaseUser = result && result.user;
+                if (!firebaseUser) throw new Error('No Google user returned');
+
+                const matchedUser = await findPlayCodeUserByGoogleUid(firebaseUser.uid);
+                if (!matchedUser) {
+                    showModal('googleNotLinkedModal');
+                    return;
+                }
+                if (matchedUser.adminLocked) {
+                    showAnimatedToast('Account is locked. Contact Admin.', 'error');
+                    return;
+                }
+                if (matchedUser.lockedUntil && Date.now() < matchedUser.lockedUntil) {
+                    const mins = Math.ceil((matchedUser.lockedUntil - Date.now()) / 60000);
+                    showAnimatedToast(`Account locked. Try again in ${mins} min(s).`, 'error');
+                    return;
+                }
+
+                database.ref('users/' + matchedUser.accNo).update({
+                    lastLogin: new Date().toISOString(),
+                    failedAttempts: 0,
+                    lockCount: 0,
+                    lockedUntil: null,
+                    adminLocked: false
+                }).catch(() => {});
+
+                currentUser = matchedUser;
+                currentUser.googleUid = firebaseUser.uid;
+                currentUser.googleEmail = firebaseUser.email || '';
+
+                showDashboard();
+                loadUserData();
+                initRealTimeListeners();
+                showAnimatedToast(`Welcome back, ${matchedUser.fullName}!`, 'success');
+            } catch (error) {
+                handleGoogleAuthError(error);
+            } finally {
+                googleAuthInProgress = false;
+                if (btn) btn.classList.remove('btn-loading');
+            }
+        }
+
+        // Link current PlayCode account to a Google account
+        async function linkGoogleAccount() {
+            if (!currentUser) {
+                showAnimatedToast('Please sign in to your PlayCode account first.', 'warning');
+                return;
+            }
+            if (currentUser.googleUid) {
+                showAnimatedToast('A Google account is already linked.', 'info');
+                return;
+            }
+            if (googleAuthInProgress) return;
+            googleAuthInProgress = true;
+            try {
+                await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+                const result = await auth.signInWithPopup(googleProvider);
+                const firebaseUser = result && result.user;
+                if (!firebaseUser) throw new Error('No Google user returned');
+
+                // Prevent linking if this Google account is already linked to another PlayCode account
+                const existingUser = await findPlayCodeUserByGoogleUid(firebaseUser.uid);
+                if (existingUser && existingUser.accNo !== currentUser.accNo) {
+                    showAnimatedToast('This Google account is already linked to another PlayCode account.', 'error');
+                    // Sign out the Google session because it cannot be used here
+                    try { await auth.signOut(); } catch (e) {}
+                    return;
+                }
+
+                await database.ref('users/' + currentUser.accNo).update({
+                    googleUid: firebaseUser.uid,
+                    googleEmail: firebaseUser.email || '',
+                    googleDisplayName: firebaseUser.displayName || '',
+                    googlePhotoURL: firebaseUser.photoURL || '',
+                    googleLinkedAt: new Date().toISOString()
+                });
+
+                currentUser.googleUid = firebaseUser.uid;
+                currentUser.googleEmail = firebaseUser.email || '';
+                currentUser.googleDisplayName = firebaseUser.displayName || '';
+                currentUser.googlePhotoURL = firebaseUser.photoURL || '';
+                currentUser.googleLinkedAt = new Date().toISOString();
+
+                refreshGoogleStatusUI();
+                showAnimatedToast('Google account linked successfully!', 'success');
+            } catch (error) {
+                handleGoogleAuthError(error);
+            } finally {
+                googleAuthInProgress = false;
+            }
+        }
+
+        function showManageGoogleModal() {
+            if (!currentUser || !currentUser.googleUid) return;
+            document.getElementById('manageGoogleEmail').textContent = currentUser.googleEmail || 'Linked';
+            const linkedAtEl = document.getElementById('manageGoogleLinkedAt');
+            if (linkedAtEl) {
+                linkedAtEl.textContent = currentUser.googleLinkedAt
+                    ? 'Linked on ' + new Date(currentUser.googleLinkedAt).toLocaleString()
+                    : '';
+            }
+            showModal('manageGoogleModal');
+        }
+
+        async function unlinkGoogleAccount() {
+            if (!currentUser) return;
+            if (!currentUser.googleUid) {
+                showAnimatedToast('No Google account is linked.', 'warning');
+                return;
+            }
+            if (!confirm('Unlink Google account from this PlayCode account?')) return;
+
+            try {
+                // Remove Google link fields only. Account Number + SAR remain intact.
+                await database.ref('users/' + currentUser.accNo).update({
+                    googleUid: null,
+                    googleEmail: null,
+                    googleDisplayName: null,
+                    googlePhotoURL: null,
+                    googleLinkedAt: null
+                });
+
+                delete currentUser.googleUid;
+                delete currentUser.googleEmail;
+                delete currentUser.googleDisplayName;
+                delete currentUser.googlePhotoURL;
+                delete currentUser.googleLinkedAt;
+
+                // Sign out the Firebase Google session if it belongs to this account
+                try {
+                    if (auth.currentUser) {
+                        const fbUid = auth.currentUser.uid;
+                        // If we know the previous uid, or just sign out altogether
+                        await auth.signOut();
+                    }
+                } catch (e) {}
+
+                closeModal('manageGoogleModal');
+                refreshGoogleStatusUI();
+                showAnimatedToast('Google account unlinked.', 'success');
+            } catch (e) {
+                showAnimatedToast('Failed to unlink: ' + e.message, 'error');
+            }
+        }
+
+        // Reconcile Firebase Auth session against the currently logged-in PlayCode user.
+        // If Firebase Auth has a DIFFERENT Google user than the account is linked to,
+        // sign it out to avoid auto-restoring the wrong user on refresh.
+        function reconcileFirebaseAuthWithUser(user) {
+            try {
+                const fbUser = auth.currentUser;
+                if (!fbUser) return;
+                if (!user) return;
+                if (!user.googleUid || fbUser.uid !== user.googleUid) {
+                    auth.signOut().catch(() => {});
+                }
+            } catch (e) {}
+        }
+
+        // Update the Google status block inside the user dropdown
+        function refreshGoogleStatusUI() {
+            const container = document.getElementById('googleLinkSection');
+            if (!container) return;
+            if (!currentUser) { container.innerHTML = ''; return; }
+
+            if (currentUser.googleUid) {
+                const email = escapeHtml(currentUser.googleEmail || 'Linked');
+                container.innerHTML = `
+                    <div class="dropdown-item" onclick="showManageGoogleModal(); toggleUserMenu();">
+                        <span class="material-icons-round" style="color: var(--accent-green);">verified</span>
+                        <div style="flex: 1; min-width: 0;">
+                            <div style="font-size: 14px; font-weight: 600; color: var(--accent-green);">Google Account Linked</div>
+                            <div style="font-size: 12px; color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${email}</div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="dropdown-item" onclick="linkGoogleAccount(); toggleUserMenu();">
+                        <span class="material-icons-round" style="color: var(--accent-blue);">link</span>
+                        <span>Link Google Account</span>
+                    </div>
+                `;
+            }
         }
 
         // ==========================================
@@ -1630,7 +1953,9 @@
                     
                     currentUser = pendingDirectUser;
                     pendingDirectUser = null;
-                    showDashboard(); loadUserData(); initRealTimeListeners(); 
+                    showDashboard(); loadUserData(); initRealTimeListeners();
+                    // Ensure Firebase Auth session matches this account (or is signed out)
+                    reconcileFirebaseAuthWithUser(currentUser);
                     showAnimatedToast(`Verified! Welcome back, ${currentUser.fullName}!`, 'success');
                 } else {
                     let failedAttempts = (pendingDirectUser.failedAttempts || 0) + 1;
@@ -1728,6 +2053,8 @@
                         });
                         currentUser = user; 
                         showDashboard(); loadUserData(); initRealTimeListeners(); 
+                        // Make sure a stale Firebase Auth session does not auto-restore a different user.
+                        reconcileFirebaseAuthWithUser(currentUser);
                         showAnimatedToast(`Welcome back!`, 'success');
                     } else {
                         let failedAttempts = (user.failedAttempts || 0) + 1;
@@ -1795,6 +2122,7 @@
             document.getElementById('signinPage').style.display = 'none'; document.getElementById('dashboard').style.display = 'flex'; 
             document.getElementById('myOrdersSection').style.display = 'none'; document.getElementById('transactionHistorySection').style.display = 'none'; document.getElementById('manageAccount').style.display = 'block'; 
             loadUserNotifications(false);
+            refreshGoogleStatusUI();
             window.scrollTo(0, 0); 
         }
         function toggleUserMenu() { document.getElementById('userDropdown').classList.toggle('show'); }
@@ -1811,7 +2139,8 @@
                 document.getElementById('dropdownName').textContent = currentUser.fullName; 
                 document.getElementById('dropdownId').textContent = currentUser.accNo; 
                 document.getElementById('dropdownBalance').textContent = formatINR(currentUser.balance);
-                document.getElementById('userInitial').textContent = currentUser.fullName.charAt(0).toUpperCase(); 
+                document.getElementById('userInitial').textContent = currentUser.fullName.charAt(0).toUpperCase();
+                refreshGoogleStatusUI();
             } 
         }
         function updateBalanceDisplay() { if (currentUser) { const formattedBalance = formatINR(currentUser.balance); document.getElementById('welcomeBalanceDisplay').textContent = formattedBalance; document.getElementById('dropdownBalance').textContent = formattedBalance; updateTransferSummary(); } }
@@ -1828,8 +2157,12 @@
             if (event) event.stopPropagation(); 
             try {
                 if (realTimeListeners) { Object.keys(realTimeListeners).forEach(key => { if (typeof realTimeListeners[key] === 'function') realTimeListeners[key](); }); realTimeListeners = {}; }
+                // Sign out Firebase Auth (Google session) so refresh won't auto-restore.
+                // Note: this does NOT remove the googleUid link stored in the DB.
+                try { if (auth.currentUser) auth.signOut().catch(() => {}); } catch (e) {}
                 currentUser = null; currentAdmin = false; allUsersCache = {}; myOrdersCache = {};
                 const dropdown = document.getElementById('userDropdown'); if (dropdown) dropdown.classList.remove('show');
+                const gs = document.getElementById('googleLinkSection'); if (gs) gs.innerHTML = '';
                 ['dashboard', 'adminPanel', 'manageAccount', 'myOrdersSection', 'transactionHistorySection'].forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
                 showSignIn(); clearSignInForm(); showAnimatedToast('Signed out securely', 'success');
             } catch (error) { window.location.reload(); }
@@ -2102,7 +2435,6 @@
                     const order = c.val();
                     myOrdersCache[order.orderId] = order;
                     
-                    // SIRF Order ID and View Button for space-saving (as requested)
                     orderHtml += `
                         <tr>
                             <td class="font-medium">${order.orderId}</td>
@@ -2228,6 +2560,11 @@
             const searchResults = document.getElementById('searchResults'); 
             if (searchResults && searchResults.style.display !== 'none' && !event.target.closest('.user-search')) { searchResults.style.display = 'none'; }
         });
+
+        // ==========================================
+        // BOOTSTRAP FIREBASE AUTH (Google session restore)
+        // ==========================================
+        initializeFirebaseAuth();
     </script>
 </body>
 </html>
