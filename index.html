@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -1623,28 +1624,6 @@
     <div id="toastContainer"></div>
 
     <!-- ================= AUTHENTICATION MODALS ================= -->
-    <div id="directSignInModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Direct Sign In</h2>
-                <button class="modal-close" onclick="closeModal('directSignInModal')"><span class="material-icons-round">close</span></button>
-            </div>
-            <div class="modal-body">
-                <p class="text-muted mb-4 text-sm">Enter your direct sign-in key (first 4 letters of name lowercase + last 2 digits of SAR)</p>
-                <div class="form-group">
-                    <label class="form-label">Direct Key</label>
-                    <input type="text" id="directSignInKey" class="form-control" placeholder="e.g., john12" maxlength="6" autocomplete="off">
-                </div>
-                <div class="bg-surface-variant mt-4">
-                    <p class="text-sm text-muted">Example: If your name is "John Doe" and SAR is "12345", enter: <span class="font-medium text-success">john45</span></p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-outlined" onclick="closeModal('directSignInModal')">Cancel</button>
-                <button class="btn btn-primary" onclick="processDirectSignIn()">Continue</button>
-            </div>
-        </div>
-    </div>
 
     <div id="pinVerificationModal" class="modal">
         <div class="modal-content text-center">
@@ -1723,11 +1702,13 @@
 
     <div id="adminModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header"><h2 class="modal-title">Admin Verify</h2><button class="modal-close" onclick="closeAdminModal()"><span class="material-icons-round">close</span></button></div>
+            <div class="modal-header"><h2 class="modal-title">Admin Access</h2><button class="modal-close" onclick="closeAdminModal()"><span class="material-icons-round">close</span></button></div>
             <div class="modal-body">
-                <div class="form-group"><label class="form-label">PUKCODE</label><input type="password" id="pukCode" class="form-control" placeholder="Enter admin code"></div>
+                <div style="display:flex; justify-content:center; margin-bottom:18px;"><span class="material-icons-round" style="font-size:56px;color:#4285F4;">admin_panel_settings</span></div>
+                <p class="text-muted text-center mb-4">Admin access now uses your Google account. The account must already have <strong style="color:var(--md-sys-color-on-surface);">role = admin</strong>.</p>
+                <button class="btn btn-google btn-block" onclick="adminGoogleLogin()"><span class="google-logo" aria-hidden="true">G</span> Continue with Google</button>
             </div>
-            <div class="modal-footer"><button class="btn btn-outlined" onclick="closeAdminModal()">Cancel</button><button class="btn btn-primary" onclick="adminLogin()">Verify</button></div>
+            <div class="modal-footer"><button class="btn btn-outlined" onclick="closeAdminModal()">Cancel</button></div>
         </div>
     </div>
 
@@ -1742,14 +1723,14 @@
                 <div style="display:flex; justify-content:center; margin-bottom: 20px;">
                     <span class="material-icons-round" style="font-size: 56px; color: #FBBC05;">link_off</span>
                 </div>
-                <p class="text-muted mb-4 text-center">This Google account is not linked to any PlaycodeX account. Please sign in using your <strong style="color:var(--md-sys-color-on-surface);">Account Number and SAR</strong> first, then link this Google account from your profile.</p>
+                <p class="text-muted mb-4 text-center">This Google account is not linked to any PlaycodeX account. Verify it below and link your existing Account Number + SAR.</p>
                 <div class="bg-surface-variant">
-                    <p class="text-xs text-muted text-center">Google login works only after your PlaycodeX account has been linked.</p>
+                    <p class="text-xs text-muted text-center">Google login is available after your PlaycodeX account is linked.</p>
                 </div>
             </div>
             <div class="modal-footer" style="justify-content: center;">
                 <button class="btn btn-outlined" onclick="closeModal('googleNotLinkedModal')">Cancel</button>
-                <button class="btn btn-primary" onclick="closeModal('googleNotLinkedModal'); showSignIn();">Sign In with Account Number</button>
+                <button class="btn btn-primary" onclick="closeModal('googleNotLinkedModal'); startGoogleAccountLinkFromSignIn();">Link Existing Account</button>
             </div>
         </div>
     </div>
@@ -1800,48 +1781,70 @@
             <!-- RIGHT: Form panel -->
             <div class="auth-form-panel">
                 <div class="auth-form-header">
-                    <h2>Sign in</h2>
-                    <p>Welcome back. Use your credentials to continue.</p>
+                    <h2>Sign in with Google</h2>
+                    <p>From 24-09-2026, manual Account Number + SAR login is no longer available.</p>
                 </div>
 
-                <form id="signinForm" onsubmit="event.preventDefault(); startSignInSequence();">
-                    <div class="form-group">
-                        <label class="form-label">Account Number</label>
-                        <input type="text" id="loginAccNo" class="form-control" placeholder="Enter your account number" required autocomplete="username">
-                    </div>
-                    <div class="form-group" style="margin-bottom: 6px;">
-                        <label class="form-label">SAR Number</label>
-                        <input type="password" id="loginSar" class="form-control" placeholder="Enter your SAR number" required autocomplete="current-password">
-                    </div>
-                    
-                    <div class="text-right mb-4 mt-2">
-                        <a class="link text-sm" onclick="startForgotSarFlow()">Forgot SAR?</a>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-block mt-2" id="signinBtn">
-                        <span class="btn-text">Sign In</span>
-                    </button>
-                </form>
-
-                <div class="auth-divider"><span>OR</span></div>
+                <div class="bg-surface-variant" style="margin-bottom:18px;">
+                    <p class="text-sm text-muted"><strong style="color:var(--md-sys-color-on-surface);">Already have a PlaycodeX account?</strong><br>If your account is not linked with Google, use the button below to verify your Google account and link your Account Number + SAR.</p>
+                </div>
 
                 <button type="button" class="btn btn-google btn-block" id="googleSignInBtn" onclick="googleSignIn()">
                     <span class="google-logo" aria-hidden="true">G</span>
                     Continue with Google
                 </button>
-                <p class="text-xs text-muted text-center mt-2">Google login works only after your PlaycodeX account has been linked.</p>
 
-                <button class="btn btn-outlined btn-block mt-4" onclick="showDirectSignInModal()">Quick Key Sign In</button>
-                
+                <button type="button" class="btn btn-outlined btn-block mt-4" id="linkGoogleFromSignInBtn" onclick="startGoogleAccountLinkFromSignIn()">
+                    <span class="material-icons-round">link</span>
+                    Link Account with Google
+                </button>
+
+                <div class="auth-divider"><span>NEW ACCOUNT</span></div>
+
+                <button type="button" class="btn btn-primary btn-block" onclick="startGoogleAccountCreation()">
+                    <span class="google-logo" aria-hidden="true">G</span>
+                    Create Account with Google
+                </button>
+
                 <div class="auth-footer">
-                    <p class="text-sm text-muted">Don't have an account? <a class="link" onclick="showSignUp()">Create account</a></p>
-                    <button class="btn btn-block mt-4" style="border:none; background:transparent; color: var(--md-sys-color-outline);" onmouseover="this.style.color='var(--md-sys-color-on-surface)'" onmouseout="this.style.color='var(--md-sys-color-outline)'" onclick="showAdminModal()">Admin Access</button>
+                    <p class="text-sm text-muted">Need admin access?</p>
+                    <button class="btn btn-block mt-2" style="border:none; background:transparent; color: var(--md-sys-color-outline);" onmouseover="this.style.color='var(--md-sys-color-on-surface)'" onmouseout="this.style.color='var(--md-sys-color-outline)'" onclick="showAdminModal()">Admin Access with Google</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ================= SIGNUP PAGE ================= -->
+    <!-- ====== GOOGLE ACCOUNT LINK MODAL ====== -->
+    <div id="googleLinkAccountModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header"><h2 class="modal-title">Link Account with Google</h2><button class="modal-close" onclick="cancelGoogleLinkFlow()"><span class="material-icons-round">close</span></button></div>
+            <div class="modal-body">
+                <div id="googleLinkIdentityCard" class="bg-surface-variant" style="display:flex;align-items:center;gap:14px;margin-bottom:18px;"></div>
+                <div class="form-group"><label class="form-label">Account Number</label><input id="linkAccountNo" class="form-control" inputmode="numeric" placeholder="Enter your Account Number"></div>
+                <div class="form-group"><label class="form-label">SAR Number</label><input id="linkSarNo" type="password" class="form-control" placeholder="Enter your SAR Number"></div>
+                <p class="text-xs text-muted">Your Google UID, email, name and profile picture above are taken directly from the verified Google account.</p>
+            </div>
+            <div class="modal-footer"><button class="btn btn-outlined" onclick="cancelGoogleLinkFlow()">Cancel</button><button class="btn btn-primary" onclick="completeGoogleAccountLink()">Verify & Link</button></div>
+        </div>
+    </div>
+
+    <!-- ====== GOOGLE ACCOUNT CREATION MODAL ====== -->
+    <div id="googleCreateAccountModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header"><h2 class="modal-title">Create Account with Google</h2><button class="modal-close" onclick="cancelGoogleCreateFlow()"><span class="material-icons-round">close</span></button></div>
+            <div class="modal-body">
+                <div id="googleCreateIdentityCard" class="bg-surface-variant" style="display:flex;align-items:center;gap:14px;margin-bottom:18px;"></div>
+                <div class="form-group"><label class="form-label">Generated Account Number</label><input id="generatedGoogleAccNo" class="form-control" readonly></div>
+                <div class="form-group"><label class="form-label">SAR Number</label><input id="googleCreateSarNo" type="password" class="form-control" placeholder="Create your SAR Number"></div>
+                <div class="form-group"><label class="form-label">Transaction PIN</label><input id="googleCreatePin" type="password" class="form-control" placeholder="Create a 4-digit PIN" maxlength="4" inputmode="numeric" pattern="\d{4}"></div>
+                <div class="form-group"><label class="form-label">Agent</label><select id="googleCreateAgentCode" class="form-control"><option value="">Select your agent</option><option value="6215">Agent 6215</option><option value="3773">Agent 3773</option><option value="1583">Agent 1583</option><option value="4848">Agent 4848</option></select></div>
+                <p class="text-xs text-muted">The Account Number is generated with the 2362XXXXXX format and checked for availability before creation.</p>
+            </div>
+            <div class="modal-footer"><button class="btn btn-outlined" onclick="cancelGoogleCreateFlow()">Cancel</button><button class="btn btn-primary" onclick="completeGoogleAccountCreation()">Create Account</button></div>
+        </div>
+    </div>
+
+    <!-- ================= SIGNUP PAGE (legacy hidden entry) ================= -->
     <div id="signupPage" class="auth-container" style="display: none;">
         <div class="auth-box">
             <div class="auth-brand-panel">
@@ -1866,7 +1869,7 @@
                     <p>Fill in your details to get started.</p>
                 </div>
 
-                <form id="signupForm" onsubmit="event.preventDefault(); startSignUpSequence();">
+                <form id="signupForm" onsubmit="event.preventDefault(); startGoogleAccountCreation();">
                     <div class="form-group"><input type="text" id="accNo" class="form-control" placeholder="Account Number" required></div>
                     <div class="form-group"><input type="password" id="sarNo" class="form-control" placeholder="SAR Number" required></div>
                     <div class="form-group"><input type="text" id="fullName" class="form-control" placeholder="Full Name" required></div>
@@ -2660,12 +2663,29 @@
         // GOOGLE AUTH: CORE FUNCTIONS
         // ==========================================
         function initializeFirebaseAuth() {
+            // Keep the Firebase session across refreshes, but remember an explicit
+            // user logout so a stale persisted session can never silently reopen.
             auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
                 .catch((error) => { console.warn('Firebase Auth persistence setup failed:', error); });
 
             auth.onAuthStateChanged(async function(firebaseUser) {
                 if (googleAuthInProgress) return;
-                if (!firebaseUser) return;
+
+                const manualLogout = localStorage.getItem('playcodex_manual_logout') === '1';
+                if (manualLogout) {
+                    currentUser = null;
+                    currentAdmin = false;
+                    if (firebaseUser) {
+                        try { await auth.signOut(); } catch (e) {}
+                    }
+                    showSignIn();
+                    return;
+                }
+
+                if (!firebaseUser) {
+                    showSignIn();
+                    return;
+                }
 
                 if (currentUser) {
                     if (!currentUser.googleUid || currentUser.googleUid !== firebaseUser.uid) {
@@ -2738,6 +2758,8 @@
                 showAnimatedToast(`Welcome back, ${matchedUser.fullName}!`, 'success');
             } catch (e) {
                 console.warn('Google restore failed:', e);
+                currentUser = null;
+                showSignIn();
             } finally {
                 googleAuthRestoreInProgress = false;
             }
@@ -2780,6 +2802,7 @@
 
         async function googleSignIn() {
             if (googleAuthInProgress) return;
+            localStorage.removeItem('playcodex_manual_logout');
             googleAuthInProgress = true;
             const btn = document.getElementById('googleSignInBtn');
             if (btn) btn.classList.add('btn-loading');
@@ -2791,7 +2814,11 @@
 
                 const matchedUser = await findPlayCodeUserByGoogleUid(firebaseUser.uid);
                 if (!matchedUser) {
-                    showModal('googleNotLinkedModal');
+                    pendingGoogleAccount = firebaseUser;
+                    document.getElementById('googleLinkIdentityCard').innerHTML = googleIdentityCard(firebaseUser);
+                    document.getElementById('linkAccountNo').value = '';
+                    document.getElementById('linkSarNo').value = '';
+                    showModal('googleLinkAccountModal');
                     return;
                 }
                 if (matchedUser.adminLocked) {
@@ -2967,22 +2994,153 @@
         }
 
         // ==========================================
+        // GOOGLE ACCOUNT LINK / CREATE FLOWS
+        // ==========================================
+        let pendingGoogleAccount = null;
+
+        function googleIdentityCard(firebaseUser) {
+            const photo = firebaseUser.photoURL ? `<img src="${escapeHtml(firebaseUser.photoURL)}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;">` : `<div class="user-avatar-small" style="width:52px;height:52px;">${escapeHtml((firebaseUser.displayName || firebaseUser.email || 'G').charAt(0).toUpperCase())}</div>`;
+            return `${photo}<div style="min-width:0;flex:1;"><div style="font-weight:700;color:var(--md-sys-color-on-surface);">${escapeHtml(firebaseUser.displayName || 'Google User')}</div><div class="text-xs text-muted">${escapeHtml(firebaseUser.email || '')}</div><div class="text-xs text-muted" style="word-break:break-all;">UID: ${escapeHtml(firebaseUser.uid)}</div></div>`;
+        }
+
+        async function startGoogleAccountLinkFromSignIn() {
+            if (googleAuthInProgress) return;
+            localStorage.removeItem('playcodex_manual_logout');
+            googleAuthInProgress = true;
+            const btn = document.getElementById('linkGoogleFromSignInBtn');
+            if (btn) btn.classList.add('btn-loading');
+            try {
+                await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+                const result = await auth.signInWithPopup(googleProvider);
+                const firebaseUser = result && result.user;
+                if (!firebaseUser) throw new Error('No Google user returned');
+                pendingGoogleAccount = firebaseUser;
+                document.getElementById('googleLinkIdentityCard').innerHTML = googleIdentityCard(firebaseUser);
+                document.getElementById('linkAccountNo').value = '';
+                document.getElementById('linkSarNo').value = '';
+                showModal('googleLinkAccountModal');
+            } catch (error) { handleGoogleAuthError(error); }
+            finally { googleAuthInProgress = false; if (btn) btn.classList.remove('btn-loading'); }
+        }
+
+        async function completeGoogleAccountLink() {
+            const firebaseUser = pendingGoogleAccount || auth.currentUser;
+            const accNo = document.getElementById('linkAccountNo').value.trim();
+            const sarNo = document.getElementById('linkSarNo').value.trim();
+            if (!firebaseUser) return showAnimatedToast('Google verification expired. Start again.', 'error');
+            if (!accNo || !sarNo) return showAnimatedToast('Enter Account Number and SAR Number.', 'error');
+            try {
+                const existingGoogleLink = await findPlayCodeUserByGoogleUid(firebaseUser.uid);
+                if (existingGoogleLink && existingGoogleLink.accNo !== accNo) {
+                    return showAnimatedToast('This Google account is already linked to another account.', 'error');
+                }
+                const snap = await database.ref('users/' + accNo).once('value');
+                if (!snap.exists()) return showAnimatedToast('Account Number not found.', 'error');
+                const user = snap.val();
+                if (String(user.sarNo || '') !== sarNo) return showAnimatedToast('SAR Number does not match.', 'error');
+                if (user.googleUid && user.googleUid !== firebaseUser.uid) return showAnimatedToast('This PlaycodeX account is already linked to another Google account.', 'error');
+
+                await database.ref('users/' + accNo).update({
+                    googleUid: firebaseUser.uid,
+                    googleEmail: firebaseUser.email || '',
+                    googleDisplayName: firebaseUser.displayName || '',
+                    googlePhotoURL: firebaseUser.photoURL || '',
+                    googleLinkedAt: new Date().toISOString()
+                });
+                pendingGoogleAccount = null;
+                closeModal('googleLinkAccountModal');
+                showAnimatedToast('Google account linked successfully. You can now use Continue with Google.', 'success');
+                await auth.signOut().catch(() => {});
+            } catch (error) { showAnimatedToast(error.message || 'Failed to link account.', 'error'); }
+        }
+
+        function cancelGoogleLinkFlow() {
+            closeModal('googleLinkAccountModal');
+            pendingGoogleAccount = null;
+            if (auth.currentUser) auth.signOut().catch(() => {});
+        }
+
+        async function generateAvailableGoogleAccountNo() {
+            for (let attempt = 0; attempt < 30; attempt++) {
+                const candidate = '2362' + String(Math.floor(100000 + Math.random() * 900000));
+                const snap = await database.ref('users/' + candidate).once('value');
+                if (!snap.exists()) return candidate;
+            }
+            throw new Error('Could not generate an available Account Number. Try again.');
+        }
+
+        async function startGoogleAccountCreation() {
+            if (googleAuthInProgress) return;
+            localStorage.removeItem('playcodex_manual_logout');
+            googleAuthInProgress = true;
+            try {
+                await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+                const result = await auth.signInWithPopup(googleProvider);
+                const firebaseUser = result && result.user;
+                if (!firebaseUser) throw new Error('No Google user returned');
+                const alreadyLinked = await findPlayCodeUserByGoogleUid(firebaseUser.uid);
+                if (alreadyLinked) {
+                    showAnimatedToast('This Google account already has a PlaycodeX account. Use Continue with Google.', 'info');
+                    await auth.signOut().catch(() => {});
+                    return;
+                }
+                pendingGoogleAccount = firebaseUser;
+                document.getElementById('googleCreateIdentityCard').innerHTML = googleIdentityCard(firebaseUser);
+                document.getElementById('googleCreateSarNo').value = '';
+                document.getElementById('googleCreatePin').value = '';
+                document.getElementById('googleCreateAgentCode').value = '';
+                document.getElementById('generatedGoogleAccNo').value = 'Generating...';
+                showModal('googleCreateAccountModal');
+                document.getElementById('generatedGoogleAccNo').value = await generateAvailableGoogleAccountNo();
+            } catch (error) { handleGoogleAuthError(error); }
+            finally { googleAuthInProgress = false; }
+        }
+
+        async function completeGoogleAccountCreation() {
+            const firebaseUser = pendingGoogleAccount || auth.currentUser;
+            const accNo = document.getElementById('generatedGoogleAccNo').value.trim();
+            const sarNo = document.getElementById('googleCreateSarNo').value.trim();
+            const pin = document.getElementById('googleCreatePin').value.trim();
+            const agentCode = document.getElementById('googleCreateAgentCode').value;
+            if (!firebaseUser) return showAnimatedToast('Google verification expired. Start again.', 'error');
+            if (!/^2362\d{6}$/.test(accNo)) return showAnimatedToast('Invalid generated Account Number.', 'error');
+            if (!sarNo) return showAnimatedToast('Create a SAR Number.', 'error');
+            if (!/^\d{4}$/.test(pin)) return showAnimatedToast('Create a valid 4-digit PIN.', 'error');
+            if (!agentCode) return showAnimatedToast('Select your agent.', 'error');
+            try {
+                const existing = await database.ref('users/' + accNo).once('value');
+                if (existing.exists()) {
+                    document.getElementById('generatedGoogleAccNo').value = await generateAvailableGoogleAccountNo();
+                    return showAnimatedToast('Account number was already taken. A new one was generated.', 'warning');
+                }
+                const userData = {
+                    accNo, sarNo, fullName: firebaseUser.displayName || 'PlaycodeX User', agentCode, pin,
+                    balance: 0, createdAt: new Date().toISOString(),
+                    googleUid: firebaseUser.uid, googleEmail: firebaseUser.email || '',
+                    googleDisplayName: firebaseUser.displayName || '', googlePhotoURL: firebaseUser.photoURL || '',
+                    googleLinkedAt: new Date().toISOString(), role: 'user'
+                };
+                await database.ref('users/' + accNo).set(userData);
+                const transactionId = 'TX' + Date.now();
+                await database.ref('transactions/' + transactionId).set({ transactionId, accNo, type:'account_creation', amount:0, description:'Created with Google', date:new Date().toISOString(), balanceAfter:0 });
+                pendingGoogleAccount = null;
+                currentUser = userData;
+                closeModal('googleCreateAccountModal');
+                showDashboard(); loadUserData(); initRealTimeListeners();
+                showAnimatedToast(`Account created successfully: ${accNo}`, 'success');
+            } catch (error) { showAnimatedToast(error.message || 'Account creation failed.', 'error'); }
+        }
+
+        function cancelGoogleCreateFlow() {
+            closeModal('googleCreateAccountModal');
+            pendingGoogleAccount = null;
+            if (auth.currentUser) auth.signOut().catch(() => {});
+        }
+
+        // ==========================================
         // FORGOT SAR LOGIC
         // ==========================================
-        function startForgotSarFlow() {
-            fsTargetAcc = null;
-            fsTargetUser = null;
-            document.getElementById('fsAccountNo').value = '';
-            document.getElementById('fsFullName').value = '';
-            document.getElementById('fsPin').value = '';
-            document.getElementById('fsNewSar').value = '';
-            document.getElementById('fsConfirmSar').value = '';
-            
-            document.getElementById('fsStep1').style.display = 'block';
-            document.getElementById('fsStep2').style.display = 'none';
-            document.getElementById('fsStep3').style.display = 'none';
-            showModal('forgotSarModal');
-        }
+        function startForgotSarFlow() { showAnimatedToast('SAR recovery now requires Google account access.', 'info'); }
 
         function fsVerifyUser() {
             const accNo = document.getElementById('fsAccountNo').value.trim();
@@ -3042,54 +3200,9 @@
         // ==========================================
         // AUTHENTICATION & LOGIN ATTEMPT LIMITER
         // ==========================================
-        function showDirectSignInModal() { document.getElementById('directSignInKey').value = ''; showModal('directSignInModal'); }
+        function showDirectSignInModal() { showAnimatedToast('Direct Sign-In has been retired. Please use Google Sign-In.', 'info'); }
 
-        function processDirectSignIn() {
-            const directInput = document.getElementById('directSignInKey').value.trim();
-            if (!directInput || directInput.length < 6) return showAnimatedToast('Invalid key format. Expected 6 characters.', 'error');
-            const namePart = directInput.substring(0, 4).toLowerCase();
-            const sarLastTwo = directInput.substring(4, 6);
-            closeModal('directSignInModal');
-            
-            const overlay = document.getElementById('globalLoadingOverlay');
-            document.getElementById('loadingStepsContainer').innerHTML = `<div class="loading-step active"><div class="step-icon"><span class="material-icons-round">manage_search</span></div><div><strong>Locating Profile</strong><div style="font-size:11px; font-weight:normal;">Validating Key</div></div></div>`;
-            overlay.classList.add('show');
-            
-            setTimeout(() => {
-                overlay.classList.remove('show');
-                database.ref('users').once('value').then(snapshot => {
-                        let foundUser = null;
-                        snapshot.forEach(childSnapshot => {
-                            const user = childSnapshot.val();
-                            const nameFirst4 = user.fullName ? user.fullName.substring(0, 4).toLowerCase() : '';
-                            if (nameFirst4 === namePart && (user.sarNo ? user.sarNo.slice(-2) : '') === sarLastTwo) foundUser = user;
-                        });
-
-                        if (foundUser) {
-                            const now = Date.now();
-                            if (foundUser.adminLocked) {
-                                showAnimatedToast(`Account locked by Admin due to multiple failed attempts.`, 'error');
-                                return;
-                            }
-                            if (foundUser.lockedUntil && now < foundUser.lockedUntil) {
-                                const mins = Math.ceil((foundUser.lockedUntil - now) / 60000);
-                                showAnimatedToast(`Account locked. Try again in ${mins} min(s).`, 'error');
-                                return;
-                            }
-
-                            pendingDirectUser = foundUser;
-                            currentPinKeypadMode = 'directSignIn';
-                            directSignInPin = '';
-                            document.getElementById('pinKeypadTitle').innerText = "Write PlaycodeX PIN";
-                            document.getElementById('pinKeypadSubtitle').innerHTML = `<span class="material-icons-round" style="font-size:18px;">info</span> Never enter your PIN to receive money`;
-                            document.querySelector('#pinVerificationModal .verify').innerText = "Verify";
-                            
-                            updatePinDisplay();
-                            showModal('pinVerificationModal');
-                        } else { showAnimatedToast('No matching user found', 'error'); }
-                    }).catch(error => showAnimatedToast(error.message, 'error'));
-            }, 3000);
-        }
+        function processDirectSignIn() { showAnimatedToast('Direct Sign-In has been retired. Please use Google Sign-In.', 'info'); }
 
         function startChangePinFlow() {
             const dropdown = document.getElementById('userDropdown');
@@ -3204,74 +3317,7 @@
             }
         }
 
-        function startSignInSequence() {
-            const accNo = document.getElementById('loginAccNo').value.trim();
-            const sarNo = document.getElementById('loginSar').value.trim();
-            if (!accNo || !sarNo) return showAnimatedToast('Please enter both parameters', 'error');
-            
-            const btn = document.getElementById('signinBtn'); 
-            btn.classList.add('btn-loading');
-            
-            database.ref('users/' + accNo).once('value').then(snapshot => {
-                if (snapshot.exists()) {
-                    const user = snapshot.val();
-                    const now = Date.now();
-
-                    if (user.adminLocked) {
-                        showAnimatedToast(`Account locked by Admin due to multiple failed attempts.`, 'error');
-                        btn.classList.remove('btn-loading');
-                        return;
-                    }
-
-                    if (user.lockedUntil && now < user.lockedUntil) {
-                        const mins = Math.ceil((user.lockedUntil - now) / 60000);
-                        showAnimatedToast(`Account locked. Try again in ${mins} min(s).`, 'error');
-                        btn.classList.remove('btn-loading');
-                        return;
-                    }
-
-                    if (user.sarNo === sarNo) {
-                        database.ref('users/' + accNo).update({ 
-                            lastLogin: new Date().toISOString(),
-                            failedAttempts: 0,
-                            lockCount: 0,
-                            lockedUntil: null,
-                            adminLocked: false
-                        });
-                        currentUser = user; 
-                        showDashboard(); loadUserData(); initRealTimeListeners(); 
-                        reconcileFirebaseAuthWithUser(currentUser);
-                        showAnimatedToast(`Welcome back!`, 'success');
-                    } else {
-                        let failedAttempts = (user.failedAttempts || 0) + 1;
-                        let lockCount = user.lockCount || 0;
-                        let lockedUntil = null;
-                        let adminLocked = user.adminLocked || false;
-
-                        if (failedAttempts >= 3) {
-                            lockCount += 1;
-                            if (lockCount >= 2) {
-                                adminLocked = true;
-                                showAnimatedToast('Account permanently locked due to multiple failed attempts. Contact Admin.', 'error');
-                            } else {
-                                lockedUntil = now + (3 * 60 * 1000);
-                                showAnimatedToast('Account locked for 3 minutes.', 'error');
-                            }
-                            failedAttempts = 0;
-                        } else {
-                            showAnimatedToast(`Invalid details! ${3 - failedAttempts} attempt(s) left.`, 'error');
-                        }
-
-                        database.ref('users/' + accNo).update({
-                            failedAttempts: failedAttempts,
-                            lockCount: lockCount,
-                            lockedUntil: lockedUntil,
-                            adminLocked: adminLocked
-                        });
-                    }
-                } else { showAnimatedToast('Invalid details!', 'error'); }
-            }).catch(e => showAnimatedToast(e.message, 'error')).finally(() => btn.classList.remove('btn-loading'));
-        }
+        function startSignInSequence() { showAnimatedToast('Manual Account Number + SAR sign-in has been retired. Please use Google Sign-In.', 'info'); }
 
         function startSignUpSequence() {
             const accNo = document.getElementById('accNo').value.trim();
@@ -3299,17 +3345,44 @@
             }).catch(e => { showAnimatedToast(e.message, 'error'); btn.classList.remove('btn-loading'); });
         }
 
-        function showSignUp() { document.getElementById('signinPage').style.display = 'none'; document.getElementById('signupPage').style.display = 'flex'; window.scrollTo(0, 0); }
-        function showSignIn() { document.getElementById('signupPage').style.display = 'none'; document.getElementById('signinPage').style.display = 'flex'; window.scrollTo(0, 0); }
+        function showSignUp() { startGoogleAccountCreation(); }
+        function showSignIn() {
+            const signup = document.getElementById('signupPage');
+            const signin = document.getElementById('signinPage');
+            const dashboard = document.getElementById('dashboard');
+            const adminPanel = document.getElementById('adminPanel');
+            if (signup) signup.style.display = 'none';
+            if (dashboard) dashboard.style.display = 'none';
+            if (adminPanel) adminPanel.style.display = 'none';
+            if (signin) signin.style.display = 'flex';
+            document.body.style.overflow = '';
+            window.scrollTo(0, 0);
+        }
         function clearSignUpForm() { ['accNo', 'sarNo', 'fullName', 'agentCode', 'pin'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).value = ''; }); }
-        function clearSignInForm() { document.getElementById('loginAccNo').value = ''; document.getElementById('loginSar').value = ''; }
+        function clearSignInForm() {
+            ['loginAccNo', 'loginSar'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+        }
         
-        function showDashboard() { 
-            document.getElementById('signinPage').style.display = 'none'; document.getElementById('dashboard').style.display = 'flex'; 
-            document.getElementById('myOrdersSection').style.display = 'none'; document.getElementById('transactionHistorySection').style.display = 'none'; document.getElementById('manageAccount').style.display = 'block'; 
-            loadUserNotifications(false);
-            refreshGoogleStatusUI();
-            window.scrollTo(0, 0); 
+        function showDashboard() {
+            const signin = document.getElementById('signinPage');
+            const signup = document.getElementById('signupPage');
+            const dashboard = document.getElementById('dashboard');
+            const adminPanel = document.getElementById('adminPanel');
+            if (!dashboard) throw new Error('Dashboard container is missing.');
+            if (signin) signin.style.display = 'none';
+            if (signup) signup.style.display = 'none';
+            if (adminPanel) adminPanel.style.display = 'none';
+            dashboard.style.display = 'flex';
+            const orders = document.getElementById('myOrdersSection');
+            const history = document.getElementById('transactionHistorySection');
+            const manage = document.getElementById('manageAccount');
+            if (orders) orders.style.display = 'none';
+            if (history) history.style.display = 'none';
+            if (manage) manage.style.display = 'block';
+            document.body.style.overflow = '';
+            try { loadUserNotifications(false); } catch (e) { console.warn('Notification init failed:', e); }
+            try { refreshGoogleStatusUI(); } catch (e) { console.warn('Google UI refresh failed:', e); }
+            window.scrollTo(0, 0);
         }
         function toggleUserMenu() { document.getElementById('userDropdown').classList.toggle('show'); }
         function showManageAccount() { document.getElementById('myOrdersSection').style.display = 'none'; document.getElementById('transactionHistorySection').style.display = 'none'; document.getElementById('manageAccount').style.display = 'block'; loadUserNotifications(false); toggleUserMenu(); }
@@ -3338,19 +3411,40 @@
             });
         }
 
-        function executeSignOut(event) {
-            if (event) event.stopPropagation(); 
+        async function executeSignOut(event) {
+            if (event) event.stopPropagation();
+            // This marker is intentionally kept until the user explicitly starts
+            // Google sign-in again. It prevents automatic session restoration after logout.
+            localStorage.setItem('playcodex_manual_logout', '1');
             try {
-                if (realTimeListeners) { Object.keys(realTimeListeners).forEach(key => { if (typeof realTimeListeners[key] === 'function') realTimeListeners[key](); }); realTimeListeners = {}; }
-                try { if (auth.currentUser) auth.signOut().catch(() => {}); } catch (e) {}
-                currentUser = null; currentAdmin = false; allUsersCache = {}; myOrdersCache = {};
-                const dropdown = document.getElementById('userDropdown'); if (dropdown) dropdown.classList.remove('show');
-                const gs = document.getElementById('googleLinkSection'); if (gs) gs.innerHTML = '';
+                if (realTimeListeners) {
+                    Object.keys(realTimeListeners).forEach(key => {
+                        if (typeof realTimeListeners[key] === 'function') realTimeListeners[key]();
+                    });
+                    realTimeListeners = {};
+                }
+                try { await auth.signOut(); } catch (e) {}
+                currentUser = null;
+                currentAdmin = false;
+                allUsersCache = {};
+                myOrdersCache = {};
+                const dropdown = document.getElementById('userDropdown');
+                if (dropdown) dropdown.classList.remove('show');
+                const gs = document.getElementById('googleLinkSection');
+                if (gs) gs.innerHTML = '';
                 const topAvatar = document.getElementById('userAvatar');
                 if (topAvatar) topAvatar.innerHTML = '<span id="userInitial">U</span>';
-                ['dashboard', 'adminPanel', 'manageAccount', 'myOrdersSection', 'transactionHistorySection'].forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
-                showSignIn(); clearSignInForm(); showAnimatedToast('Signed out securely', 'success');
-            } catch (error) { window.location.reload(); }
+                ['dashboard', 'adminPanel', 'manageAccount', 'myOrdersSection', 'transactionHistorySection'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.style.display = 'none';
+                });
+                showSignIn();
+                clearSignInForm();
+                showAnimatedToast('Signed out securely. Continue with Google to sign in again.', 'success');
+            } catch (error) {
+                currentUser = null;
+                showSignIn();
+            }
         }
 
         function checkBalance() { showModal('balanceModal'); document.getElementById('balanceLoading').style.display = 'flex'; document.getElementById('balanceResult').style.display = 'none'; setTimeout(() => { document.getElementById('balanceLoading').style.display = 'none'; document.getElementById('balanceResult').style.display = 'block'; document.getElementById('balanceAmount').textContent = formatINR(currentUser.balance); }, 3000); }
@@ -3660,8 +3754,31 @@
         }
 
         function showAdminModal() { showModal('adminModal'); }
-        function closeAdminModal() { closeModal('adminModal'); document.getElementById('pukCode').value = ''; }
-        function adminLogin() { const pukCode = document.getElementById('pukCode').value; if (pukCode === 'PC15836215') { currentAdmin = true; closeAdminModal(); showAdminPanel(); loadAllUsers(); loadAllOrders(); showAnimatedToast('Admin Access Granted', 'success'); } else { showAnimatedToast('Invalid PUKCODE!', 'error'); } }
+        function closeAdminModal() { closeModal('adminModal'); }
+        async function adminGoogleLogin() {
+            if (googleAuthInProgress) return;
+            googleAuthInProgress = true;
+            try {
+                await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+                const result = await auth.signInWithPopup(googleProvider);
+                const firebaseUser = result && result.user;
+                if (!firebaseUser) throw new Error('No Google user returned');
+                const adminUser = await findPlayCodeUserByGoogleUid(firebaseUser.uid);
+                if (!adminUser || String(adminUser.role || '').toLowerCase() !== 'admin') {
+                    await auth.signOut().catch(() => {});
+                    showAnimatedToast('This Google account is not authorized as an admin.', 'error');
+                    return;
+                }
+                currentAdmin = true;
+                currentUser = adminUser;
+                closeAdminModal();
+                showAdminPanel();
+                loadAllUsers();
+                loadAllOrders();
+                showAnimatedToast('Admin Access Granted', 'success');
+            } catch (error) { handleGoogleAuthError(error); }
+            finally { googleAuthInProgress = false; }
+        }
         function logoutAdmin() { currentAdmin = false; document.getElementById('adminPanel').style.display = 'none'; showSignIn(); clearSignInForm(); showAnimatedToast('Admin session ended', 'info'); }
         function showAdminPanel() { document.getElementById('signinPage').style.display = 'none'; document.getElementById('adminPanel').style.display = 'flex'; window.scrollTo(0, 0); }
         function showGenerateCodeModal() { document.getElementById('generateCodeAmount').value = ''; document.getElementById('generatedCodeDisplaySection').style.display = 'none'; showModal('adminGenerateCodeModal'); }
@@ -3749,6 +3866,9 @@
         // ==========================================
         // BOOTSTRAP FIREBASE AUTH (Google session restore)
         // ==========================================
+        // Always render the sign-in screen first. Firebase may then switch to the dashboard
+        // if a valid linked LOCAL session is restored.
+        showSignIn();
         initializeFirebaseAuth();
     </script>
 </body>
