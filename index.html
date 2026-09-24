@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -984,6 +982,274 @@
         .empty-state p { font-size: 13.5px; color: var(--md-sys-color-on-surface-variant); }
 
         /* ==========================================================================
+           MY ORDERS — Modern order cards
+           ========================================================================== */
+        .orders-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .order-summary-card {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            background: var(--md-sys-color-surface-container-high);
+            border: 1px solid var(--md-sys-color-outline-variant);
+            border-radius: var(--md-shape-lg);
+            transition: transform 0.28s var(--md-motion-expressive-fast-spatial),
+                        border-color 0.2s, box-shadow 0.28s;
+        }
+        .order-summary-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(125deg, var(--summary-tint, transparent), transparent 70%);
+            opacity: 0.16;
+            pointer-events: none;
+        }
+        .order-summary-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(208, 188, 255, 0.32);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.32);
+        }
+
+        .order-summary-icon {
+            position: relative;
+            z-index: 1;
+            flex: 0 0 auto;
+            width: 44px; height: 44px;
+            border-radius: 14px;
+            display: grid; place-items: center;
+            color: #fff;
+            background: linear-gradient(135deg, var(--summary-accent-a, #4285F4), var(--summary-accent-b, #B983FF));
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.30);
+        }
+        .order-summary-icon .material-icons-round { font-size: 22px; }
+
+        .order-summary-text { position: relative; z-index: 1; min-width: 0; }
+        .order-summary-value {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--md-sys-color-on-surface);
+        }
+        .order-summary-label {
+            margin-top: 3px;
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        /* ---- Orders grid ---- */
+        .orders-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 14px;
+        }
+
+        .order-card {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            padding: 18px;
+            background: var(--md-sys-color-surface-container-high);
+            border: 1px solid var(--md-sys-color-outline-variant);
+            border-radius: var(--md-shape-lg);
+            transition: transform 0.28s var(--md-motion-expressive-fast-spatial),
+                        border-color 0.2s, box-shadow 0.28s;
+            animation: m3-fade-up 0.45s var(--md-motion-expressive-default-spatial) both;
+        }
+        .order-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--order-accent-a, #4285F4), var(--order-accent-b, #B983FF));
+        }
+        .order-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(208, 188, 255, 0.32);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38);
+        }
+
+        .order-card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .order-identity { display: flex; align-items: center; gap: 12px; min-width: 0; }
+        .order-identity-icon {
+            flex: 0 0 auto;
+            width: 44px; height: 44px;
+            border-radius: 13px;
+            display: grid; place-items: center;
+            color: #fff;
+            background: linear-gradient(135deg, var(--order-accent-a, #4285F4), var(--order-accent-b, #B983FF));
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.30);
+        }
+        .order-identity-icon .material-icons-round { font-size: 22px; }
+        .order-identity-text { min-width: 0; }
+        .order-eyebrow {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+        .order-id-text {
+            font-family: var(--font-display);
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--md-sys-color-on-surface);
+            word-break: break-all;
+            line-height: 1.3;
+        }
+        .order-card .status-badge { gap: 5px; flex: 0 0 auto; }
+
+        .order-figures {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: var(--md-shape-md);
+            background: var(--md-sys-color-surface-container-low);
+            border: 1px solid var(--md-sys-color-outline-variant);
+        }
+        .order-figure-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--md-sys-color-on-surface-variant);
+            margin-bottom: 4px;
+        }
+        .order-figure-amount {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1;
+            color: #6DD58C;
+        }
+        .order-figure-date {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--md-sys-color-on-surface);
+        }
+
+        .order-code-chip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 11px 13px;
+            border-radius: var(--md-shape-md);
+            background: rgba(109, 213, 140, 0.08);
+            border: 1px dashed rgba(109, 213, 140, 0.45);
+        }
+        .order-code-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(109, 213, 140, 0.85);
+            margin-bottom: 3px;
+        }
+        .order-code-value {
+            font-family: 'Courier New', monospace;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #6DD58C;
+            word-break: break-all;
+        }
+        .order-copy-btn {
+            flex: 0 0 auto;
+            width: 38px; height: 38px;
+            border-radius: var(--md-shape-full);
+            display: grid; place-items: center;
+            background: rgba(109, 213, 140, 0.15);
+            border: 1px solid rgba(109, 213, 140, 0.35);
+            color: #6DD58C;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, transform 0.2s var(--md-motion-expressive-fast-spatial);
+        }
+        .order-copy-btn:hover { background: #6DD58C; color: #003912; }
+        .order-copy-btn:active { transform: scale(0.92); }
+        .order-copy-btn .material-icons-round { font-size: 19px; }
+
+        .order-meta-row { display: flex; flex-wrap: wrap; gap: 8px; }
+        .order-meta-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 11px;
+            border-radius: var(--md-shape-full);
+            background: var(--md-sys-color-surface-container-low);
+            border: 1px solid var(--md-sys-color-outline-variant);
+            font-size: 11.5px;
+            font-weight: 500;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+        .order-meta-chip .material-icons-round { font-size: 15px; }
+
+        .order-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding-top: 12px;
+            border-top: 1px solid var(--md-sys-color-outline-variant);
+        }
+        .order-timeline {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+        .order-timeline .timeline-dot {
+            width: 9px; height: 9px;
+            border-radius: 50%;
+            flex: 0 0 auto;
+            background: var(--order-accent-a, #FBBC05);
+            box-shadow: 0 0 10px var(--order-accent-a, #FBBC05);
+        }
+        .order-view-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 16px;
+            border-radius: var(--md-shape-full);
+            border: 1px solid rgba(208, 188, 255, 0.30);
+            background: rgba(208, 188, 255, 0.12);
+            color: var(--md-sys-color-primary);
+            font-family: var(--font-display);
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, transform 0.2s var(--md-motion-expressive-fast-spatial);
+        }
+        .order-view-btn:hover {
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+        }
+        .order-view-btn:active { transform: scale(0.95); }
+        .order-view-btn .material-icons-round { font-size: 16px; }
+
+        /* ==========================================================================
            MODALS — bottom sheets on portrait, centered on desktop
            ========================================================================== */
         .modal {
@@ -1522,6 +1788,19 @@
             .trust-title { font-size: 14px; }
             .trust-status { font-size: 12px; }
             .trust-footer { font-size: 11.5px; }
+
+            /* ---------- My Orders (portrait) ---------- */
+            .orders-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+            .order-summary-card { padding: 13px 14px; gap: 11px; }
+            .order-summary-icon { width: 40px; height: 40px; border-radius: 12px; }
+            .order-summary-icon .material-icons-round { font-size: 20px; }
+            .order-summary-value { font-size: 19px; }
+            .order-summary-label { font-size: 9.5px; letter-spacing: 0.9px; }
+
+            .orders-list { grid-template-columns: 1fr; gap: 12px; }
+            .order-card { padding: 16px; gap: 12px; }
+            .order-figure-amount { font-size: 20px; }
+            .order-view-btn { padding: 8px 14px; font-size: 12px; }
 
             .keypad-container { gap: 10px; max-width: 250px; }
             .keypad-btn { padding: 14px; font-size: 19px; border-radius: var(--md-shape-sm); }
@@ -2075,17 +2354,56 @@
                 </div>
 
                 <div id="myOrdersSection" style="display: none;">
-                    <h2 class="section-header"><span class="material-icons-round" style="color:#6DD58C">receipt_long</span> My Orders</h2>
-                    <div class="table-container" id="ordersTableContainer">
-                        <table>
-                            <thead><tr><th>Order ID</th><th style="text-align:right;">Actions</th></tr></thead>
-                            <tbody id="userOrdersTable"></tbody>
-                        </table>
+                    <div class="flex justify-between items-center mb-6" style="flex-wrap: wrap; gap: 14px;">
+                        <div>
+                            <h2 class="section-header" style="margin:0;"><span class="material-icons-round" style="color:#6DD58C">receipt_long</span> My Orders</h2>
+                            <p class="text-sm text-muted mt-1">Every play code order you place shows up here with its live status.</p>
+                        </div>
+                        <div class="live-indicator"><div class="live-dot"></div><span>Live Updates</span></div>
                     </div>
+
+                    <div class="orders-summary" id="ordersSummary">
+                        <div class="order-summary-card" style="--summary-tint:#B983FF;">
+                            <div class="order-summary-icon" style="--summary-accent-a:#B983FF; --summary-accent-b:#8E5CFF;"><span class="material-icons-round">receipt_long</span></div>
+                            <div class="order-summary-text">
+                                <div class="order-summary-value" id="ordersStatTotal">0</div>
+                                <div class="order-summary-label">Total Orders</div>
+                            </div>
+                        </div>
+                        <div class="order-summary-card" style="--summary-tint:#FBBC05;">
+                            <div class="order-summary-icon" style="--summary-accent-a:#FBBC05; --summary-accent-b:#FF9838;"><span class="material-icons-round">schedule</span></div>
+                            <div class="order-summary-text">
+                                <div class="order-summary-value" id="ordersStatPending">0</div>
+                                <div class="order-summary-label">Pending</div>
+                            </div>
+                        </div>
+                        <div class="order-summary-card" style="--summary-tint:#34A853;">
+                            <div class="order-summary-icon" style="--summary-accent-a:#34A853; --summary-accent-b:#6DD58C;"><span class="material-icons-round">check_circle</span></div>
+                            <div class="order-summary-text">
+                                <div class="order-summary-value" id="ordersStatCompleted">0</div>
+                                <div class="order-summary-label">Completed</div>
+                            </div>
+                        </div>
+                        <div class="order-summary-card" style="--summary-tint:#4285F4;">
+                            <div class="order-summary-icon" style="--summary-accent-a:#4285F4; --summary-accent-b:#4DD0E1;"><span class="material-icons-round">payments</span></div>
+                            <div class="order-summary-text">
+                                <div class="order-summary-value" id="ordersStatSpent">₹0</div>
+                                <div class="order-summary-label">Total Value</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="ordersTableContainer">
+                        <div class="orders-list" id="userOrdersTable"></div>
+                    </div>
+
                     <div id="ordersEmptyState" class="empty-state" style="display: none;">
                         <span class="material-icons-round">receipt_long</span>
                         <h3>No Orders Yet</h3>
                         <p>When you order a play code, it will appear here.</p>
+                        <button class="btn btn-primary btn-sm mt-4" onclick="orderCode()">
+                            <span class="material-icons-round" style="font-size:18px;">qr_code_2</span> Order Play Code
+                        </button>
                     </div>
                 </div>
             </div>
@@ -3690,6 +4008,109 @@
             }).catch(error => { showAnimatedToast('Error loading transactions: ' + error.message, 'error'); });
         }
 
+        function updateOrdersSummary(orders) {
+            const list = Array.isArray(orders) ? orders : [];
+            const totalEl = document.getElementById('ordersStatTotal');
+            const pendingEl = document.getElementById('ordersStatPending');
+            const completedEl = document.getElementById('ordersStatCompleted');
+            const spentEl = document.getElementById('ordersStatSpent');
+            if (!totalEl || !pendingEl || !completedEl || !spentEl) return;
+
+            const pendingCount = list.filter(order => (order.status || 'Pending') === 'Pending').length;
+            const completedCount = list.filter(order => order.status === 'Completed').length;
+            const totalValue = list
+                .filter(order => order.status !== 'Cancelled')
+                .reduce((sum, order) => sum + (Number(order.amount) || 0), 0);
+
+            totalEl.textContent = list.length;
+            pendingEl.textContent = pendingCount;
+            completedEl.textContent = completedCount;
+            spentEl.textContent = formatINR(totalValue);
+        }
+
+        function renderOrderCard(order, index) {
+            const status = order.status || 'Pending';
+            const statusKey = String(status).toLowerCase();
+            const statusClass = statusKey === 'completed' ? 'status-completed' : statusKey === 'cancelled' ? 'status-cancelled' : 'status-pending';
+            const statusIcon = statusKey === 'completed' ? 'check_circle' : statusKey === 'cancelled' ? 'cancel' : 'schedule';
+            const statusHint = statusKey === 'completed' ? 'Code delivered' : statusKey === 'cancelled' ? 'Refunded to wallet' : 'Awaiting fulfilment';
+
+            let accentA = '#FBBC05';
+            let accentB = '#FF9838';
+            if (statusKey === 'completed') { accentA = '#34A853'; accentB = '#6DD58C'; }
+            else if (statusKey === 'cancelled') { accentA = '#EA4335'; accentB = '#FF6B9D'; }
+
+            const orderId = escapeHtml(order.orderId);
+            const createdDate = order.date ? new Date(order.date) : null;
+            const fullDate = createdDate ? createdDate.toLocaleString() : 'N/A';
+            const shortDate = createdDate ? createdDate.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : 'N/A';
+            const redeemCode = order.redeemCode ? String(order.redeemCode) : '';
+            const animationDelay = Math.min(index * 45, 360);
+
+            return `
+                <article class="order-card" style="--order-accent-a:${accentA}; --order-accent-b:${accentB}; animation-delay:${animationDelay}ms;">
+                    <div class="order-card-top">
+                        <div class="order-identity">
+                            <div class="order-identity-icon"><span class="material-icons-round">qr_code_2</span></div>
+                            <div class="order-identity-text">
+                                <div class="order-eyebrow">Order ID</div>
+                                <div class="order-id-text">${orderId}</div>
+                            </div>
+                        </div>
+                        <span class="status-badge ${statusClass}">
+                            <span class="material-icons-round" style="font-size:14px;">${statusIcon}</span>
+                            ${escapeHtml(status)}
+                        </span>
+                    </div>
+
+                    <div class="order-figures">
+                        <div>
+                            <div class="order-figure-label">Amount</div>
+                            <div class="order-figure-amount">${formatINR(order.amount)}</div>
+                        </div>
+                        <div style="text-align:right;">
+                            <div class="order-figure-label">Placed On</div>
+                            <div class="order-figure-date">${escapeHtml(shortDate)}</div>
+                        </div>
+                    </div>
+
+                    ${redeemCode && statusKey === 'completed' ? `
+                    <div class="order-code-chip">
+                        <div style="min-width:0;">
+                            <div class="order-code-label">Redeem Code</div>
+                            <div class="order-code-value">${escapeHtml(redeemCode)}</div>
+                        </div>
+                        <button class="order-copy-btn" type="button" title="Copy code" onclick="copyOrderCode('${escapeHtml(redeemCode)}', event)">
+                            <span class="material-icons-round">file_copy</span>
+                        </button>
+                    </div>` : ''}
+
+                    <div class="order-meta-row">
+                        <span class="order-meta-chip"><span class="material-icons-round">calendar_today</span> ${escapeHtml(fullDate)}</span>
+                        ${order.agentCode ? `<span class="order-meta-chip"><span class="material-icons-round">support_agent</span> Agent ${escapeHtml(order.agentCode)}</span>` : ''}
+                    </div>
+
+                    <div class="order-card-footer">
+                        <div class="order-timeline">
+                            <span class="timeline-dot"></span>
+                            <span>${escapeHtml(statusHint)}</span>
+                        </div>
+                        <button class="order-view-btn" type="button" onclick="viewOrderFullDetails('${orderId}')">
+                            View Details <span class="material-icons-round">arrow_forward</span>
+                        </button>
+                    </div>
+                </article>
+            `;
+        }
+
+        function copyOrderCode(code, event) {
+            if (event) event.stopPropagation();
+            if (!code) return;
+            navigator.clipboard.writeText(code)
+                .then(() => showAnimatedToast('Code copied to clipboard!', 'success'))
+                .catch(() => showAnimatedToast('Failed to copy code', 'error'));
+        }
+
         function loadUserOrders() { 
             if (!currentUser) return; 
             database.ref('orders').orderByChild('accNo').equalTo(currentUser.accNo).once('value').then(snapshot => { 
@@ -3697,33 +4118,34 @@
                 const container = document.getElementById('ordersTableContainer');
                 const emptyState = document.getElementById('ordersEmptyState');
                 
+                if (!ordersTable) return;
                 ordersTable.innerHTML = ''; 
                 myOrdersCache = {};
 
                 if (!snapshot.exists()) {
-                    container.style.display = 'none';
-                    emptyState.style.display = 'flex';
+                    if (container) container.style.display = 'none';
+                    if (emptyState) emptyState.style.display = 'flex';
+                    updateOrdersSummary([]);
                     return;
                 }
                 
-                container.style.display = 'block';
-                emptyState.style.display = 'none';
-
-                let orderHtml = '';
+                const orders = [];
                 snapshot.forEach(c => { 
                     const order = c.val();
-                    myOrdersCache[order.orderId] = order;
-                    
-                    orderHtml += `
-                        <tr>
-                            <td class="font-medium">${order.orderId}</td>
-                            <td style="text-align:right;">
-                                <button class="action-btn action-btn-primary" onclick="viewOrderFullDetails('${order.orderId}')">View Details</button>
-                            </td>
-                        </tr>
-                    `; 
-                }); 
-                ordersTable.innerHTML = orderHtml;
+                    if (order && order.orderId) {
+                        myOrdersCache[order.orderId] = order;
+                        orders.push(order);
+                    }
+                });
+
+                orders.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+
+                if (container) container.style.display = 'block';
+                if (emptyState) emptyState.style.display = 'none';
+
+                updateOrdersSummary(orders);
+
+                ordersTable.innerHTML = orders.map((order, index) => renderOrderCard(order, index)).join('');
             }).catch(e => showAnimatedToast(e.message, 'error')); 
         }
 
