@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -16,6 +17,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdjKNAtAAAAADGMyiyq61CH79sj62xSUw18AKBw"></script>
     
     <style>
         /* ==========================================================================
@@ -2147,7 +2149,7 @@
                     <p>Fill in your details to get started.</p>
                 </div>
 
-                <form id="signupForm" onsubmit="event.preventDefault(); startGoogleAccountCreation();">
+                <form id="signupForm" onsubmit="runRecaptcha(event);">
                     <div class="form-group"><input type="text" id="accNo" class="form-control" placeholder="Account Number" required></div>
                     <div class="form-group"><input type="password" id="sarNo" class="form-control" placeholder="SAR Number" required></div>
                     <div class="form-group"><input type="text" id="fullName" class="form-control" placeholder="Full Name" required></div>
@@ -2161,6 +2163,7 @@
                         </select>
                     </div>
                     <div class="form-group"><input type="password" id="pin" class="form-control" placeholder="Create a 4-digit PIN" maxlength="4" pattern="\d{4}" required></div>
+                    <input type="hidden" id="recaptchaResponse" name="g-recaptcha-response">
                     <button type="submit" class="btn btn-primary btn-block mt-4" id="signupBtn">
                         <span class="btn-text">Create Account</span>
                     </button>
@@ -4291,6 +4294,24 @@
         // if a valid linked LOCAL session is restored.
         showSignIn();
         initializeFirebaseAuth();
+    </script>
+    <script>
+        function runRecaptcha(e) {
+            e.preventDefault();
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6LdjKNAtAAAAADGMyiyq61CH79sj62xSUw18AKBw', {action: 'submit'}).then(function(token) {
+                    document.getElementById('recaptchaResponse').value = token;
+                    console.log("reCAPTCHA Token:", token);
+
+                    // Continue with the existing signup logic.
+                    startGoogleAccountCreation();
+                }).catch(function(error) {
+                    console.error("reCAPTCHA error:", error);
+                    showAnimatedToast("Security verification failed. Please try again.", "error");
+                });
+            });
+        }
     </script>
 </body>
 </html>
